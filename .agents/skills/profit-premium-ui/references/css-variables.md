@@ -60,14 +60,21 @@ Profit-Premium uses CSS custom properties in HSL format for theming.
 Use `hsl()` wrapper in Tailwind classes:
 
 ```css
-.bg-background { background-color: hsl(var(--background)); }
-.text-foreground { color: hsl(var(--foreground)); }
-.border-border { border-color: hsl(var(--border)); }
+.bg-background {
+  background-color: hsl(var(--background));
+}
+.text-foreground {
+  color: hsl(var(--foreground));
+}
+.border-border {
+  border-color: hsl(var(--border));
+}
 ```
 
 ## Variable Categories
 
 ### Background Colors
+
 - `--background` - Page background
 - `--card` - Card/panel background
 - `--popover` - Dropdown/popover background
@@ -75,6 +82,7 @@ Use `hsl()` wrapper in Tailwind classes:
 - `--accent` - Accent background (highlights)
 
 ### Foreground Colors
+
 - `--foreground` - Main text
 - `--card-foreground` - Text on cards
 - `--popover-foreground` - Text in popovers
@@ -82,6 +90,7 @@ Use `hsl()` wrapper in Tailwind classes:
 - `--accent-foreground` - Text on accent background
 
 ### Action Colors
+
 - `--primary` - Primary button/action
 - `--primary-foreground` - Text on primary
 - `--secondary` - Secondary button
@@ -90,6 +99,7 @@ Use `hsl()` wrapper in Tailwind classes:
 - `--destructive-foreground` - Text on destructive
 
 ### UI Elements
+
 - `--border` - Border color
 - `--input` - Input field borders
 - `--ring` - Focus ring color

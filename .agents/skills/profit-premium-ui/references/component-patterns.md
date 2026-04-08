@@ -143,11 +143,11 @@ interface ClientComponentProps {
 
 export function ClientComponent({ ...props }: ClientComponentProps) {
   const [state, setState] = useState(defaultValue);
-  
+
   const handleAction = useCallback(() => {
     // Action
   }, [/* deps */]);
-  
+
   return (
     <div>
       {/* JSX */}
@@ -178,18 +178,18 @@ export function FormComponent() {
     field1: '',
     field2: '',
   });
-  
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       const response = await fetch('/api/endpoint', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      
+
       if (response.ok) {
         showToast('Успешно!', 'success');
         setFormData({ field1: '', field2: '' });
@@ -202,7 +202,7 @@ export function FormComponent() {
       setIsSubmitting(false);
     }
   }
-  
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
@@ -214,7 +214,7 @@ export function FormComponent() {
           placeholder="Placeholder"
         />
       </div>
-      
+
       <Button type="submit" className="w-full" disabled={isSubmitting}>
         {isSubmitting ? 'Отправка...' : 'Отправить'}
       </Button>
@@ -240,13 +240,13 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  
+
   return (
     <nav className="space-y-2">
       {navItems.map(item => {
         const Icon = item.icon;
         const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
-        
+
         return (
           <Link
             key={item.href}
@@ -280,7 +280,7 @@ export default async function DataList() {
   const items = await prisma.model.findMany({
     orderBy: { createdAt: 'desc' },
   });
-  
+
   return (
     <div className="grid gap-4">
       {items.map(item => (
@@ -412,11 +412,11 @@ interface ModalProps {
 
 export function Modal({ isOpen, onClose, title, children }: ModalProps) {
   if (!isOpen) return null;
-  
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div 
-        className="absolute inset-0 bg-black/50" 
+      <div
+        className="absolute inset-0 bg-black/50"
         onClick={onClose}
       />
       <div className="relative bg-card rounded-lg shadow-lg w-full max-w-md mx-4">
@@ -444,7 +444,7 @@ import { useToast } from '@/components/ui/use-toast';
 
 export function MyComponent() {
   const { showToast } = useToast();
-  
+
   const handleAction = () => {
     showToast('Операция выполнена', 'success');
     // or
@@ -452,7 +452,7 @@ export function MyComponent() {
     // or
     showToast('Информация', 'info');
   };
-  
+
   return <Button onClick={handleAction}>Action</Button>;
 }
 ```
@@ -490,7 +490,7 @@ interface ErrorMessageProps {
 
 export function ErrorMessage({ message }: ErrorMessageProps) {
   if (!message) return null;
-  
+
   return (
     <p className="mt-1 text-sm text-red-500" role="alert">
       {message}

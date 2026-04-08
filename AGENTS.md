@@ -45,22 +45,23 @@
 | CI/CD | GitHub Actions | Automated testing |
 | Deployment | Docker + Docker Compose | Production hosting |
 =======
-| Component  | Technology              | Purpose                    |
+| Component | Technology | Purpose |
 | ---------- | ----------------------- | -------------------------- |
-| Framework  | Next.js 14 (App Router) | React framework с SSR/SSG  |
-| Language   | TypeScript 5.x          | Type safety                |
-| Styling    | Tailwind CSS 3.x        | Utility-first CSS          |
-| UI Kit     | shadcn/ui               | Headless components        |
-| ORM        | Prisma 5.x              | Database access            |
-| Database   | PostgreSQL 15+          | Primary data storage       |
-| Auth       | NextAuth.js 5.x         | JWT-based authentication   |
-| SMS        | SMS.ru API              | SMS code delivery          |
-| CRM        | Bitrix24 Webhook        | Lead integration           |
-| Testing    | Playwright              | E2E testing                |
-| Linting    | ESLint + Prettier       | Code quality               |
-| CI/CD      | GitHub Actions          | Automated testing & deploy |
-| Deployment | Docker + VPS            | Production hosting         |
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
+| Framework | Next.js 14 (App Router) | React framework с SSR/SSG |
+| Language | TypeScript 5.x | Type safety |
+| Styling | Tailwind CSS 3.x | Utility-first CSS |
+| UI Kit | shadcn/ui | Headless components |
+| ORM | Prisma 5.x | Database access |
+| Database | PostgreSQL 15+ | Primary data storage |
+| Auth | NextAuth.js 5.x | JWT-based authentication |
+| SMS | SMS.ru API | SMS code delivery |
+| CRM | Bitrix24 Webhook | Lead integration |
+| Testing | Playwright | E2E testing |
+| Linting | ESLint + Prettier | Code quality |
+| CI/CD | GitHub Actions | Automated testing & deploy |
+| Deployment | Docker + VPS | Production hosting |
+
+> > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
 
 ---
 
@@ -264,8 +265,11 @@ enum LeadStatus {
 ---
 
 <<<<<<< HEAD
+
 ## Build and Development Commands
+
 =======
+
 ## Detailed Requirements
 
 ### 1. Authentication System
@@ -427,7 +431,8 @@ enum LeadStatus {
 ---
 
 ## Development Workflow
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
+
+> > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
 
 ### Environment Setup
 
@@ -474,21 +479,20 @@ npm run dev
 ### Test Credentials (from seed.ts)
 
 - **Admin**: `admin@profit-premium.ru` / `admin123`
-- **Partner**: `partner@example.com` / `partner123`
-=======
-| Command                  | Description                  |
-| ------------------------ | ---------------------------- |
-| `npm run dev`            | Start development server     |
-| `npm run build`          | Build production bundle      |
-| `npm start`              | Start production server      |
-| `npm run lint`           | Run ESLint                   |
-| `npm run format:check`   | Check Prettier formatting    |
-| `npm run format:write`   | Fix Prettier formatting      |
-| `npm run test:e2e`       | Run Playwright E2E tests     |
-| `npx prisma studio`      | Open Prisma Studio           |
-| `npx prisma migrate dev` | Create and apply migration   |
-| `npx prisma db seed`     | Seed database with test data |
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
+- # **Partner**: `partner@example.com` / `partner123`
+  | Command                  | Description                  |
+  | ------------------------ | ---------------------------- |
+  | `npm run dev`            | Start development server     |
+  | `npm run build`          | Build production bundle      |
+  | `npm start`              | Start production server      |
+  | `npm run lint`           | Run ESLint                   |
+  | `npm run format:check`   | Check Prettier formatting    |
+  | `npm run format:write`   | Fix Prettier formatting      |
+  | `npm run test:e2e`       | Run Playwright E2E tests     |
+  | `npx prisma studio`      | Open Prisma Studio           |
+  | `npx prisma migrate dev` | Create and apply migration   |
+  | `npx prisma db seed`     | Seed database with test data |
+  > > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
 
 ---
 
@@ -539,23 +543,25 @@ npm run dev
 | Utilities | camelCase | `auth.ts`, `utils.ts` |
 | Types | PascalCase | `types/index.ts` |
 =======
-| Type       | Pattern    | Example                      |
+| Type | Pattern | Example |
 | ---------- | ---------- | ---------------------------- |
-| Components | PascalCase | `Sidebar.tsx`                |
-| Pages      | page.tsx   | `app/materials/page.tsx`     |
-| API Routes | route.ts   | `app/api/materials/route.ts` |
-| Utilities  | camelCase  | `auth.ts`                    |
-| Types      | PascalCase | `types/index.ts`             |
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
+| Components | PascalCase | `Sidebar.tsx` |
+| Pages | page.tsx | `app/materials/page.tsx` |
+| API Routes | route.ts | `app/api/materials/route.ts` |
+| Utilities | camelCase | `auth.ts` |
+| Types | PascalCase | `types/index.ts` |
+
+> > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
 
 ### Code Patterns
 
 <<<<<<< HEAD
+
 - Использовать `async/await` для асинхронных операций
 - Валидировать входные данные с помощью Zod
 - Использовать `cn()` из `lib/utils.ts` для условных классов Tailwind
-- Server Components по умолчанию, `'use client'` только при необходимости
-=======
+- # Server Components по умолчанию, `'use client'` только при необходимости
+
 ## Security Requirements (Critical for Commercial Project)
 
 ### Authentication & Authorization
@@ -600,22 +606,24 @@ npm run dev
 - ✅ Использовать .env.example с плейсхолдерами
 - ✅ Разные secrets для dev/prod
 - ✅ Минимум 32 символа для NEXTAUTH_SECRET
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
+  > > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
 
 ---
 
 ## Testing Instructions
 
 <<<<<<< HEAD
+
 ### E2E Tests (Playwright)
 
 Конфигурация: `playwright.config.ts`
+
 - **Test directory**: `./src/tests/e2e`
 - **Base URL**: `http://localhost:3000`
 - **Browser**: Microsoft Edge (desktop)
 - **Web server**: автоматический запуск `npm run dev`
 
-```bash
+````bash
 # Запуск всех E2E тестов
 npm run test:e2e
 =======
@@ -629,7 +637,8 @@ npm run test:e2e
     "code": "ERROR_CODE",
     "details": {} // Опциональные детали
   }
-  ```
+````
+
 - HTTP статусы:
   - 400: Bad Request (validation error)
   - 401: Unauthorized (not authenticated)
@@ -651,14 +660,17 @@ npm run test:e2e
 - Включать: timestamp, level, message, userId, requestId
 - Уровни: error, warn, info, debug
 - Не логировать: passwords, tokens, credit cards
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
+  > > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
 
 # Запуск с UI режимом
+
 npx playwright test --ui
 
 # Запуск конкретного файла
+
 npx playwright test auth.spec.ts
-```
+
+````
 
 <<<<<<< HEAD
 ### Test Files
@@ -793,7 +805,7 @@ BITRIX_WEBHOOK_URL="https://your-domain.bitrix24.ru/rest/1/webhook-token/"
 # Storage
 UPLOAD_DIR="/app/uploads"
 MAX_FILE_SIZE="52428800"
-```
+````
 
 <<<<<<< HEAD
 **Важно**: Никогда не коммитить `.env.local` с реальными значениями!
@@ -818,6 +830,7 @@ docker-compose logs -f app
 ### CI/CD Pipeline
 
 GitHub Actions (`.github/workflows/ci.yml`):
+
 1. Checkout кода
 2. Setup Node.js 20
 3. Install dependencies
@@ -825,8 +838,8 @@ GitHub Actions (`.github/workflows/ci.yml`):
 5. Run ESLint
 6. Check formatting
 7. Type check
-8. Build
-=======
+8. # Build
+
 ### Backup Strategy
 
 - **Database**: Ежедневные автоматические бэкапы (pg_dump)
@@ -865,22 +878,24 @@ jobs:
     steps:
       - run: # Deploy to production
 ```
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
+
+> > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
 
 ---
 
 ## Key Implementation Details
 
 <<<<<<< HEAD
+
 ### Authentication Flow
 
 1. **Email + Password**: credentials provider с проверкой bcrypt
-2. **SMS**: 
+2. **SMS**:
    - `/api/auth/sms/send` — генерация 6-значного кода, сохранение в БД, отправка через SMS.ru
    - `/api/auth/sms/verify` — проверка кода, создание пользователя при отсутствии
    - Rate limiting: 3 SMS/час на номер
-   - Код действителен 5 минут, 3 попытки
-=======
+   - # Код действителен 5 минут, 3 попытки
+
 ### Endpoint Documentation Format
 
 ```typescript
@@ -1249,3 +1264,4 @@ Only consider the task complete when one of these is true:
 ---
 
 _End of AGENTS.md_
+```
