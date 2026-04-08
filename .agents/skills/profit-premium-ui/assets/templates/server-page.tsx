@@ -14,7 +14,7 @@ interface PageProps {
   };
 }
 
-export default async function /*PageName*/({ searchParams }: PageProps) {
+export default async function (/*PageName*/ { searchParams }: PageProps) {
   const { filter } = searchParams;
 
   // Build where clause based on filters
@@ -51,7 +51,7 @@ export default async function /*PageName*/({ searchParams }: PageProps) {
         >
           Все
         </a>
-        {filters.map((f) => (
+        {filters.map(f => (
           <a
             key={f.filter}
             href={`/route?filter=${f.filter}`}
@@ -73,15 +73,13 @@ export default async function /*PageName*/({ searchParams }: PageProps) {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {items.map((item) => (
+          {items.map(item => (
             <Card key={item.id}>
               <CardHeader>
                 <CardTitle>{item.title}</CardTitle>
                 <CardDescription>{item.description}</CardDescription>
               </CardHeader>
-              <CardContent>
-                {/* Content */}
-              </CardContent>
+              <CardContent>{/* Content */}</CardContent>
             </Card>
           ))}
         </div>
