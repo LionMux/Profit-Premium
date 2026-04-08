@@ -54,7 +54,9 @@ export default function TeamSection() {
               key={member.name}
               className="group text-center p-6 rounded-2xl border border-slate-100 hover:border-amber-200 hover:shadow-lg transition-all"
             >
-              <div className={`w-20 h-20 mx-auto rounded-full bg-gradient-to-br ${avatarColors[index]} flex items-center justify-center text-white text-xl font-bold mb-4 group-hover:scale-105 transition-transform`}>
+              <div
+                className={`w-20 h-20 mx-auto rounded-full bg-gradient-to-br ${avatarColors[index]} flex items-center justify-center text-white text-xl font-bold mb-4 group-hover:scale-105 transition-transform`}
+              >
                 {member.initials}
               </div>
               <h3 className="font-semibold text-slate-900">{member.name}</h3>

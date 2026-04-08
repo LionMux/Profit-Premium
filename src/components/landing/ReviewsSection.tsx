@@ -53,7 +53,7 @@ export default function ReviewsSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {reviews.map((review) => (
+          {reviews.map(review => (
             <div
               key={review.name}
               className="bg-slate-800 rounded-2xl p-6 border border-slate-700 hover:border-amber-400/30 transition-colors"

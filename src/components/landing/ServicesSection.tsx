@@ -39,17 +39,17 @@ export default function ServicesSection() {
               Что мы делаем
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-slate-900">
-              Полный цикл работы <br className="hidden sm:block" />
-              с недвижимостью
+              Полный цикл работы <br className="hidden sm:block" />с недвижимостью
             </h2>
           </div>
           <p className="text-slate-500 max-w-md">
-            От первого звонка до получения ключей — берём на себя всю работу, чтобы вы занимались своими делами.
+            От первого звонка до получения ключей — берём на себя всю работу, чтобы вы занимались
+            своими делами.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {services.map((service) => (
+          {services.map(service => (
             <div
               key={service.number}
               className="group bg-white rounded-2xl p-8 border border-slate-100 hover:border-amber-200 hover:shadow-xl hover:shadow-slate-100 transition-all"
@@ -58,14 +58,24 @@ export default function ServicesSection() {
                 <span className="text-5xl font-bold text-slate-100 group-hover:text-amber-100 transition-colors select-none">
                   {service.number}
                 </span>
-                <svg className="w-5 h-5 text-slate-300 group-hover:text-amber-400 transition-colors mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <svg
+                  className="w-5 h-5 text-slate-300 group-hover:text-amber-400 transition-colors mt-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
               <p className="text-slate-500 text-sm leading-relaxed mb-5">{service.description}</p>
               <ul className="space-y-2">
-                {service.features.map((f) => (
+                {service.features.map(f => (
                   <li key={f} className="flex items-center gap-2 text-sm text-slate-600">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0" />
                     {f}

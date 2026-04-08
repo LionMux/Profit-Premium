@@ -21,14 +21,12 @@ export default function HeroSection() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-            Найдём вашу{' '}
-            <span className="text-amber-400">идеальную</span>{' '}
-            квартиру
+            Найдём вашу <span className="text-amber-400">идеальную</span> квартиру
           </h1>
 
           <p className="text-lg text-slate-400 mb-10 max-w-2xl leading-relaxed">
-            Помогаем выбрать, купить и оформить недвижимость. Работаем с застройщиками
-            напрямую — наши услуги для вас бесплатны.
+            Помогаем выбрать, купить и оформить недвижимость. Работаем с застройщиками напрямую —
+            наши услуги для вас бесплатны.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-16">
@@ -38,7 +36,12 @@ export default function HeroSection() {
             >
               Подобрать квартиру
               <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
               </svg>
             </a>
             <a
@@ -50,7 +53,7 @@ export default function HeroSection() {
           </div>
 
           <div className="grid grid-cols-3 gap-8 pt-8 border-t border-slate-800">
-            {stats.map((stat) => (
+            {stats.map(stat => (
               <div key={stat.label}>
                 <div className="text-2xl sm:text-3xl font-bold text-amber-400 mb-1">
                   {stat.value}
