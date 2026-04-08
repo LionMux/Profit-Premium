@@ -5,8 +5,9 @@ import '@/styles/globals.css';
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
 export const metadata: Metadata = {
-  title: 'Profit Premium - Личный кабинет партнера',
-  description: 'Закрытый личный кабинет для партнеров-агентов по недвижимости',
+  title: 'Profit Premium — Агентство недвижимости',
+  description:
+    'Подбираем квартиры в новостройках и на вторичном рынке. Бесплатно для покупателей. Ипотека, рассрочка, trade-in.',
 };
 
 export default function RootLayout({
