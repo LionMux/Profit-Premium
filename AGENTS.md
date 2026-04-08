@@ -1,4 +1,5 @@
 <!-- AGENTS.md — Profit-Premium -->
+
 # AGENTS.md — Profit-Premium
 
 Этот файл содержит essential information для AI coding agents, работающих над проектом Profit-Premium.
@@ -27,21 +28,21 @@
 
 ## Technology Stack
 
-| Component | Technology | Purpose |
-|-----------|------------|---------|
-| Framework | Next.js 14 (App Router) | React framework с SSR/SSG |
-| Language | TypeScript 5.x | Type safety |
-| Styling | Tailwind CSS 3.x | Utility-first CSS |
-| UI Kit | shadcn/ui | Headless components |
-| ORM | Prisma 5.x | Database access |
-| Database | PostgreSQL 15+ | Primary data storage |
-| Auth | NextAuth.js 5.x | JWT-based authentication |
-| SMS | SMS.ru API | SMS code delivery |
-| CRM | Bitrix24 Webhook | Lead integration |
-| Testing | Playwright | E2E testing |
-| Linting | ESLint + Prettier | Code quality |
-| CI/CD | GitHub Actions | Automated testing & deploy |
-| Deployment | Docker + VPS | Production hosting |
+| Component  | Technology              | Purpose                    |
+| ---------- | ----------------------- | -------------------------- |
+| Framework  | Next.js 14 (App Router) | React framework с SSR/SSG  |
+| Language   | TypeScript 5.x          | Type safety                |
+| Styling    | Tailwind CSS 3.x        | Utility-first CSS          |
+| UI Kit     | shadcn/ui               | Headless components        |
+| ORM        | Prisma 5.x              | Database access            |
+| Database   | PostgreSQL 15+          | Primary data storage       |
+| Auth       | NextAuth.js 5.x         | JWT-based authentication   |
+| SMS        | SMS.ru API              | SMS code delivery          |
+| CRM        | Bitrix24 Webhook        | Lead integration           |
+| Testing    | Playwright              | E2E testing                |
+| Linting    | ESLint + Prettier       | Code quality               |
+| CI/CD      | GitHub Actions          | Automated testing & deploy |
+| Deployment | Docker + VPS            | Production hosting         |
 
 ---
 
@@ -159,7 +160,7 @@ model SmsCode {
   expiresAt   DateTime
   attempts    Int      @default(0)
   createdAt   DateTime @default(now())
-  
+
   @@index([phone, createdAt])
 }
 
@@ -173,7 +174,7 @@ model Material {
   propertyType    String
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-  
+
   @@index([city])
   @@index([propertyType])
   @@index([city, propertyType])
@@ -190,7 +191,7 @@ model ClientLead {
   createdAt   DateTime   @default(now())
   user        User       @relation(fields: [userId], references: [id])
   userId      String
-  
+
   @@index([userId])
   @@index([status])
 }
@@ -202,7 +203,7 @@ model Story {
   link      String?
   order     Int      @default(0)
   isActive  Boolean  @default(true)
-  
+
   @@index([isActive, order])
 }
 
@@ -227,11 +228,13 @@ enum LeadStatus {
 ### 1. Authentication System
 
 #### Email + Password (Implemented)
+
 - NextAuth.js credentials provider
 - bcrypt password hashing (10 rounds)
 - JWT strategy with 30-day session
 
 #### SMS Authentication (Required)
+
 - **Provider**: SMS.ru
 - **Flow**:
   1. User enters phone number
@@ -246,6 +249,7 @@ enum LeadStatus {
 ### 2. Homepage - Stories Carousel
 
 #### Design Reference
+
 - Format like **Samokat** website stories
 - Horizontal scrolling cards
 - Rectangular cards (3:4 aspect ratio)
@@ -257,6 +261,7 @@ enum LeadStatus {
 - Arrow buttons on desktop
 
 #### Technical
+
 - Fetch from Story model (isActive=true, order by order)
 - Lazy load images
 - Responsive: 4-5 cards desktop, 2 tablet, 1.5 mobile
@@ -265,6 +270,7 @@ enum LeadStatus {
 ### 3. Materials Page
 
 #### Filtering
+
 - **Filter by City**: Button group (horizontal desktop, vertical mobile drawer)
 - **Filter by Property Type**: Button group
 - **Position**: Top on desktop, sidebar drawer on mobile
@@ -273,6 +279,7 @@ enum LeadStatus {
 - **Active Filters**: Show as removable chips
 
 #### Display
+
 - Grid of Material cards
 - Card: thumbnail, title, city, property type
 - Click opens file viewer or download
@@ -281,11 +288,13 @@ enum LeadStatus {
 ### 4. Client Transfer Form
 
 #### Form Fields
+
 - **ФИО**: Text input, required, 3-100 chars
 - **Телефон**: Masked input (+7 (999) 999-99-99), required
 - **Город**: Text input or select, required, 2-50 chars
 
 #### Bitrix24 Integration
+
 - **Webhook**: POST to BITRIX_WEBHOOK_URL + 'crm.lead.add'
 - **Payload**:
   ```json
@@ -294,7 +303,7 @@ enum LeadStatus {
       "TITLE": "Лид от партнера: {fullName}",
       "NAME": "{firstName}",
       "LAST_NAME": "{lastName}",
-      "PHONE": [{"VALUE": "+7XXXXXXXXXX", "VALUE_TYPE": "WORK"}],
+      "PHONE": [{ "VALUE": "+7XXXXXXXXXX", "VALUE_TYPE": "WORK" }],
       "ADDRESS_CITY": "{city}",
       "SOURCE_ID": "PARTNER_PORTAL",
       "COMMENTS": "Передано через личный кабинет партнера"
@@ -305,6 +314,7 @@ enum LeadStatus {
 - **Success**: Save bitrixId to ClientLead, status=SENT_TO_BITRIX
 
 #### UX
+
 - Modal form from Profile page
 - Validation with Zod
 - Loading state during submit
@@ -314,6 +324,7 @@ enum LeadStatus {
 ### 5. Contacts Page - Legal Information
 
 #### Required Content
+
 - **Company Name**: ООО "Профит Премиум"
 - **Legal Address**: Полный юридический адрес
 - **INN**: ИНН компании (10-12 цифр)
@@ -325,6 +336,7 @@ enum LeadStatus {
 - **Working Hours**: Пн-Пт: 9:00 - 18:00
 
 #### Design
+
 - Clean text page
 - Sections with headers
 - Professional formatting
@@ -333,6 +345,7 @@ enum LeadStatus {
 ### 6. Footer Component
 
 #### Content
+
 - Phone number (clickable tel: link)
 - Email (clickable mailto: link)
 - Social media icons: Telegram, WhatsApp, VK
@@ -340,6 +353,7 @@ enum LeadStatus {
 - Links: Политика конфиденциальности, Пользовательское соглашение
 
 #### Design
+
 - Dark background (gray-900)
 - White/light text
 - Icons 24px with hover effect
@@ -349,6 +363,7 @@ enum LeadStatus {
 ### 7. File Upload (Admin)
 
 #### Requirements
+
 - Drag & drop zone
 - Click to select files
 - Accepted types: PDF, JPG, JPEG, PNG
@@ -359,6 +374,7 @@ enum LeadStatus {
 - Metadata form: title, description, city, propertyType
 
 #### Process
+
 1. Select files (validate type/size)
 2. Show previews
 3. Fill metadata (apply to all or individual)
@@ -401,18 +417,18 @@ npm run dev
 
 ### Available Commands
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build production bundle |
-| `npm start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run format:check` | Check Prettier formatting |
-| `npm run format:write` | Fix Prettier formatting |
-| `npm run test:e2e` | Run Playwright E2E tests |
-| `npx prisma studio` | Open Prisma Studio |
-| `npx prisma migrate dev` | Create and apply migration |
-| `npx prisma db seed` | Seed database with test data |
+| Command                  | Description                  |
+| ------------------------ | ---------------------------- |
+| `npm run dev`            | Start development server     |
+| `npm run build`          | Build production bundle      |
+| `npm start`              | Start production server      |
+| `npm run lint`           | Run ESLint                   |
+| `npm run format:check`   | Check Prettier formatting    |
+| `npm run format:write`   | Fix Prettier formatting      |
+| `npm run test:e2e`       | Run Playwright E2E tests     |
+| `npx prisma studio`      | Open Prisma Studio           |
+| `npx prisma migrate dev` | Create and apply migration   |
+| `npx prisma db seed`     | Seed database with test data |
 
 ---
 
@@ -424,19 +440,20 @@ npm run dev
 
 ### File Naming Conventions
 
-| Type | Pattern | Example |
-|------|---------|---------|
-| Components | PascalCase | `Sidebar.tsx` |
-| Pages | page.tsx | `app/materials/page.tsx` |
-| API Routes | route.ts | `app/api/materials/route.ts` |
-| Utilities | camelCase | `auth.ts` |
-| Types | PascalCase | `types/index.ts` |
+| Type       | Pattern    | Example                      |
+| ---------- | ---------- | ---------------------------- |
+| Components | PascalCase | `Sidebar.tsx`                |
+| Pages      | page.tsx   | `app/materials/page.tsx`     |
+| API Routes | route.ts   | `app/api/materials/route.ts` |
+| Utilities  | camelCase  | `auth.ts`                    |
+| Types      | PascalCase | `types/index.ts`             |
 
 ---
 
 ## Security Requirements (Critical for Commercial Project)
 
 ### Authentication & Authorization
+
 - ✅ NextAuth.js с JWT стратегией
 - ✅ Пароли хешируются bcrypt (10 rounds)
 - ✅ Защита роутов через middleware
@@ -445,6 +462,7 @@ npm run dev
 - ✅ SMS rate limit: max 3 per hour per phone
 
 ### File Uploads
+
 - ✅ Валидация MIME-типов (PDF, images only)
 - ✅ Проверка размера (max 50MB)
 - ✅ Проверка расширения файла
@@ -453,6 +471,7 @@ npm run dev
 - ✅ Сканирование на вирусы (опционально, через ClamAV)
 
 ### API Security
+
 - ✅ Rate limiting на все endpoints (redis или memory)
 - ✅ Input validation с Zod на всех API
 - ✅ SQL-защита через Prisma ORM (no raw queries)
@@ -462,6 +481,7 @@ npm run dev
 - ✅ CORS настройка (только разрешенные домены)
 
 ### Data Protection
+
 - ✅ Не хранить пароли в plaintext
 - ✅ Не логировать sensitive data (телефоны, email)
 - ✅ Шифрование в transit (HTTPS only)
@@ -469,6 +489,7 @@ npm run dev
 - ✅ Очистка старых SMS кодов (cron job)
 
 ### Secrets Management
+
 - ✅ Никогда не коммитить .env файлы
 - ✅ Использовать .env.example с плейсхолдерами
 - ✅ Разные secrets для dev/prod
@@ -479,6 +500,7 @@ npm run dev
 ## Error Handling Standards (Critical for Commercial Project)
 
 ### API Errors
+
 - Всегда возвращать JSON с полями:
   ```json
   {
@@ -497,12 +519,14 @@ npm run dev
   - 500: Internal Server Error
 
 ### Client Errors
+
 - Использовать Error Boundaries для React компонентов
 - Показывать user-friendly сообщения (не технические детали)
 - Логировать ошибки в консоль (dev) или сервис (prod)
 - Предоставлять fallback UI при ошибках
 
 ### Logging
+
 - Использовать structured logging (JSON format)
 - Включать: timestamp, level, message, userId, requestId
 - Уровни: error, warn, info, debug
@@ -513,6 +537,7 @@ npm run dev
 ## Performance Requirements (Critical for Commercial Project)
 
 ### Frontend
+
 - First Contentful Paint < 1.5s
 - Time to Interactive < 3s
 - Использовать next/image для оптимизации изображений
@@ -521,6 +546,7 @@ npm run dev
 - Минимизировать bundle size
 
 ### Backend
+
 - API response time < 200ms (p95)
 - Использовать кэширование (Redis) для:
   - Список городов и типов недвижимости
@@ -532,6 +558,7 @@ npm run dev
   - Пагинация для больших списков (limit/offset)
 
 ### Database
+
 - Connection pooling (Prisma handles this)
 - Regular VACUUM и ANALYZE
 - Индексы на всех foreign keys
@@ -542,12 +569,14 @@ npm run dev
 ## Testing Requirements (Critical for Commercial Project)
 
 ### Unit Tests (Recommended: Vitest)
+
 - Тестирование utility functions
 - Тестирование API handlers (isolated)
 - Тестирование компонентов (React Testing Library)
 - Coverage: минимум 70%
 
 ### E2E Tests (Playwright) - Required
+
 - Критические пути:
   - Авторизация (email + SMS)
   - Просмотр материалов и фильтрация
@@ -557,6 +586,7 @@ npm run dev
 - Тестировать на разных viewport (mobile, tablet, desktop)
 
 ### Manual Testing Checklist
+
 - [ ] Все ссылки работают
 - [ ] Формы валидируют корректно
 - [ ] Ошибки API обрабатываются graceful
@@ -568,12 +598,14 @@ npm run dev
 ## Deployment & DevOps (Critical for Commercial Project)
 
 ### Docker
+
 - Multi-stage build для оптимизации размера
 - Non-root user в контейнере
 - Health check endpoint
 - Graceful shutdown handling
 
 ### Environment Variables (Production)
+
 ```env
 # Database
 DATABASE_URL=postgresql://user:pass@host:5432/profit_premium?schema=public
@@ -601,12 +633,14 @@ LOG_LEVEL=info
 ```
 
 ### Backup Strategy
+
 - **Database**: Ежедневные автоматические бэкапы (pg_dump)
 - **Files**: Ежедневный backup загруженных файлов
 - **Retention**: Хранить бэкапы за последние 30 дней
 - **Testing**: Ежемесячное тестирование восстановления из бэкапа
 
 ### Monitoring & Alerts
+
 - Application logs (structured JSON)
 - Error tracking (Sentry или аналог)
 - Performance monitoring (Next.js Analytics или APM)
@@ -614,6 +648,7 @@ LOG_LEVEL=info
 - Alerts на: 500 errors, high latency, downtime
 
 ### CI/CD Pipeline
+
 ```yaml
 # .github/workflows/ci.yml
 name: CI/CD
@@ -641,12 +676,13 @@ jobs:
 ## API Documentation Standards
 
 ### Endpoint Documentation Format
+
 ```typescript
 /**
  * POST /api/materials
- * 
+ *
  * Create new material (Admin/Manager only)
- * 
+ *
  * @body {
  *   title: string (required, 3-200 chars)
  *   description?: string (optional, max 1000 chars)
@@ -654,14 +690,14 @@ jobs:
  *   propertyType: string (required)
  *   file: File (required, PDF or image, max 50MB)
  * }
- * 
+ *
  * @returns {
  *   id: string
  *   title: string
  *   fileUrl: string
  *   createdAt: string
  * }
- * 
+ *
  * @errors
  * 400 - Validation error
  * 401 - Unauthorized
@@ -672,7 +708,9 @@ jobs:
 ```
 
 ### Response Format
+
 Все API ответы должны следовать единому формату:
+
 ```typescript
 // Success
 {
@@ -701,6 +739,7 @@ jobs:
 ## Git Workflow (Critical for Commercial Project)
 
 ### Branching Strategy
+
 - `main` - production ready code
 - `develop` - development branch (optional)
 - `feature/*` - новые фичи
@@ -708,9 +747,11 @@ jobs:
 - `hotfix/*` - срочные фиксы для продакшена
 
 ### Commit Messages
+
 Формат: `type(scope): message`
 
 Types:
+
 - `feat`: новая функциональность
 - `fix`: исправление бага
 - `docs`: документация
@@ -720,11 +761,13 @@ Types:
 - `chore`: обслуживание (deps, config)
 
 Examples:
+
 - `feat(auth): add SMS authentication`
 - `fix(materials): correct filter by city`
 - `docs(api): add endpoint documentation`
 
 ### Pull Request Requirements
+
 - [ ] Все тесты проходят
 - [ ] Код review от минимум 1 человека
 - [ ] Нет конфликтов с main
@@ -736,6 +779,7 @@ Examples:
 ## Accessibility (a11y) Requirements
 
 ### Standards
+
 - Соответствие WCAG 2.1 Level AA
 - Поддержка keyboard navigation
 - ARIA labels для интерактивных элементов
@@ -743,6 +787,7 @@ Examples:
 - Цветовой контраст минимум 4.5:1
 
 ### Implementation
+
 - Использовать семантические HTML теги
 - Focus indicators для всех интерактивных элементов
 - Skip links для навигации
@@ -773,6 +818,7 @@ Do not pretend work was completed if it was not actually verified.
 ### Task classification
 
 For every new task, first classify it mentally as one of:
+
 - Fully specified
 - Partially specified
 - Ambiguous
@@ -785,6 +831,7 @@ Treat a task as high-risk if it affects authentication, payments, data deletion,
 Do not rush into implementation when the task is underspecified.
 
 Before writing code, check whether the following are clear enough:
+
 - goal and expected outcome
 - target behavior / user flow
 - files or area likely involved
@@ -799,6 +846,7 @@ If the repository already provides enough evidence, proceed without asking.
 ### Assumption rule
 
 When you must proceed with incomplete information:
+
 - make the safest reasonable assumption;
 - state it explicitly;
 - avoid irreversible or sweeping changes based on that assumption.
@@ -808,6 +856,7 @@ Never hide important assumptions.
 ### Planning rule
 
 For non-trivial tasks, think in phases:
+
 1. Understand the current implementation
 2. Identify the minimal change
 3. Implement
@@ -826,6 +875,7 @@ Do not dump large code changes without first understanding the surrounding code.
 ### Source of truth
 
 When sources conflict, prefer:
+
 1. actual code and tests
 2. active configuration files
 3. repository docs
@@ -838,6 +888,7 @@ Treat documentation as potentially outdated if it conflicts with code.
 A task is not complete until it is validated appropriately.
 
 Use the strongest available validation:
+
 - existing tests
 - typecheck
 - lint
@@ -850,6 +901,7 @@ Never claim success based only on reasoning when validation was possible but not
 ### Failure handling
 
 If a tool, server, test, build, or external integration fails:
+
 - say exactly what failed;
 - explain the effect on confidence;
 - continue with the best available fallback;
@@ -860,6 +912,7 @@ Be resilient, not brittle.
 ### Fallback rule
 
 When the ideal tool is unavailable, fall back in this order when possible:
+
 1. repository inspection
 2. static analysis
 3. local commands
@@ -871,6 +924,7 @@ Explicitly note when confidence is reduced.
 ### Safety rules
 
 Never expose or commit:
+
 - secrets
 - tokens
 - private keys
@@ -883,6 +937,7 @@ Before any commit or push, verify that ignored files, generated junk, logs, cach
 ### Git and publish rules
 
 Before commit or push:
+
 - inspect changed files;
 - verify `.gitignore`;
 - confirm that only intended files are included;
@@ -895,26 +950,32 @@ If a push is unsafe, say so clearly and explain why.
 When reporting progress, prefer this structure:
 
 #### Status
+
 - DONE
 - IN PROGRESS
 - BLOCKED
 - FALLBACK USED
 
 #### Findings
+
 Concrete observations only.
 
 #### Changes made
+
 List meaningful file changes and why.
 
 #### Validation
+
 State what was checked, how it was checked, and what confidence level remains.
 
 #### Open risks
+
 List anything not fully verified.
 
 ### Quality bar
 
 Good output is:
+
 - correct
 - minimal
 - understandable
@@ -927,6 +988,7 @@ Fast but unverified output is not good output.
 ### Anti-patterns
 
 Do not:
+
 - hallucinate files, commands, APIs, or test results;
 - claim a tool was used when it was not;
 - claim code is production-ready without validation;
@@ -937,6 +999,7 @@ Do not:
 ### Completion rule
 
 Only consider the task complete when one of these is true:
+
 1. the requested change was made and validated with reasonable confidence;
 2. the change could not be completed, and the exact blocker, impact, and next step are clearly stated.
 
@@ -957,12 +1020,12 @@ Only consider the task complete when one of these is true:
 
 ## Changelog
 
-| Date | Author | Changes |
-|------|--------|---------|
-| 2026-04-07 | Agent | Project initialized |
-| 2026-04-08 | Agent | Updated with detailed requirements from specification |
-| 2026-04-08 | Agent | Database schema updated with indexes, migrations applied, test data seeded |
+| Date       | Author | Changes                                                                    |
+| ---------- | ------ | -------------------------------------------------------------------------- |
+| 2026-04-07 | Agent  | Project initialized                                                        |
+| 2026-04-08 | Agent  | Updated with detailed requirements from specification                      |
+| 2026-04-08 | Agent  | Database schema updated with indexes, migrations applied, test data seeded |
 
 ---
 
-*End of AGENTS.md*
+_End of AGENTS.md_
