@@ -8,13 +8,16 @@ const SMS_PROVIDER = process.env.SMS_PROVIDER || 'smsru';
 interface SmsSendResponse {
   status: 'OK' | 'ERROR';
   status_code?: number;
-  sms?: Record<string, {
-    status: 'OK' | 'ERROR';
-    status_code: number;
-    sms_id?: string;
-    cost?: number;
-    status_text?: string;
-  }>;
+  sms?: Record<
+    string,
+    {
+      status: 'OK' | 'ERROR';
+      status_code: number;
+      sms_id?: string;
+      cost?: number;
+      status_text?: string;
+    }
+  >;
   balance?: number;
   error?: string;
 }
@@ -23,7 +26,10 @@ interface SmsSendResponse {
  * Send SMS via SMS.ru API
  * In development mode, if SMS_API_KEY is not set, logs code to console
  */
-export async function sendSMS(phone: string, code: string): Promise<{ success: boolean; error?: string }> {
+export async function sendSMS(
+  phone: string,
+  code: string
+): Promise<{ success: boolean; error?: string }> {
   // Development mode - log to console if no API key
   if (!SMS_API_KEY) {
     console.log(`[DEV SMS] Phone: ${phone}, Code: ${code}`);
@@ -32,9 +38,9 @@ export async function sendSMS(phone: string, code: string): Promise<{ success: b
 
   // Clean phone number (remove + and any non-digits)
   const cleanPhone = phone.replace(/\D/g, '');
-  
+
   const message = `Ваш код подтверждения: ${code}. Действителен 5 минут.`;
-  
+
   try {
     const params = new URLSearchParams({
       api_id: SMS_API_KEY,
@@ -58,9 +64,9 @@ export async function sendSMS(phone: string, code: string): Promise<{ success: b
       if (phoneResult?.status === 'OK') {
         return { success: true };
       } else {
-        return { 
-          success: false, 
-          error: phoneResult?.status_text || 'Failed to send SMS' 
+        return {
+          success: false,
+          error: phoneResult?.status_text || 'Failed to send SMS',
         };
       }
     } else {
@@ -81,9 +87,7 @@ export async function getSmsBalance(): Promise<number | null> {
   }
 
   try {
-    const response = await fetch(
-      `https://sms.ru/my/balance?api_id=${SMS_API_KEY}&json=1`
-    );
+    const response = await fetch(`https://sms.ru/my/balance?api_id=${SMS_API_KEY}&json=1`);
     const data = await response.json();
     return data.balance || null;
   } catch {

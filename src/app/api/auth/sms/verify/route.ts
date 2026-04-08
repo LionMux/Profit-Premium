@@ -1,9 +1,9 @@
 /**
  * POST /api/auth/sms/verify
- * 
+ *
  * Verify SMS code and return user info for session creation
  * Max 3 attempts per code
- * 
+ *
  * @body { phone: string, code: string }
  * @returns { success: boolean, user?: object }
  * @errors 400 - Invalid input
@@ -41,10 +41,10 @@ export async function POST(request: NextRequest) {
 
     if (!parsed.success) {
       return NextResponse.json(
-        { 
-          success: false, 
+        {
+          success: false,
           error: 'VALIDATION_ERROR',
-          message: 'Неверный формат данных' 
+          message: 'Неверный формат данных',
         },
         { status: 400 }
       );
@@ -65,10 +65,10 @@ export async function POST(request: NextRequest) {
 
     if (!smsCode) {
       return NextResponse.json(
-        { 
-          success: false, 
+        {
+          success: false,
           error: 'CODE_NOT_FOUND',
-          message: 'Код не найден. Запросите новый код.' 
+          message: 'Код не найден. Запросите новый код.',
         },
         { status: 401 }
       );
@@ -82,10 +82,10 @@ export async function POST(request: NextRequest) {
       });
 
       return NextResponse.json(
-        { 
-          success: false, 
+        {
+          success: false,
           error: 'CODE_EXPIRED',
-          message: 'Код истёк. Запросите новый код.' 
+          message: 'Код истёк. Запросите новый код.',
         },
         { status: 401 }
       );
@@ -94,10 +94,10 @@ export async function POST(request: NextRequest) {
     // Check max attempts
     if (smsCode.attempts >= MAX_ATTEMPTS) {
       return NextResponse.json(
-        { 
-          success: false, 
+        {
+          success: false,
           error: 'MAX_ATTEMPTS',
-          message: 'Превышено количество попыток. Запросите новый код.' 
+          message: 'Превышено количество попыток. Запросите новый код.',
         },
         { status: 403 }
       );
@@ -114,12 +114,13 @@ export async function POST(request: NextRequest) {
       const remainingAttempts = MAX_ATTEMPTS - (smsCode.attempts + 1);
 
       return NextResponse.json(
-        { 
-          success: false, 
+        {
+          success: false,
           error: 'INVALID_CODE',
-          message: remainingAttempts > 0 
-            ? `Неверный код. Осталось попыток: ${remainingAttempts}`
-            : 'Превышено количество попыток. Запросите новый код.'
+          message:
+            remainingAttempts > 0
+              ? `Неверный код. Осталось попыток: ${remainingAttempts}`
+              : 'Превышено количество попыток. Запросите новый код.',
         },
         { status: 401 }
       );
@@ -149,10 +150,10 @@ export async function POST(request: NextRequest) {
 
     if (!user.isActive) {
       return NextResponse.json(
-        { 
-          success: false, 
+        {
+          success: false,
           error: 'USER_INACTIVE',
-          message: 'Аккаунт заблокирован. Обратитесь к администратору.' 
+          message: 'Аккаунт заблокирован. Обратитесь к администратору.',
         },
         { status: 403 }
       );
@@ -171,10 +172,10 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('SMS verify error:', error);
     return NextResponse.json(
-      { 
-        success: false, 
+      {
+        success: false,
         error: 'INTERNAL_ERROR',
-        message: 'Произошла ошибка. Попробуйте позже.' 
+        message: 'Произошла ошибка. Попробуйте позже.',
       },
       { status: 500 }
     );

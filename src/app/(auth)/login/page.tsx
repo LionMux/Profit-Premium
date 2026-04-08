@@ -15,29 +15,29 @@ const RESEND_DELAY = 60; // seconds
 export default function LoginPage() {
   const router = useRouter();
   const { showToast } = useToast();
-  
+
   // Auth type state
   const [authType, setAuthType] = useState<'email' | 'sms'>('email');
-  
+
   // Loading states
   const [isLoading, setIsLoading] = useState(false);
   const [isSendingCode, setIsSendingCode] = useState(false);
-  
+
   // Error states
   const [emailError, setEmailError] = useState('');
   const [smsError, setSmsError] = useState('');
-  
+
   // Email form state
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+
   // SMS form state
   const [phone, setPhone] = useState('');
   const [code, setCode] = useState('');
   const [codeSent, setCodeSent] = useState(false);
   const [countdown, setCountdown] = useState(0);
   const [attemptsRemaining, setAttemptsRemaining] = useState(3);
-  
+
   const codeInputRef = useRef<HTMLInputElement>(null);
 
   // Countdown timer effect
@@ -132,7 +132,7 @@ export default function LoginPage() {
   // Handle SMS login
   const handleSmsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // If code not sent yet, send it
     if (!codeSent) {
       await sendCode();
@@ -166,14 +166,14 @@ export default function LoginPage() {
             setAttemptsRemaining(parseInt(match[0], 10));
           }
         }
-        
+
         // Reset form on max attempts or expiration
         if (verifyData.error === 'MAX_ATTEMPTS' || verifyData.error === 'CODE_EXPIRED') {
           setCodeSent(false);
           setCode('');
           setCountdown(0);
         }
-        
+
         setSmsError(verifyData.message || 'Неверный код');
         setIsLoading(false);
         return;
@@ -248,14 +248,11 @@ export default function LoginPage() {
             // Email login form
             <form onSubmit={handleEmailSubmit} className="space-y-4">
               {emailError && (
-                <div 
-                  className="p-3 text-sm text-red-600 bg-red-50 rounded-md" 
-                  role="alert"
-                >
+                <div className="p-3 text-sm text-red-600 bg-red-50 rounded-md" role="alert">
                   {emailError}
                 </div>
               )}
-              
+
               <div>
                 <label htmlFor="email" className="text-sm font-medium mb-1 block">
                   Email
@@ -264,14 +261,14 @@ export default function LoginPage() {
                   id="email"
                   type="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value)}
                   required
                   placeholder="partner@example.com"
                   autoComplete="email"
                   disabled={isLoading}
                 />
               </div>
-              
+
               <div>
                 <label htmlFor="password" className="text-sm font-medium mb-1 block">
                   Пароль
@@ -280,14 +277,14 @@ export default function LoginPage() {
                   id="password"
                   type="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={e => setPassword(e.target.value)}
                   required
                   placeholder="••••••••"
                   autoComplete="current-password"
                   disabled={isLoading}
                 />
               </div>
-              
+
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? 'Вход...' : 'Войти'}
               </Button>
@@ -296,14 +293,11 @@ export default function LoginPage() {
             // SMS login form
             <form onSubmit={handleSmsSubmit} className="space-y-4">
               {smsError && (
-                <div 
-                  className="p-3 text-sm text-red-600 bg-red-50 rounded-md" 
-                  role="alert"
-                >
+                <div className="p-3 text-sm text-red-600 bg-red-50 rounded-md" role="alert">
                   {smsError}
                 </div>
               )}
-              
+
               <div>
                 <label htmlFor="phone" className="text-sm font-medium mb-1 block">
                   Телефон
@@ -317,7 +311,7 @@ export default function LoginPage() {
                   autoComplete="tel"
                 />
               </div>
-              
+
               {codeSent && (
                 <div>
                   <div className="flex items-center justify-between mb-1">
@@ -336,7 +330,7 @@ export default function LoginPage() {
                     type="text"
                     inputMode="numeric"
                     value={code}
-                    onChange={(e) => {
+                    onChange={e => {
                       const value = e.target.value.replace(/\D/g, '').slice(0, 6);
                       setCode(value);
                     }}
@@ -347,7 +341,7 @@ export default function LoginPage() {
                     className="font-mono text-lg tracking-widest text-center"
                     autoComplete="one-time-code"
                   />
-                  
+
                   {/* Resend code link */}
                   <div className="mt-2 flex items-center justify-between">
                     <button
@@ -363,7 +357,7 @@ export default function LoginPage() {
                     >
                       Изменить номер
                     </button>
-                    
+
                     {countdown > 0 ? (
                       <span className="text-sm text-gray-500">
                         Отправить повторно через {countdown} сек
@@ -381,26 +375,19 @@ export default function LoginPage() {
                   </div>
                 </div>
               )}
-              
-              <Button 
-                type="submit" 
-                className="w-full" 
-                disabled={isLoading || isSendingCode}
-              >
-                {isLoading 
-                  ? 'Вход...' 
-                  : isSendingCode 
-                    ? 'Отправка...' 
-                    : codeSent 
-                      ? 'Подтвердить' 
-                      : 'Получить код'
-                }
+
+              <Button type="submit" className="w-full" disabled={isLoading || isSendingCode}>
+                {isLoading
+                  ? 'Вход...'
+                  : isSendingCode
+                    ? 'Отправка...'
+                    : codeSent
+                      ? 'Подтвердить'
+                      : 'Получить код'}
               </Button>
-              
+
               {codeSent && (
-                <p className="text-xs text-gray-500 text-center">
-                  Код действителен 5 минут
-                </p>
+                <p className="text-xs text-gray-500 text-center">Код действителен 5 минут</p>
               )}
             </form>
           )}

@@ -78,14 +78,14 @@ profit-premium/
 
 ## Команды
 
-| Команда | Описание |
-|---------|----------|
-| `npm run dev` | Запуск dev сервера |
-| `npm run build` | Сборка production |
-| `npm run lint` | Проверка ESLint |
-| `npm run test:e2e` | E2E тесты Playwright |
-| `npx prisma studio` | Prisma Studio |
-| `npx prisma migrate dev` | Создание миграции |
+| Команда                  | Описание             |
+| ------------------------ | -------------------- |
+| `npm run dev`            | Запуск dev сервера   |
+| `npm run build`          | Сборка production    |
+| `npm run lint`           | Проверка ESLint      |
+| `npm run test:e2e`       | E2E тесты Playwright |
+| `npx prisma studio`      | Prisma Studio        |
+| `npx prisma migrate dev` | Создание миграции    |
 
 ## Лицензия
 

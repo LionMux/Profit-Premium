@@ -21,18 +21,18 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     // Format phone number to mask format
     const formatPhone = useCallback((input: string): string => {
       const digits = input.replace(/\D/g, '');
-      
+
       // Remove leading 7 or 8 if present to normalize
       let normalizedDigits = digits;
       if (normalizedDigits.startsWith('7') || normalizedDigits.startsWith('8')) {
         normalizedDigits = normalizedDigits.slice(1);
       }
-      
+
       // Limit to 10 digits
       normalizedDigits = normalizedDigits.slice(0, 10);
-      
+
       let formatted = '+7';
-      
+
       if (normalizedDigits.length > 0) {
         formatted += ` (${normalizedDigits.slice(0, 3)}`;
       }
@@ -45,7 +45,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
       if (normalizedDigits.length >= 8) {
         formatted += `-${normalizedDigits.slice(8, 10)}`;
       }
-      
+
       return formatted;
     }, []);
 
@@ -62,7 +62,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const input = e.target.value;
       const formatted = formatPhone(input);
-      
+
       // Only update if valid characters
       if (/^[\d\s\+\(\)\-]*$/.test(input)) {
         onChange(formatted);
@@ -126,18 +126,18 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
         />
         {isComplete && !error && !isFocused && (
           <div className="absolute right-3 top-1/2 -translate-y-1/2">
-            <svg 
-              className="w-5 h-5 text-green-500" 
-              fill="none" 
-              stroke="currentColor" 
+            <svg
+              className="w-5 h-5 text-green-500"
+              fill="none"
+              stroke="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M5 13l4 4L19 7" 
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
               />
             </svg>
           </div>

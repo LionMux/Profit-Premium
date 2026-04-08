@@ -6,7 +6,7 @@ async function verifyDatabase() {
   // Check Users
   console.log('1. USERS:');
   const users = await prisma.user.findMany({
-    select: { id: true, email: true, name: true, role: true, isActive: true }
+    select: { id: true, email: true, name: true, role: true, isActive: true },
   });
   users.forEach(u => {
     console.log(`   - ${u.name} (${u.email}) | Role: ${u.role} | Active: ${u.isActive}`);
@@ -15,7 +15,7 @@ async function verifyDatabase() {
   // Check Materials
   console.log('\n2. MATERIALS:');
   const materials = await prisma.material.findMany({
-    select: { title: true, city: true, propertyType: true }
+    select: { title: true, city: true, propertyType: true },
   });
   materials.forEach(m => {
     console.log(`   - ${m.title} | City: ${m.city} | Type: ${m.propertyType}`);
@@ -24,7 +24,7 @@ async function verifyDatabase() {
   // Check Stories
   console.log('\n3. STORIES:');
   const stories = await prisma.story.findMany({
-    select: { title: true, isActive: true, order: true }
+    select: { title: true, isActive: true, order: true },
   });
   stories.forEach(s => {
     console.log(`   - ${s.title} | Active: ${s.isActive} | Order: ${s.order}`);
@@ -46,7 +46,16 @@ async function verifyDatabase() {
 
   // Check Models
   console.log('\n5. MODELS:');
-  const models = ['User', 'Account', 'Session', 'VerificationToken', 'SmsCode', 'Material', 'ClientLead', 'Story'];
+  const models = [
+    'User',
+    'Account',
+    'Session',
+    'VerificationToken',
+    'SmsCode',
+    'Material',
+    'ClientLead',
+    'Story',
+  ];
   models.forEach(m => console.log(`   ✅ ${m}`));
 
   console.log('\n=== All checks passed! ===');
