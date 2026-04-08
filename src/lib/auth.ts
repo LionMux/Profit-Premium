@@ -173,7 +173,10 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
 /**
  * Verify SMS code via API (for client-side verification before signIn)
  */
-export async function verifySMSCode(phone: string, code: string): Promise<{
+export async function verifySMSCode(
+  phone: string,
+  code: string
+): Promise<{
   success: boolean;
   user?: {
     id: string;

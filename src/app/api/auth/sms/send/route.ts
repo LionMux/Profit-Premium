@@ -1,9 +1,9 @@
 /**
  * POST /api/auth/sms/send
- * 
+ *
  * Send SMS verification code to phone number
  * Rate limited: max 3 SMS per phone per hour
- * 
+ *
  * @body { phone: string }
  * @returns { success: boolean, message?: string }
  * @errors 400 - Invalid phone format
@@ -47,10 +47,10 @@ export async function POST(request: NextRequest) {
 
     if (!parsed.success) {
       return NextResponse.json(
-        { 
-          success: false, 
+        {
+          success: false,
           error: 'VALIDATION_ERROR',
-          message: 'Неверный формат номера телефона' 
+          message: 'Неверный формат номера телефона',
         },
         { status: 400 }
       );
@@ -62,10 +62,10 @@ export async function POST(request: NextRequest) {
     // Validate phone format
     if (!PHONE_REGEX.test(normalizedPhone)) {
       return NextResponse.json(
-        { 
-          success: false, 
+        {
+          success: false,
           error: 'INVALID_PHONE',
-          message: 'Неверный формат номера телефона. Используйте формат +7 (999) 123-45-67' 
+          message: 'Неверный формат номера телефона. Используйте формат +7 (999) 123-45-67',
         },
         { status: 400 }
       );
@@ -84,10 +84,10 @@ export async function POST(request: NextRequest) {
 
     if (recentSmsCount >= SMS_LIMIT) {
       return NextResponse.json(
-        { 
-          success: false, 
+        {
+          success: false,
           error: 'RATE_LIMIT',
-          message: 'Превышен лимит отправки SMS. Попробуйте через час.' 
+          message: 'Превышен лимит отправки SMS. Попробуйте через час.',
         },
         { status: 429 }
       );
@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
 
     // Generate 6-digit code
     const code = generateSMSCode();
-    
+
     // Set expiration to 5 minutes
     const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
 
@@ -122,10 +122,10 @@ export async function POST(request: NextRequest) {
       });
 
       return NextResponse.json(
-        { 
-          success: false, 
+        {
+          success: false,
           error: 'SMS_ERROR',
-          message: smsResult.error || 'Не удалось отправить SMS. Попробуйте позже.' 
+          message: smsResult.error || 'Не удалось отправить SMS. Попробуйте позже.',
         },
         { status: 500 }
       );
@@ -138,10 +138,10 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('SMS send error:', error);
     return NextResponse.json(
-      { 
-        success: false, 
+      {
+        success: false,
         error: 'INTERNAL_ERROR',
-        message: 'Произошла ошибка. Попробуйте позже.' 
+        message: 'Произошла ошибка. Попробуйте позже.',
       },
       { status: 500 }
     );

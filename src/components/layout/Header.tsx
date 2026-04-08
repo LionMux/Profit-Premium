@@ -20,9 +20,7 @@ export function Header({ user }: HeaderProps) {
         </Link>
 
         <div className="flex items-center gap-4">
-          <div className="text-sm text-muted-foreground">
-            {user.name || user.email}
-          </div>
+          <div className="text-sm text-muted-foreground">{user.name || user.email}</div>
           <Button variant="outline" size="sm" onClick={() => signOut({ callbackUrl: '/login' })}>
             Выйти
           </Button>
