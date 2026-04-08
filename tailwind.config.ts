@@ -9,7 +9,22 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-cormorant)', 'Georgia', 'serif'],
+      },
       colors: {
+        burgundy: {
+          DEFAULT: '#5C1E2D',
+          dark: '#3D1220',
+          medium: '#7A2B3E',
+          light: '#9B4458',
+        },
+        cream: {
+          DEFAULT: '#F0EAE0',
+          dark: '#E0D5C5',
+          light: '#F8F4EF',
+        },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
