@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Cormorant_Garamond } from 'next/font/google';
 import '@/styles/globals.css';
+import { SessionProvider } from '@/components/providers/SessionProvider';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'], variable: '--font-inter' });
 
@@ -12,9 +13,9 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: 'Profit Premium — Агентство недвижимости',
+  title: 'Profit Premium — Личный кабинет партнёра',
   description:
-    'Подбираем квартиры в новостройках и на вторичном рынке. Бесплатно для покупателей. Ипотека, рассрочка, trade-in.',
+    'Закрытый личный кабинет для партнёров-агентов по недвижимости. Доступ к материалам объектов и инструментам передачи клиентов.',
 };
 
 export default function RootLayout({
@@ -24,7 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={`${inter.variable} ${cormorant.variable} font-sans`}>{children}</body>
+      <body className={`${inter.variable} ${cormorant.variable} font-sans`}>
+        <SessionProvider>{children}</SessionProvider>
+      </body>
     </html>
   );
 }

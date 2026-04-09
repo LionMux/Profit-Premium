@@ -1,6 +1,6 @@
 # CSS Variables Reference
 
-Profit-Premium uses CSS custom properties in HSL format for theming.
+Profit-Premium uses CSS custom properties in HSL format for consistent theming.
 
 ## Light Theme (Default)
 
@@ -57,24 +57,17 @@ Profit-Premium uses CSS custom properties in HSL format for theming.
 
 ## Usage in Tailwind
 
-Use `hsl()` wrapper in Tailwind classes:
+Always use `hsl()` wrapper:
 
 ```css
-.bg-background {
-  background-color: hsl(var(--background));
-}
-.text-foreground {
-  color: hsl(var(--foreground));
-}
-.border-border {
-  border-color: hsl(var(--border));
-}
+.bg-background { background-color: hsl(var(--background)); }
+.text-foreground { color: hsl(var(--foreground)); }
+.border-border { border-color: hsl(var(--border)); }
 ```
 
 ## Variable Categories
 
 ### Background Colors
-
 - `--background` - Page background
 - `--card` - Card/panel background
 - `--popover` - Dropdown/popover background
@@ -82,7 +75,6 @@ Use `hsl()` wrapper in Tailwind classes:
 - `--accent` - Accent background (highlights)
 
 ### Foreground Colors
-
 - `--foreground` - Main text
 - `--card-foreground` - Text on cards
 - `--popover-foreground` - Text in popovers
@@ -90,7 +82,6 @@ Use `hsl()` wrapper in Tailwind classes:
 - `--accent-foreground` - Text on accent background
 
 ### Action Colors
-
 - `--primary` - Primary button/action
 - `--primary-foreground` - Text on primary
 - `--secondary` - Secondary button
@@ -99,7 +90,6 @@ Use `hsl()` wrapper in Tailwind classes:
 - `--destructive-foreground` - Text on destructive
 
 ### UI Elements
-
 - `--border` - Border color
 - `--input` - Input field borders
 - `--ring` - Focus ring color
@@ -110,3 +100,6 @@ Use `hsl()` wrapper in Tailwind classes:
 - `rounded-sm`: calc(var(--radius) - 4px) = 0.125rem
 - `rounded-md`: calc(var(--radius) - 2px) = 0.375rem
 - `rounded-lg`: var(--radius) = 0.5rem
+- `rounded-xl`: 0.75rem (12px)
+- `rounded-2xl`: 1rem (16px)
+- `rounded-full`: 9999px

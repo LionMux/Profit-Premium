@@ -2,7 +2,7 @@
 
 # AGENTS.md — Profit-Premium
 
-Этот файл содержит essential information для AI coding agents, работающих над проектом Profit-Premium.
+Этот файл содержит essential information для AI coding agents, работающих над проектом **Profit-Premium**.
 
 ---
 
@@ -28,7 +28,6 @@
 
 ## Technology Stack
 
-<<<<<<< HEAD
 | Component | Technology | Purpose |
 |-----------|------------|---------|
 | Framework | Next.js 14.2.3 (App Router) | React framework с SSR/SSG |
@@ -37,31 +36,13 @@
 | UI Kit | shadcn/ui + Radix UI | Headless components |
 | ORM | Prisma 5.13.0 | Database access |
 | Database | PostgreSQL 15+ | Primary data storage |
-| Auth | NextAuth.js 5.0.0-beta.17 | JWT-based authentication |
+| Auth | NextAuth.js 5.0.0-beta.17 (Auth.js) | JWT-based authentication |
 | SMS | SMS.ru API | SMS code delivery |
 | Validation | Zod 3.23.6 | Schema validation |
 | Testing | Playwright 1.44.0 | E2E testing |
 | Linting | ESLint 8.57.0 + Prettier 3.2.5 | Code quality |
 | CI/CD | GitHub Actions | Automated testing |
 | Deployment | Docker + Docker Compose | Production hosting |
-=======
-| Component | Technology | Purpose |
-| ---------- | ----------------------- | -------------------------- |
-| Framework | Next.js 14 (App Router) | React framework с SSR/SSG |
-| Language | TypeScript 5.x | Type safety |
-| Styling | Tailwind CSS 3.x | Utility-first CSS |
-| UI Kit | shadcn/ui | Headless components |
-| ORM | Prisma 5.x | Database access |
-| Database | PostgreSQL 15+ | Primary data storage |
-| Auth | NextAuth.js 5.x | JWT-based authentication |
-| SMS | SMS.ru API | SMS code delivery |
-| CRM | Bitrix24 Webhook | Lead integration |
-| Testing | Playwright | E2E testing |
-| Linting | ESLint + Prettier | Code quality |
-| CI/CD | GitHub Actions | Automated testing & deploy |
-| Deployment | Docker + VPS | Production hosting |
-
-> > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
 
 ---
 
@@ -69,73 +50,86 @@
 
 ```
 profit-premium/
-├─ AGENTS.md                 # Этот файл
-├─ README.md                 # Публичная документация
-├─ .env.example              # Шаблон переменных окружения
-├─ .env.local                # Локальные переменные (не коммитить!)
-├─ .gitignore
-├─ .eslintrc.json            # ESLint конфигурация
-├─ .prettierrc               # Prettier конфигурация
-├─ docker-compose.yml        # Production deployment
-├─ Dockerfile                # Multi-stage Docker build
-├─ next.config.js            # Next.js конфигурация
-├─ tailwind.config.ts        # Tailwind CSS конфигурация
-├─ tsconfig.json             # TypeScript конфигурация
-├─ playwright.config.ts      # Playwright E2E конфигурация
-├─ postcss.config.js         # PostCSS конфигурация
-├─ package.json              # NPM зависимости и скрипты
-├─ prisma/
-│  ├─ schema.prisma          # Схема БД
-│  └─ seed.ts                # Seed данные
-├─ public/
-│  └─ uploads/               # Загруженные файлы (gitignored)
-├─ src/
-│  ├─ app/                   # Next.js App Router
-│  │  ├─ (auth)/             # Группа: авторизация
-│  │  │  ├─ layout.tsx       # Layout с ToastProvider
-│  │  │  └─ login/page.tsx   # Страница входа (email + SMS)
-│  │  ├─ (dashboard)/        # Группа: личный кабинет
-│  │  │  ├─ layout.tsx       # Layout с Sidebar (справа) + Header
-│  │  │  ├─ page.tsx         # Главная (сторис карусель)
-│  │  │  ├─ materials/page.tsx   # Страница материалов с фильтрами
-│  │  │  ├─ profile/page.tsx     # Личный кабинет + форма передачи клиента
-│  │  │  └─ contacts/page.tsx    # Юридическая информация
-│  │  ├─ admin/page.tsx      # Админ-панель загрузки материалов
-│  │  ├─ api/                # API Routes
-│  │  │  ├─ auth/[...nextauth]/route.ts  # NextAuth endpoint
-│  │  │  ├─ auth/sms/send/route.ts       # Отправка SMS кода
-│  │  │  ├─ auth/sms/verify/route.ts     # Проверка SMS кода
-│  │  │  ├─ client-leads/route.ts        # Форма "Передать клиента"
-│  │  │  ├─ materials/route.ts           # CRUD материалов
-│  │  │  └─ upload/route.ts              # Загрузка файлов
-│  │  ├─ layout.tsx          # Корневой layout
-│  │  └─ page.tsx            # Редирект на /login
-│  ├─ components/
-│  │  ├─ ui/                 # UI компоненты (button, input, card)
-│  │  ├─ layout/             # Layout компоненты
-│  │  │  ├─ Header.tsx       # Шапка с пользователем и выходом
-│  │  │  └─ Sidebar.tsx      # Боковое меню (справа)
-│  │  └─ auth/               # Компоненты авторизации
-│  │     └─ PhoneInput.tsx   # Маскированный ввод телефона
-│  ├─ lib/
-│  │  ├─ auth.ts             # Конфигурация NextAuth
-│  │  ├─ prisma.ts           # Инициализация Prisma клиента
-│  │  ├─ sms.ts              # SMS.ru API клиент
-│  │  └─ utils.ts            # Утилиты (cn, formatPhoneNumber, generateSMSCode)
-│  ├─ types/
-│  │  ├─ index.ts            # Глобальные TypeScript типы
-│  │  └─ next-auth.d.ts      # Расширение типов NextAuth
-│  ├─ styles/
-│  │  └─ globals.css         # Глобальные стили Tailwind
-│  ├─ tests/
-│  │  └─ e2e/
-│  │     ├─ auth.spec.ts
-│  │     ├─ materials.spec.ts
-│  │     └─ client-transfer.spec.ts
-│  └─ middleware.ts          # Защита роутов
-└─ .github/
-   └─ workflows/
-      └─ ci.yml              # CI pipeline
+├── prisma/
+│   ├── schema.prisma        # Database schema
+│   └── seed.ts              # Seed data (test users, materials)
+├── public/
+│   └── uploads/             # Uploaded files (gitignored)
+├── src/
+│   ├── app/                 # Next.js App Router
+│   │   ├── (auth)/          # Route group: authentication pages
+│   │   │   ├── layout.tsx
+│   │   │   └── login/page.tsx           # Login page (email + SMS)
+│   │   ├── (dashboard)/     # Route group: authenticated pages
+│   │   │   ├── layout.tsx               # Dashboard layout with auth check
+│   │   │   ├── page.tsx                 # Homepage (stories carousel)
+│   │   │   ├── materials/page.tsx       # Materials with filters
+│   │   │   ├── profile/page.tsx         # Profile page
+│   │   │   └── contacts/page.tsx        # Legal company info
+│   │   ├── admin/page.tsx               # Admin panel (upload materials)
+│   │   ├── api/                         # API Routes
+│   │   │   ├── auth/[...nextauth]/route.ts    # NextAuth endpoint
+│   │   │   ├── auth/sms/send/route.ts         # Send SMS code
+│   │   │   ├── auth/sms/verify/route.ts       # Verify SMS code
+│   │   │   ├── client-leads/route.ts          # Create client lead
+│   │   │   ├── materials/route.ts             # CRUD materials
+│   │   │   └── upload/route.ts                # File upload
+│   │   ├── layout.tsx                   # Root layout
+│   │   └── page.tsx                     # Redirects to /login
+│   ├── components/
+│   │   ├── ui/                          # shadcn/ui components
+│   │   │   ├── button.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   ├── sheet.tsx
+│   │   │   └── use-toast.tsx
+│   │   ├── layout/                      # Layout components
+│   │   │   ├── Header.tsx               # Top header with user info
+│   │   │   ├── Sidebar.tsx              # Right sidebar navigation
+│   │   │   └── Footer.tsx               # Footer component
+│   │   ├── auth/                        # Auth components
+│   │   │   └── PhoneInput.tsx           # Masked phone input
+│   │   ├── materials/                   # Materials components
+│   │   │   ├── MaterialCard.tsx         # Material card display
+│   │   │   ├── FilterBar.tsx            # Desktop filter buttons
+│   │   │   └── FilterDrawer.tsx         # Mobile filter drawer
+│   │   ├── profile/                     # Profile components
+│   │   │   ├── ProfileInfo.tsx          # User profile display
+│   │   │   └── TransferClientForm.tsx   # Client transfer form
+│   │   ├── landing/                     # Landing page sections
+│   │   │   ├── HeroSection.tsx
+│   │   │   ├── AdvantagesSection.tsx
+│   │   │   ├── ServicesSection.tsx
+│   │   │   ├── TeamSection.tsx
+│   │   │   ├── ReviewsSection.tsx
+│   │   │   ├── ContactSection.tsx
+│   │   │   └── Sidebar.tsx
+│   │   └── providers/                   # Context providers
+│   │       └── SessionProvider.tsx      # NextAuth session provider
+│   ├── lib/                             # Utilities
+│   │   ├── auth.ts                      # NextAuth configuration
+│   │   ├── prisma.ts                    # Prisma client singleton
+│   │   ├── sms.ts                       # SMS.ru API client
+│   │   └── utils.ts                     # cn(), formatPhoneNumber(), generateSMSCode()
+│   ├── types/                           # TypeScript types
+│   │   ├── index.ts                     # Global types
+│   │   └── next-auth.d.ts               # NextAuth type extensions
+│   ├── styles/
+│   │   └── globals.css                  # Tailwind imports + CSS variables
+│   ├── tests/e2e/                       # Playwright E2E tests
+│   │   ├── auth.spec.ts
+│   │   ├── materials.spec.ts
+│   │   └── client-transfer.spec.ts
+│   └── middleware.ts                    # Route protection
+├── .github/workflows/ci.yml             # GitHub Actions CI
+├── docker-compose.yml                   # Production Docker setup
+├── Dockerfile                           # Multi-stage Docker build
+├── next.config.js                       # Next.js config (CORS, images)
+├── tailwind.config.ts                   # Tailwind + custom colors
+├── playwright.config.ts                 # Playwright config (Edge browser)
+├── package.json
+└── tsconfig.json                        # TypeScript with path aliases
 ```
 
 ---
@@ -143,111 +137,6 @@ profit-premium/
 ## Database Schema (Prisma)
 
 ```prisma
-model User {
-  id           String   @id @default(uuid())
-  email        String?  @unique
-  phone        String?  @unique
-  passwordHash String?
-  name         String
-  role         Role     @default(PARTNER)
-  isActive     Boolean  @default(true)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  clientLeads ClientLead[]
-  accounts    Account[]
-  sessions    Session[]
-}
-
-model SmsCode {
-<<<<<<< HEAD
-  id        String   @id @default(uuid())
-  phone     String
-  code      String
-  expiresAt DateTime
-  attempts  Int      @default(0)
-  createdAt DateTime @default(now())
-=======
-  id          String   @id @default(uuid())
-  phone       String
-  code        String
-  expiresAt   DateTime
-  attempts    Int      @default(0)
-  createdAt   DateTime @default(now())
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
-
-  @@index([phone, createdAt])
-}
-
-model Material {
-<<<<<<< HEAD
-  id           String   @id @default(uuid())
-  title        String
-  description  String?
-  fileUrl      String
-  thumbnailUrl String?
-  city         String
-  propertyType String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-=======
-  id              String   @id @default(uuid())
-  title           String
-  description     String?
-  fileUrl         String
-  thumbnailUrl    String?
-  city            String
-  propertyType    String
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
-
-  @@index([city])
-  @@index([propertyType])
-  @@index([city, propertyType])
-}
-
-model ClientLead {
-  id           String     @id @default(uuid())
-  fullName     String
-  phone        String
-  city         String
-  comment      String?
-  status       LeadStatus @default(NEW)
-  bitrixId     String?
-  errorMessage String?
-<<<<<<< HEAD
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
-=======
-  createdAt   DateTime   @default(now())
-  user        User       @relation(fields: [userId], references: [id])
-  userId      String
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
-
-  @@index([userId])
-  @@index([status])
-}
-
-model Story {
-  id        String   @id @default(uuid())
-  imageUrl  String
-  title     String
-  link      String?
-  order     Int      @default(0)
-  isActive  Boolean  @default(true)
-<<<<<<< HEAD
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-=======
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
-
-  @@index([isActive, order])
-}
-
 enum Role {
   ADMIN
   MANAGER
@@ -260,208 +149,124 @@ enum LeadStatus {
   ERROR
   PROCESSED
 }
+
+model User {
+  id           String   @id @default(uuid())
+  email        String?  @unique
+  phone        String?  @unique
+  passwordHash String?
+  name         String
+  role         Role     @default(PARTNER)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  clientLeads ClientLead[]
+  accounts    Account[]    // NextAuth
+  sessions    Session[]    // NextAuth
+
+  @@index([role])
+  @@index([isActive])
+  @@map("users")
+}
+
+// NextAuth models: Account, Session, VerificationToken
+
+model SmsCode {
+  id          String   @id @default(uuid())
+  phone       String
+  code        String
+  expiresAt   DateTime
+  attempts    Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  @@index([phone, createdAt])
+  @@map("sms_codes")
+}
+
+model Material {
+  id              String   @id @default(uuid())
+  title           String
+  description     String?
+  fileUrl         String
+  thumbnailUrl    String?
+  city            String
+  propertyType    String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([city])
+  @@index([propertyType])
+  @@index([city, propertyType])
+  @@map("materials")
+}
+
+model ClientLead {
+  id           String     @id @default(uuid())
+  fullName     String
+  phone        String
+  city         String
+  comment      String?
+  status       LeadStatus @default(NEW)
+  bitrixId     String?
+  errorMessage String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@index([userId])
+  @@index([status])
+  @@map("client_leads")
+}
+
+model Story {
+  id        String   @id @default(uuid())
+  imageUrl  String
+  title     String
+  link      String?
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive, order])
+  @@map("stories")
+}
 ```
 
 ---
 
-<<<<<<< HEAD
-
 ## Build and Development Commands
-
-=======
-
-## Detailed Requirements
-
-### 1. Authentication System
-
-#### Email + Password (Implemented)
-
-- NextAuth.js credentials provider
-- bcrypt password hashing (10 rounds)
-- JWT strategy with 30-day session
-
-#### SMS Authentication (Required)
-
-- **Provider**: SMS.ru
-- **Flow**:
-  1. User enters phone number
-  2. System generates 6-digit code
-  3. Code sent via SMS.ru API
-  4. User enters code within 5 minutes
-  5. Max 3 attempts per code
-  6. Rate limit: max 3 SMS per phone per hour
-- **UI**: Phone input with mask (+7 (999) 999-99-99)
-- **Error handling**: Invalid code, expired code, max attempts
-
-### 2. Homepage - Stories Carousel
-
-#### Design Reference
-
-- Format like **Samokat** website stories
-- Horizontal scrolling cards
-- Rectangular cards (3:4 aspect ratio)
-- Rounded corners (12px)
-- Image with gradient overlay
-- Title on overlay (white, bold)
-- Snap scrolling behavior
-- Touch swipe on mobile
-- Arrow buttons on desktop
-
-#### Technical
-
-- Fetch from Story model (isActive=true, order by order)
-- Lazy load images
-- Responsive: 4-5 cards desktop, 2 tablet, 1.5 mobile
-- Click navigates to link or opens modal
-
-### 3. Materials Page
-
-#### Filtering
-
-- **Filter by City**: Button group (horizontal desktop, vertical mobile drawer)
-- **Filter by Property Type**: Button group
-- **Position**: Top on desktop, sidebar drawer on mobile
-- **Behavior**: Immediate filter on click, URL sync (?city=Moscow&type=Apartment)
-- **Clear All**: Button to reset filters
-- **Active Filters**: Show as removable chips
-
-#### Display
-
-- Grid of Material cards
-- Card: thumbnail, title, city, property type
-- Click opens file viewer or download
-- Pagination or infinite scroll
-
-### 4. Client Transfer Form
-
-#### Form Fields
-
-- **ФИО**: Text input, required, 3-100 chars
-- **Телефон**: Masked input (+7 (999) 999-99-99), required
-- **Город**: Text input or select, required, 2-50 chars
-
-#### Bitrix24 Integration
-
-- **Webhook**: POST to BITRIX_WEBHOOK_URL + 'crm.lead.add'
-- **Payload**:
-  ```json
-  {
-    "fields": {
-      "TITLE": "Лид от партнера: {fullName}",
-      "NAME": "{firstName}",
-      "LAST_NAME": "{lastName}",
-      "PHONE": [{ "VALUE": "+7XXXXXXXXXX", "VALUE_TYPE": "WORK" }],
-      "ADDRESS_CITY": "{city}",
-      "SOURCE_ID": "PARTNER_PORTAL",
-      "COMMENTS": "Передано через личный кабинет партнера"
-    }
-  }
-  ```
-- **Error Handling**: If Bitrix fails, save to DB with status=ERROR and errorMessage
-- **Success**: Save bitrixId to ClientLead, status=SENT_TO_BITRIX
-
-#### UX
-
-- Modal form from Profile page
-- Validation with Zod
-- Loading state during submit
-- Success toast notification
-- Error toast with details
-
-### 5. Contacts Page - Legal Information
-
-#### Required Content
-
-- **Company Name**: ООО "Профит Премиум"
-- **Legal Address**: Полный юридический адрес
-- **INN**: ИНН компании (10-12 цифр)
-- **KPP**: КПП компании (9 цифр)
-- **OGRN**: ОГРН компании (13-15 цифр)
-- **Bank Details**: Расчетный счет, БИК, банк
-- **Contact Phone**: +7 (XXX) XXX-XX-XX
-- **Email**: info@profit-premium.ru
-- **Working Hours**: Пн-Пт: 9:00 - 18:00
-
-#### Design
-
-- Clean text page
-- Sections with headers
-- Professional formatting
-- Responsive
-
-### 6. Footer Component
-
-#### Content
-
-- Phone number (clickable tel: link)
-- Email (clickable mailto: link)
-- Social media icons: Telegram, WhatsApp, VK
-- Copyright: © 2026 ООО "Профит Премиум". Все права защищены.
-- Links: Политика конфиденциальности, Пользовательское соглашение
-
-#### Design
-
-- Dark background (gray-900)
-- White/light text
-- Icons 24px with hover effect
-- Responsive: 3 columns desktop, stacked mobile
-- Padding: py-12 desktop, py-8 mobile
-
-### 7. File Upload (Admin)
-
-#### Requirements
-
-- Drag & drop zone
-- Click to select files
-- Accepted types: PDF, JPG, JPEG, PNG
-- Max size: 50MB per file
-- Multiple file upload
-- Progress bar
-- Thumbnail preview for images
-- Metadata form: title, description, city, propertyType
-
-#### Process
-
-1. Select files (validate type/size)
-2. Show previews
-3. Fill metadata (apply to all or individual)
-4. Upload with progress
-5. Create Material records
-
----
-
-## Development Workflow
-
-> > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
 
 ### Environment Setup
 
 ```bash
-# 1. Клонирование и установка зависимостей
+# 1. Clone and install dependencies
 git clone https://github.com/LionMux/Profit-Premium.git
 cd profit-premium
 npm install
 
-# 2. Настройка окружения
+# 2. Setup environment
 cp .env.example .env.local
-# Заполнить обязательные поля:
+# Required variables:
 # - DATABASE_URL
-# - NEXTAUTH_SECRET (минимум 32 символа)
+# - NEXTAUTH_SECRET (min 32 chars)
 # - NEXTAUTH_URL
-# - SMS_API_KEY (для SMS авторизации)
-# - BITRIX_WEBHOOK_URL (для интеграции)
+# - SMS_API_KEY (for SMS auth)
+# - BITRIX_WEBHOOK_URL (for CRM integration)
 
-# 3. Инициализация БД
+# 3. Initialize database
 npx prisma migrate dev
 npx prisma db seed
 
-# 4. Запуск dev сервера
+# 4. Start development server
 npm run dev
 ```
 
 ### Available Commands
 
-<<<<<<< HEAD
 | Command | Description |
 |---------|-------------|
 | `npm run dev` | Start development server (http://localhost:3000) |
@@ -479,20 +284,7 @@ npm run dev
 ### Test Credentials (from seed.ts)
 
 - **Admin**: `admin@profit-premium.ru` / `admin123`
-- # **Partner**: `partner@example.com` / `partner123`
-  | Command                  | Description                  |
-  | ------------------------ | ---------------------------- |
-  | `npm run dev`            | Start development server     |
-  | `npm run build`          | Build production bundle      |
-  | `npm start`              | Start production server      |
-  | `npm run lint`           | Run ESLint                   |
-  | `npm run format:check`   | Check Prettier formatting    |
-  | `npm run format:write`   | Fix Prettier formatting      |
-  | `npm run test:e2e`       | Run Playwright E2E tests     |
-  | `npx prisma studio`      | Open Prisma Studio           |
-  | `npx prisma migrate dev` | Create and apply migration   |
-  | `npx prisma db seed`     | Seed database with test data |
-  > > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
+- **Partner**: `partner@example.com` / `partner123`
 
 ---
 
@@ -500,7 +292,7 @@ npm run dev
 
 ### TypeScript Configuration
 
-- **Strict mode**: enabled (`strict: true` в tsconfig.json)
+- **Strict mode**: enabled (`strict: true`)
 - **Module resolution**: `bundler`
 - **Path aliases**:
   - `@/*` → `./src/*`
@@ -534,85 +326,44 @@ npm run dev
 
 ### File Naming Conventions
 
-<<<<<<< HEAD
 | Type | Pattern | Example |
 |------|---------|---------|
 | Components | PascalCase | `Sidebar.tsx`, `PhoneInput.tsx` |
 | Pages | page.tsx | `app/materials/page.tsx` |
 | API Routes | route.ts | `app/api/materials/route.ts` |
 | Utilities | camelCase | `auth.ts`, `utils.ts` |
-| Types | PascalCase | `types/index.ts` |
-=======
-| Type | Pattern | Example |
-| ---------- | ---------- | ---------------------------- |
-| Components | PascalCase | `Sidebar.tsx` |
-| Pages | page.tsx | `app/materials/page.tsx` |
-| API Routes | route.ts | `app/api/materials/route.ts` |
-| Utilities | camelCase | `auth.ts` |
-| Types | PascalCase | `types/index.ts` |
-
-> > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
+| Types | camelCase | `types/index.ts` |
 
 ### Code Patterns
-
-<<<<<<< HEAD
 
 - Использовать `async/await` для асинхронных операций
 - Валидировать входные данные с помощью Zod
 - Использовать `cn()` из `lib/utils.ts` для условных классов Tailwind
-- # Server Components по умолчанию, `'use client'` только при необходимости
+- Server Components по умолчанию, `'use client'` только при необходимости
+- API responses в формате: `{ success: boolean, data?: any, error?: string }`
 
-## Security Requirements (Critical for Commercial Project)
+### Custom Colors (Tailwind)
 
-### Authentication & Authorization
-
-- ✅ NextAuth.js с JWT стратегией
-- ✅ Пароли хешируются bcrypt (10 rounds)
-- ✅ Защита роутов через middleware
-- ✅ Проверка ролей (ADMIN, MANAGER, PARTNER)
-- ✅ Rate limiting на API endpoints (особенно auth)
-- ✅ SMS rate limit: max 3 per hour per phone
-
-### File Uploads
-
-- ✅ Валидация MIME-типов (PDF, images only)
-- ✅ Проверка размера (max 50MB)
-- ✅ Проверка расширения файла
-- ✅ Хранение файлов вне public (или с защитой)
-- ✅ Доступ только для ADMIN/MANAGER
-- ✅ Сканирование на вирусы (опционально, через ClamAV)
-
-### API Security
-
-- ✅ Rate limiting на все endpoints (redis или memory)
-- ✅ Input validation с Zod на всех API
-- ✅ SQL-защита через Prisma ORM (no raw queries)
-- ✅ XSS защита через React escaping
-- ✅ CSRF защита через SameSite cookies
-- ✅ Security headers (CSP, HSTS, X-Frame-Options)
-- ✅ CORS настройка (только разрешенные домены)
-
-### Data Protection
-
-- ✅ Не хранить пароли в plaintext
-- ✅ Не логировать sensitive data (телефоны, email)
-- ✅ Шифрование в transit (HTTPS only)
-- ✅ Backup базы данных (ежедневно)
-- ✅ Очистка старых SMS кодов (cron job)
-
-### Secrets Management
-
-- ✅ Никогда не коммитить .env файлы
-- ✅ Использовать .env.example с плейсхолдерами
-- ✅ Разные secrets для dev/prod
-- ✅ Минимум 32 символа для NEXTAUTH_SECRET
-  > > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
+```typescript
+// tailwind.config.ts
+colors: {
+  burgundy: {
+    DEFAULT: '#5C1E2D',
+    dark: '#3D1220',
+    medium: '#7A2B3E',
+    light: '#9B4458',
+  },
+  cream: {
+    DEFAULT: '#F0EAE0',
+    dark: '#E0D5C5',
+    light: '#F8F4EF',
+  },
+}
+```
 
 ---
 
 ## Testing Instructions
-
-<<<<<<< HEAD
 
 ### E2E Tests (Playwright)
 
@@ -623,56 +374,17 @@ npm run dev
 - **Browser**: Microsoft Edge (desktop)
 - **Web server**: автоматический запуск `npm run dev`
 
-````bash
-# Запуск всех E2E тестов
+```bash
+# Run all E2E tests
 npm run test:e2e
-=======
-### API Errors
 
-- Всегда возвращать JSON с полями:
-  ```json
-  {
-    "error": "Краткое описание ошибки",
-    "message": "Подробное сообщение для пользователя",
-    "code": "ERROR_CODE",
-    "details": {} // Опциональные детали
-  }
-````
-
-- HTTP статусы:
-  - 400: Bad Request (validation error)
-  - 401: Unauthorized (not authenticated)
-  - 403: Forbidden (no permission)
-  - 404: Not Found
-  - 429: Too Many Requests (rate limit)
-  - 500: Internal Server Error
-
-### Client Errors
-
-- Использовать Error Boundaries для React компонентов
-- Показывать user-friendly сообщения (не технические детали)
-- Логировать ошибки в консоль (dev) или сервис (prod)
-- Предоставлять fallback UI при ошибках
-
-### Logging
-
-- Использовать structured logging (JSON format)
-- Включать: timestamp, level, message, userId, requestId
-- Уровни: error, warn, info, debug
-- Не логировать: passwords, tokens, credit cards
-  > > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
-
-# Запуск с UI режимом
-
+# Run with UI mode
 npx playwright test --ui
 
-# Запуск конкретного файла
-
+# Run specific file
 npx playwright test auth.spec.ts
+```
 
-````
-
-<<<<<<< HEAD
 ### Test Files
 
 - `auth.spec.ts` — тесты авторизации (email и SMS)
@@ -687,73 +399,14 @@ npx playwright test auth.spec.ts
 - [ ] Форма передачи клиента создает запись в БД
 - [ ] Загрузка файлов работает (admin)
 - [ ] Выход из системы перенаправляет на /login
-=======
-### Frontend
-
-- First Contentful Paint < 1.5s
-- Time to Interactive < 3s
-- Использовать next/image для оптимизации изображений
-- Lazy loading для компонентов и изображений
-- Code splitting по роутам
-- Минимизировать bundle size
-
-### Backend
-
-- API response time < 200ms (p95)
-- Использовать кэширование (Redis) для:
-  - Список городов и типов недвижимости
-  - Сторис (редко меняются)
-  - Сессии пользователей
-- Database query optimization:
-  - Всегда использовать индексы
-  - Избегать N+1 queries (использовать include)
-  - Пагинация для больших списков (limit/offset)
-
-### Database
-
-- Connection pooling (Prisma handles this)
-- Regular VACUUM и ANALYZE
-- Индексы на всех foreign keys
-- Индексы на часто используемых полях фильтрации
-
----
-
-## Testing Requirements (Critical for Commercial Project)
-
-### Unit Tests (Recommended: Vitest)
-
-- Тестирование utility functions
-- Тестирование API handlers (isolated)
-- Тестирование компонентов (React Testing Library)
-- Coverage: минимум 70%
-
-### E2E Tests (Playwright) - Required
-
-- Критические пути:
-  - Авторизация (email + SMS)
-  - Просмотр материалов и фильтрация
-  - Передача клиента
-  - Загрузка файлов (admin)
-- Запускать в CI перед деплоем
-- Тестировать на разных viewport (mobile, tablet, desktop)
-
-### Manual Testing Checklist
-
-- [ ] Все ссылки работают
-- [ ] Формы валидируют корректно
-- [ ] Ошибки API обрабатываются graceful
-- [ ] Responsive design на всех устройствах
-- [ ] Accessibility (keyboard navigation, screen readers)
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
 
 ---
 
 ## Security Considerations
 
-<<<<<<< HEAD
 ### Authentication & Authorization
 
-- ✅ NextAuth.js с JWT стратегией (30 дней)
+- ✅ NextAuth.js с JWT стратегией (30 days)
 - ✅ Пароли хешируются bcrypt (10 rounds)
 - ✅ Защита роутов через `middleware.ts`
 - ✅ Проверка ролей (ADMIN, MANAGER, PARTNER) в API
@@ -770,23 +423,12 @@ npx playwright test auth.spec.ts
 ### API Security
 
 - ✅ Input validation с Zod на всех API
-- ✅ SQL-защита через Prisma ORM
+- ✅ SQL-защита через Prisma ORM (no raw queries)
 - ✅ CSRF защита через SameSite cookies
 - ✅ CORS настройка для API routes
 
 ### Environment Variables (Required)
 
-=======
-### Docker
-
-- Multi-stage build для оптимизации размера
-- Non-root user в контейнере
-- Health check endpoint
-- Graceful shutdown handling
-
-### Environment Variables (Production)
-
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
 ```env
 # Database
 DATABASE_URL="postgresql://user:password@localhost:5432/profit_premium?schema=public"
@@ -805,9 +447,8 @@ BITRIX_WEBHOOK_URL="https://your-domain.bitrix24.ru/rest/1/webhook-token/"
 # Storage
 UPLOAD_DIR="/app/uploads"
 MAX_FILE_SIZE="52428800"
-````
+```
 
-<<<<<<< HEAD
 **Важно**: Никогда не коммитить `.env.local` с реальными значениями!
 
 ---
@@ -817,13 +458,13 @@ MAX_FILE_SIZE="52428800"
 ### Docker (Production)
 
 ```bash
-# Сборка и запуск
+# Build and run
 docker-compose up -d --build
 
-# Применение миграций
+# Apply migrations
 docker-compose exec app npx prisma migrate deploy
 
-# Просмотр логов
+# View logs
 docker-compose logs -f app
 ```
 
@@ -831,119 +472,33 @@ docker-compose logs -f app
 
 GitHub Actions (`.github/workflows/ci.yml`):
 
-1. Checkout кода
+1. Checkout code
 2. Setup Node.js 20
 3. Install dependencies
 4. Generate Prisma client
 5. Run ESLint
 6. Check formatting
 7. Type check
-8. # Build
+8. Build
 
 ### Backup Strategy
 
 - **Database**: Ежедневные автоматические бэкапы (pg_dump)
 - **Files**: Ежедневный backup загруженных файлов
 - **Retention**: Хранить бэкапы за последние 30 дней
-- **Testing**: Ежемесячное тестирование восстановления из бэкапа
-
-### Monitoring & Alerts
-
-- Application logs (structured JSON)
-- Error tracking (Sentry или аналог)
-- Performance monitoring (Next.js Analytics или APM)
-- Uptime monitoring (Pingdom или аналог)
-- Alerts на: 500 errors, high latency, downtime
-
-### CI/CD Pipeline
-
-```yaml
-# .github/workflows/ci.yml
-name: CI/CD
-on: [push, pull_request]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run build
-      - run: npm run test:e2e
-  deploy:
-    needs: test
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - run: # Deploy to production
-```
-
-> > > > > > > 4afecea82f343ef86b18a4bc66246eafab92bb25
 
 ---
 
 ## Key Implementation Details
-
-<<<<<<< HEAD
 
 ### Authentication Flow
 
 1. **Email + Password**: credentials provider с проверкой bcrypt
 2. **SMS**:
    - `/api/auth/sms/send` — генерация 6-значного кода, сохранение в БД, отправка через SMS.ru
-   - `/api/auth/sms/verify` — проверка кода, создание пользователя при отсутствии
+   - `/api/auth/sms/verify` — проверка кода, обновление попыток
    - Rate limiting: 3 SMS/час на номер
-   - # Код действителен 5 минут, 3 попытки
-
-### Endpoint Documentation Format
-
-```typescript
-/**
- * POST /api/materials
- *
- * Create new material (Admin/Manager only)
- *
- * @body {
- *   title: string (required, 3-200 chars)
- *   description?: string (optional, max 1000 chars)
- *   city: string (required)
- *   propertyType: string (required)
- *   file: File (required, PDF or image, max 50MB)
- * }
- *
- * @returns {
- *   id: string
- *   title: string
- *   fileUrl: string
- *   createdAt: string
- * }
- *
- * @errors
- * 400 - Validation error
- * 401 - Unauthorized
- * 403 - Forbidden (not admin/manager)
- * 413 - File too large
- * 500 - Server error
- */
-```
-
-### Response Format
-
-Все API ответы должны следовать единому формату:
-
-```typescript
-// Success
-{
-  success: true,
-  data: { ... },
-  meta: { // для списков
-    page: 1,
-    limit: 20,
-    total: 100
-  }
-}
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
+   - Код действителен 5 минут, 3 попытки
 
 ### Phone Number Format
 
@@ -953,7 +508,6 @@ jobs:
 
 ### Materials Filtering
 
-<<<<<<< HEAD
 - Query параметры: `?city=Moscow&propertyType=Apartment`
 - Server-side filtering через Prisma
 - UI: кнопки фильтров с активным состоянием
@@ -964,272 +518,6 @@ jobs:
 - Валидация: Zod schema
 - Сохранение в БД с привязкой к пользователю
 - TODO: интеграция с Bitrix24
-=======
-### Branching Strategy
-
-- `main` - production ready code
-- `develop` - development branch (optional)
-- `feature/*` - новые фичи
-- `fix/*` - багфиксы
-- `hotfix/*` - срочные фиксы для продакшена
-
-### Commit Messages
-
-Формат: `type(scope): message`
-
-Types:
-
-- `feat`: новая функциональность
-- `fix`: исправление бага
-- `docs`: документация
-- `style`: форматирование (без изменения кода)
-- `refactor`: рефакторинг
-- `test`: тесты
-- `chore`: обслуживание (deps, config)
-
-Examples:
-
-- `feat(auth): add SMS authentication`
-- `fix(materials): correct filter by city`
-- `docs(api): add endpoint documentation`
-
-### Pull Request Requirements
-
-- [ ] Все тесты проходят
-- [ ] Код review от минимум 1 человека
-- [ ] Нет конфликтов с main
-- [ ] Соответствует code style
-- [ ] Документация обновлена (если нужно)
-
----
-
-## Accessibility (a11y) Requirements
-
-### Standards
-
-- Соответствие WCAG 2.1 Level AA
-- Поддержка keyboard navigation
-- ARIA labels для интерактивных элементов
-- Alt text для изображений
-- Цветовой контраст минимум 4.5:1
-
-### Implementation
-
-- Использовать семантические HTML теги
-- Focus indicators для всех интерактивных элементов
-- Skip links для навигации
-- Screen reader friendly формы (label связан с input)
-- Не полагаться только на цвет для передачи информации
-
----
-
-## Universal Agent Operating Rules
-
-These rules apply to any AI coding agent working in this repository.
-Follow them before relying on any project-specific context below.
-
-### Mission
-
-Your goal is to make correct, minimal, safe, and verifiable progress.
-Prefer reliable execution over fast guessing.
-Do not pretend work was completed if it was not actually verified.
-
-### Default working style
-
-- Read relevant files before making changes.
-- Infer from the repository first, ask only when uncertainty materially affects correctness.
-- Prefer small, reversible changes over broad refactors.
-- Reuse existing project patterns before introducing new ones.
-- Keep outputs concrete, structured, and easy to review.
-
-### Task classification
-
-For every new task, first classify it mentally as one of:
-
-- Fully specified
-- Partially specified
-- Ambiguous
-- High-risk
-
-Treat a task as high-risk if it affects authentication, payments, data deletion, production config, secrets, infra, security, or public APIs.
-
-### Clarification rule
-
-Do not rush into implementation when the task is underspecified.
-
-Before writing code, check whether the following are clear enough:
-
-- goal and expected outcome
-- target behavior / user flow
-- files or area likely involved
-- constraints and non-goals
-- acceptance criteria
-- validation method
-
-If critical information is missing, ask a short set of high-value clarification questions first.
-Prefer 3-7 concise questions in one round.
-If the repository already provides enough evidence, proceed without asking.
-
-### Assumption rule
-
-When you must proceed with incomplete information:
-
-- make the safest reasonable assumption;
-- state it explicitly;
-- avoid irreversible or sweeping changes based on that assumption.
-
-Never hide important assumptions.
-
-### Planning rule
-
-For non-trivial tasks, think in phases:
-
-1. Understand the current implementation
-2. Identify the minimal change
-3. Implement
-4. Validate
-5. Summarize outcome and risks
-
-Do not dump large code changes without first understanding the surrounding code.
-
-### Change boundaries
-
-- Do not refactor unrelated code unless it blocks the task.
-- Do not rename files, move modules, or change architecture without a clear reason.
-- Do not add dependencies unless necessary and justified.
-- Do not remove comments, tests, configs, or files unless you understand why they exist.
-
-### Source of truth
-
-When sources conflict, prefer:
-
-1. actual code and tests
-2. active configuration files
-3. repository docs
-4. comments and stale notes
-
-Treat documentation as potentially outdated if it conflicts with code.
-
-### Validation rule
-
-A task is not complete until it is validated appropriately.
-
-Use the strongest available validation:
-
-- existing tests
-- typecheck
-- lint
-- build
-- runtime verification
-- browser or E2E verification if UI behavior is involved
-
-Never claim success based only on reasoning when validation was possible but not performed.
-
-### Failure handling
-
-If a tool, server, test, build, or external integration fails:
-
-- say exactly what failed;
-- explain the effect on confidence;
-- continue with the best available fallback;
-- do not stop if useful progress is still possible.
-
-Be resilient, not brittle.
-
-### Fallback rule
-
-When the ideal tool is unavailable, fall back in this order when possible:
-
-1. repository inspection
-2. static analysis
-3. local commands
-4. existing tests
-5. narrow manual reasoning
-
-Explicitly note when confidence is reduced.
-
-### Safety rules
-
-Never expose or commit:
-
-- secrets
-- tokens
-- private keys
-- `.env` files with real values
-- credentials
-- production-only internal URLs if they are sensitive
-
-Before any commit or push, verify that ignored files, generated junk, logs, caches, screenshots, build artifacts, and secret-bearing files are not accidentally included.
-
-### Git and publish rules
-
-Before commit or push:
-
-- inspect changed files;
-- verify `.gitignore`;
-- confirm that only intended files are included;
-- do not publish broken, unverified, or risky changes.
-
-If a push is unsafe, say so clearly and explain why.
-
-### Communication format
-
-When reporting progress, prefer this structure:
-
-#### Status
-
-- DONE
-- IN PROGRESS
-- BLOCKED
-- FALLBACK USED
-
-#### Findings
-
-Concrete observations only.
-
-#### Changes made
-
-List meaningful file changes and why.
-
-#### Validation
-
-State what was checked, how it was checked, and what confidence level remains.
-
-#### Open risks
-
-List anything not fully verified.
-
-### Quality bar
-
-Good output is:
-
-- correct
-- minimal
-- understandable
-- consistent with the repo
-- validated
-- safe to review
-
-Fast but unverified output is not good output.
-
-### Anti-patterns
-
-Do not:
-
-- hallucinate files, commands, APIs, or test results;
-- claim a tool was used when it was not;
-- claim code is production-ready without validation;
-- make speculative architectural changes from a vague prompt;
-- silently skip requested steps;
-- keep retrying the same failed action without changing strategy.
-
-### Completion rule
-
-Only consider the task complete when one of these is true:
-
-1. the requested change was made and validated with reasonable confidence;
-2. the change could not be completed, and the exact blocker, impact, and next step are clearly stated.
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
 
 ---
 
@@ -1242,26 +530,16 @@ Only consider the task complete when one of these is true:
 - [shadcn/ui Components](https://ui.shadcn.com/)
 - [Playwright Testing](https://playwright.dev/)
 - [SMS.ru API](https://sms.ru/api/)
-- [Bitrix24 REST API](https://dev.1c-bitrix.ru/rest_help/)
 
 ---
 
 ## Changelog
 
-<<<<<<< HEAD
 | Date | Author | Changes |
 |------|--------|---------|
 | 2026-04-07 | Agent | Project initialized |
 | 2026-04-08 | Agent | Updated AGENTS.md with actual project structure |
-=======
-| Date       | Author | Changes                                                                    |
-| ---------- | ------ | -------------------------------------------------------------------------- |
-| 2026-04-07 | Agent  | Project initialized                                                        |
-| 2026-04-08 | Agent  | Updated with detailed requirements from specification                      |
-| 2026-04-08 | Agent  | Database schema updated with indexes, migrations applied, test data seeded |
->>>>>>> 4afecea82f343ef86b18a4bc66246eafab92bb25
 
 ---
 
 _End of AGENTS.md_
-```

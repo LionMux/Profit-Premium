@@ -1,271 +1,159 @@
 ---
 name: profit-premium-ui
-description: Generate UI components matching the Profit-Premium project design system. Use when creating new React components for this Next.js 14 real estate partner portal with shadcn/ui patterns. Supports base UI components (Button, Card, Input), layout components (Sidebar, Header), form components, and business-specific components (MaterialCard, StoryCard, FilterBar). Triggers on requests like "create component", "add UI", "button", "card", "dialog", "form", "MaterialCard", "StoryCard", or "ui component".
+description: Generate production-ready UI components for Profit-Premium real estate partner portal. This skill provides design system tokens, component patterns, and code templates for creating pages and components in the burgundy-cream aesthetic with right-sidebar layout. Use when creating auth pages, admin panels, material cards, Stories carousels, or any UI that must match the Profit-Premium brand identity.
 ---
 
-# Profit-Premium UI Components
+# Profit-Premium UI Skill
 
-Generate UI components that match the Profit-Premium project design system.
+Design system and component patterns for Profit-Premium real estate partner portal.
+
+## Brand Identity
+
+**Profit-Premium** — закрытый личный кабинет для партнеров-агентов по недвижимости. Premium aesthetic with burgundy-cream color palette, elegant serif typography, and right-sidebar navigation.
+
+### Core Visual Language
+- **Colors**: Deep burgundy (#3D1220, #5C1E2D) paired with warm cream (#F0EAE0, #E0D5C5)
+- **Typography**: Cormorant serif for headings, Inter sans-serif for body
+- **Layout**: Right sidebar navigation, burgundy main content area
+- **Style**: Minimal borders, subtle shadows, generous whitespace, premium feel
 
 ## Quick Start
 
-1. Identify component type (base UI, layout, form, or business)
-2. Use appropriate template from `assets/templates/`
-3. Apply correct imports: `@/lib/utils`, `@/components/ui/*`
-4. Use Tailwind classes from design system
-5. Handle refs with `React.forwardRef` for base components
+### Page Structure Template
 
-## Component Types
-
-### Base UI Components
-
-Located in `src/components/ui/`. Use shadcn/ui patterns:
-
-- `React.forwardRef` for ref forwarding
-- `cn()` from `@/lib/utils` for conditional classes
-- `class-variance-authority` (cva) for variants
-- Radix UI primitives when needed
-- Compound component pattern (Card.Header, Card.Title, etc.)
-
-### Layout Components
-
-Located in `src/components/layout/`. Use client components:
-
-- `'use client'` directive
-- Lucide React icons
-- Next.js `Link` for navigation
-- Active state via `usePathname()`
-
-### Form Components
-
-Located in `src/components/` (feature-based folders). Patterns:
-
-- React `useState` for form state
-- Base `Input` and `Button` from UI kit
-- Server validation via API routes
-- Toast notifications via `useToast()`
-
-### Business Components
-
-Located in `src/components/[feature]/`. Patterns:
-
-- Server Components for data fetching
-- Client Components for interactivity
-- Filter chips with active/inactive states
-
-## CSS Variables (HSL format)
-
-Always use these CSS custom properties:
-
-```css
---background: 0 0% 100% --foreground: 240 10% 3.9% --card: 0 0% 100% --card-foreground: 240 10% 3.9%
-  --popover: 0 0% 100% --popover-foreground: 240 10% 3.9% --primary: 240 5.9% 10%
-  --primary-foreground: 0 0% 98% --secondary: 240 4.8% 95.9% --secondary-foreground: 240 5.9% 10%
-  --muted: 240 4.8% 95.9% --muted-foreground: 240 3.8% 46.1% --accent: 240 4.8% 95.9%
-  --accent-foreground: 240 5.9% 10% --destructive: 0 84.2% 60.2% --destructive-foreground: 0 0% 98%
-  --border: 240 5.9% 90% --input: 240 5.9% 90% --ring: 240 5.9% 10% --radius: 0.5rem;
+```tsx
+// Admin/Profile page layout
+<div className="min-h-screen flex flex-col lg:flex-row">
+  {/* Main Content - Burgundy Background */}
+  <div className="flex-1 flex flex-col min-h-screen bg-burgundy-dark">
+    <main className="flex-1 p-6 lg:p-10">
+      {/* Page content */}
+    </main>
+    <Footer />
+  </div>
+  
+  {/* Right Sidebar - Cream Background */}
+  <Sidebar user={user} />
+</div>
 ```
 
-## Common Tailwind Patterns
+### Login Page Structure
 
-### Backgrounds
-
-- `bg-background` - main background
-- `bg-card` - card background
-- `bg-muted` - subtle background
-- `bg-accent` - accent background
-- `bg-primary` - primary action background
-- `bg-secondary` - secondary background
-
-### Text
-
-- `text-foreground` - main text
-- `text-muted-foreground` - secondary text
-- `text-primary` - primary text
-- `text-primary-foreground` - on primary background
-- `text-destructive` - error text
-
-### Interactive States
-
-- `hover:bg-accent hover:text-accent-foreground`
-- `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`
-- `disabled:pointer-events-none disabled:opacity-50`
-
-### Layout
-
-- `flex items-center justify-between`
-- `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3`
-- `space-y-4` / `gap-4`
-- `p-4 px-6 py-3`
-
-### Borders & Radius
-
-- `border border-border`
-- `rounded-lg` (0.5rem), `rounded-md`, `rounded-sm`
-
-## File Templates
-
-See `assets/templates/` for starting points:
-
-- `base-component.tsx` - shadcn/ui style with forwardRef
-- `client-component.tsx` - 'use client' with state
-- `form-component.tsx` - form with validation
-- `business-component.tsx` - feature-specific component
-
-## Import Patterns
-
-```typescript
-// Utils
-import { cn } from '@/lib/utils';
-
-// UI components
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-
-// Icons
-import { IconName } from 'lucide-react';
-
-// Next.js
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+```tsx
+// Split-screen login (Image1 style)
+<div className="min-h-screen flex">
+  {/* Left - Dark form panel */}
+  <div className="w-full lg:w-1/2 bg-[#1a1a1a] flex flex-col justify-center px-8 lg:px-16">
+    <Logo variant="gold" />
+    <h1 className="font-serif text-cream text-3xl">Вход в личный кабинет</h1>
+    <LoginForm />
+  </div>
+  
+  {/* Right - Visual panel */}
+  <div className="hidden lg:block w-1/2 bg-gradient-to-br from-[#C9A86C] to-[#E0D5C5]">
+    {/* 3D city visualization or abstract pattern */}
+  </div>
+</div>
 ```
 
-## Common Component Patterns
+## Design Tokens
 
-### Button with variants
+Read [references/design-tokens.md](references/design-tokens.md) for complete color palette, typography scale, spacing, and border radius specifications.
 
-See existing `button.tsx` - use `cva` for variants: default, destructive, outline, secondary, ghost, link.
+## Component Patterns
 
-### Card compound pattern
+Read [references/component-patterns.md](references/component-patterns.md) for:
+- Stories carousel implementation
+- Material cards with PDF previews
+- Filter bars and drawers
+- Form layouts
+- Navigation patterns
 
-```typescript
-const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('rounded-lg border bg-card text-card-foreground shadow-sm', className)} {...props} />
-  )
-);
-Card.displayName = 'Card';
+## Page Templates
 
-// Sub-components: CardHeader, CardTitle, CardDescription, CardContent, CardFooter
+Read [references/page-templates.md](references/page-templates.md) for:
+- Login page (split-screen)
+- Admin dashboard with Stories
+- Profile page layout
+- Materials listing with filters
+
+## Image References
+
+When user references design images:
+- **Image1**: Split-screen login with dark left panel, gold accents
+- **Image2**: Admin panel with Stories carousel, cream cards on burgundy
+
+Always check `images/` folder in project root for reference images.
+
+## Technology Stack
+
+- Next.js 14 (App Router)
+- TypeScript
+- Tailwind CSS
+- shadcn/ui components
+- next-auth for authentication
+
+## File Locations
+
+```
+src/
+├── app/
+│   ├── (auth)/login/page.tsx       # Login page
+│   ├── (dashboard)/                # Authenticated routes
+│   │   ├── dashboard/page.tsx      # Homepage with Stories
+│   │   ├── profile/page.tsx        # Profile page
+│   │   └── materials/page.tsx      # Materials listing
+│   └── admin/page.tsx              # Admin panel
+├── components/
+│   ├── layout/Sidebar.tsx          # Right sidebar nav
+│   ├── layout/Footer.tsx           # Footer component
+│   └── stories/StoriesCarousel.tsx # Stories component
+└── styles/globals.css              # Global styles + CSS vars
 ```
 
-### Form with validation
+## Implementation Notes
 
-```typescript
-'use client';
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+1. **Sidebar**: Always on right (lg:order-last), cream background
+2. **Footer**: Inside burgundy area, before sidebar
+3. **Stories**: Horizontal scroll, snap points, cream cards
+4. **Auth**: Use next-auth credentials provider
+5. **Forms**: White inputs on dark backgrounds, cream buttons
+6. **Cards**: Minimal borders, subtle backdrop-blur for glass effect
 
-export function FormComponent() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({ field: '' });
+## Common Tasks
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setIsSubmitting(true);
-    // API call...
-    setIsSubmitting(false);
-  }
+### Create new admin page
 
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <Input
-        value={formData.field}
-        onChange={e => setFormData({ ...formData, field: e.target.value })}
-      />
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Отправка...' : 'Отправить'}
-      </Button>
-    </form>
-  );
-}
-```
+1. Use `bg-burgundy-dark` for main background
+2. Add `StoriesCarousel` at top
+3. Use cream cards for content blocks
+4. Include standard `Sidebar` and `Footer`
 
-### Navigation with active state
+### Update login page
 
-```typescript
-'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
+1. Split-screen layout
+2. Dark (#1a1a1a) left panel
+3. Gold/cream accent colors
+4. Serif headings
+5. Tabbed auth (Email/SMS)
 
-export function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
-  const pathname = usePathname();
-  const isActive = pathname === href || pathname.startsWith(`${href}/`);
+### Add new card component
 
-  return (
-    <Link
-      href={href}
-      className={cn(
-        'px-4 py-2 rounded-lg transition-colors',
-        isActive
-          ? 'bg-primary text-primary-foreground'
-          : 'hover:bg-muted text-muted-foreground'
-      )}
-    >
-      {children}
-    </Link>
-  );
-}
-```
+1. Background: `bg-cream` or `bg-white/5 backdrop-blur`
+2. Border: `border-white/10` (subtle) or none
+3. Padding: `p-6` or `p-8`
+4. Border radius: minimal or `rounded-lg`
 
-## Business-Specific Components
+## Do's and Don'ts
 
-### MaterialCard
+**Do:**
+- Use serif font (font-serif) for all headings
+- Maintain high contrast (cream on burgundy)
+- Use generous padding and whitespace
+- Keep sidebar consistently on the right
 
-Card for real estate materials with:
-
-- Thumbnail image (aspect-video)
-- Title and description
-- City and property type badges
-- Download link
-
-### StoryCard
-
-Horizontal scroll story card with:
-
-- Background image
-- Gradient overlay
-- Title on overlay
-- Hover scale effect
-
-### FilterBar
-
-Filter chips with:
-
-- Active/inactive states
-- Query param synchronization
-- Horizontal scroll on mobile
-
-### TransferClientForm
-
-Client lead form with:
-
-- Full name, phone, city fields
-- Comment textarea
-- Submit to API
-- Toast notifications
-
-## Accessibility Requirements
-
-- Use `React.forwardRef` for ref forwarding
-- Include `displayName` for debugging
-- Use semantic HTML elements
-- Add `aria-label` for icon-only buttons
-- Support keyboard navigation
-- Use `focus-visible` for focus states
-
-## Validation Checklist
-
-Before completing component generation:
-
-- [ ] Correct imports from `@/lib/utils` and `@/components/ui/*`
-- [ ] Uses `cn()` for conditional classes
-- [ ] Applies correct Tailwind classes from design system
-- [ ] Handles refs properly with `forwardRef`
-- [ ] Uses `'use client'` when needed (state, effects, browser APIs)
-- [ ] Includes `displayName` for forwardRef components
-- [ ] Follows file naming convention (PascalCase for components)
-- [ ] Uses Russian text for user-facing labels
+**Don't:**
+- Use bright colors (stick to burgundy/cream palette)
+- Move sidebar to left
+- Use heavy shadows or borders
+- Mix multiple border radius styles

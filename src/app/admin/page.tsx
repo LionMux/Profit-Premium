@@ -1,186 +1,176 @@
-'use client';
+import { redirect } from 'next/navigation';
+import { auth } from '@/lib/auth';
+import { prisma } from '@/lib/prisma';
+import { Sidebar } from '@/components/layout/Sidebar';
+import { Footer } from '@/components/layout/Footer';
+import { StoriesCarousel } from '@/components/stories/StoriesCarousel';
+import { UploadCard } from '@/components/admin/UploadCard';
+import { ActionCard } from '@/components/admin/ActionCard';
+import { FileText, LayoutGrid, Users, Building2 } from 'lucide-react';
+import { AbstractSkyline, GeometricCity } from '@/components/illustrations/BuildingIllustrations';
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+export default async function AdminPage() {
+  const session = await auth();
 
-export default function AdminPage() {
-  const [isUploading, setIsUploading] = useState(false);
-  const [message, setMessage] = useState('');
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    city: '',
-    propertyType: '',
-    file: null as File | null,
-    thumbnail: null as File | null,
-  });
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setIsUploading(true);
-    setMessage('');
-
-    try {
-      // Upload main file
-      let fileUrl = '';
-      if (formData.file) {
-        const uploadForm = new FormData();
-        uploadForm.append('file', formData.file);
-
-        const uploadRes = await fetch('/api/upload', {
-          method: 'POST',
-          body: uploadForm,
-        });
-
-        if (!uploadRes.ok) throw new Error('Failed to upload file');
-        const uploadData = await uploadRes.json();
-        fileUrl = uploadData.url;
-      }
-
-      // Upload thumbnail
-      let thumbnailUrl = '';
-      if (formData.thumbnail) {
-        const thumbForm = new FormData();
-        thumbForm.append('file', formData.thumbnail);
-
-        const thumbRes = await fetch('/api/upload', {
-          method: 'POST',
-          body: thumbForm,
-        });
-
-        if (!thumbRes.ok) throw new Error('Failed to upload thumbnail');
-        const thumbData = await thumbRes.json();
-        thumbnailUrl = thumbData.url;
-      }
-
-      // Create material
-      const res = await fetch('/api/materials', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          title: formData.title,
-          description: formData.description,
-          city: formData.city,
-          propertyType: formData.propertyType,
-          fileUrl,
-          thumbnailUrl,
-        }),
-      });
-
-      if (res.ok) {
-        setMessage('Материал успешно добавлен');
-        setFormData({
-          title: '',
-          description: '',
-          city: '',
-          propertyType: '',
-          file: null,
-          thumbnail: null,
-        });
-      } else {
-        setMessage('Ошибка при добавлении материала');
-      }
-    } catch {
-      setMessage('Ошибка при загрузке файлов');
-    } finally {
-      setIsUploading(false);
-    }
+  if (!session) {
+    redirect('/login');
   }
 
+  // Check if user is admin or manager
+  const userRole = session.user?.role;
+  if (userRole !== 'ADMIN' && userRole !== 'MANAGER') {
+    redirect('/dashboard');
+  }
+
+  // Fetch stories for the carousel
+  const stories = await prisma.story.findMany({
+    where: { isActive: true },
+    orderBy: { order: 'asc' },
+  });
+
+  // Fetch stats
+  const materialsCount = await prisma.material.count();
+  const usersCount = await prisma.user.count();
+
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6">Админ-панель</h1>
+    <div className="min-h-screen flex flex-col lg:flex-row">
+      {/* Main Content Area - Burgundy Background */}
+      <div className="flex-1 flex flex-col min-h-screen bg-burgundy-dark relative overflow-hidden">
+        {/* Decorative skyline background */}
+        <div className="absolute bottom-0 left-0 right-0 opacity-5 pointer-events-none">
+          <AbstractSkyline className="w-full h-64 text-cream" />
+        </div>
+        
+        <main className="flex-1 p-6 lg:p-10 overflow-auto relative z-10">
+          {/* Logo */}
+          <div className="mb-10">
+            <div className="text-cream font-serif">
+              <div className="text-xl tracking-[0.3em] font-light">PROFIT</div>
+              <div className="text-xl tracking-[0.4em] font-semibold">PREMIUM</div>
+            </div>
+          </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Загрузка материалов</CardTitle>
-            <CardDescription>Добавьте новую презентацию или документ</CardDescription>
-          </CardHeader>
-          <CardContent>
-            {message && (
-              <div
-                className={`mb-4 p-3 rounded-md text-sm ${
-                  message.includes('успешно')
-                    ? 'bg-green-50 text-green-600'
-                    : 'bg-red-50 text-red-500'
-                }`}
-              >
-                {message}
-              </div>
-            )}
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="font-serif text-4xl lg:text-5xl text-cream font-semibold mb-2">
+              Админ-панель
+            </h1>
+            <p className="text-cream/60 text-lg">
+              Управление контентом и материалами
+            </p>
+          </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="text-sm font-medium mb-1 block">Название *</label>
-                <Input
-                  value={formData.title}
-                  onChange={e => setFormData({ ...formData, title: e.target.value })}
-                  required
-                />
-              </div>
+          {/* Stories Section */}
+          <section className="mb-12">
+            <div className="mb-6">
+              <h2 className="text-cream/80 text-sm tracking-widest uppercase font-medium">
+                Новости, старты продаж в формате сторис
+              </h2>
+            </div>
+            <StoriesCarousel stories={stories} />
+          </section>
 
-              <div>
-                <label className="text-sm font-medium mb-1 block">Описание</label>
-                <textarea
-                  value={formData.description}
-                  onChange={e => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full min-h-[80px] px-3 py-2 rounded-md border border-input bg-background text-sm"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Город *</label>
-                  <Input
-                    value={formData.city}
-                    onChange={e => setFormData({ ...formData, city: e.target.value })}
-                    required
-                  />
+          {/* Stats Cards */}
+          <section className="mb-12">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 relative">
+              <div className="bg-cream/5 backdrop-blur-sm border border-white/10 p-6">
+                <div className="flex items-center gap-3 mb-2">
+                  <FileText className="w-5 h-5 text-cream/60" />
+                  <span className="text-cream/60 text-sm">Материалы</span>
                 </div>
+                <div className="font-serif text-3xl text-cream">{materialsCount}</div>
+              </div>
+              <div className="bg-cream/5 backdrop-blur-sm border border-white/10 p-6">
+                <div className="flex items-center gap-3 mb-2">
+                  <Users className="w-5 h-5 text-cream/60" />
+                  <span className="text-cream/60 text-sm">Пользователи</span>
+                </div>
+                <div className="font-serif text-3xl text-cream">{usersCount}</div>
+              </div>
+              <div className="bg-cream/5 backdrop-blur-sm border border-white/10 p-6">
+                <div className="flex items-center gap-3 mb-2">
+                  <Building2 className="w-5 h-5 text-cream/60" />
+                  <span className="text-cream/60 text-sm">Города</span>
+                </div>
+                <div className="font-serif text-3xl text-cream">—</div>
+              </div>
+              <div className="bg-cream/5 backdrop-blur-sm border border-white/10 p-6">
+                <div className="flex items-center gap-3 mb-2">
+                  <LayoutGrid className="w-5 h-5 text-cream/60" />
+                  <span className="text-cream/60 text-sm">Объекты</span>
+                </div>
+                <div className="font-serif text-3xl text-cream">—</div>
+              </div>
+            </div>
+          </section>
 
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Тип недвижимости *</label>
-                  <Input
-                    value={formData.propertyType}
-                    onChange={e => setFormData({ ...formData, propertyType: e.target.value })}
-                    required
-                  />
+          {/* Action Cards */}
+          <section className="mb-12">
+            <h2 className="font-serif text-2xl text-cream font-semibold mb-6">
+              Быстрые действия
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <UploadCard />
+              <ActionCard
+                icon={FileText}
+                title="Материалы"
+                description="Просмотр и управление всеми материалами"
+                actionLabel="Перейти к материалам"
+                href="/materials"
+              />
+              <ActionCard
+                icon={LayoutGrid}
+                title="Главная"
+                description="Вернуться на главную страницу"
+                actionLabel="На главную"
+                href="/dashboard"
+              />
+            </div>
+          </section>
+
+          {/* Recent Activity or Info */}
+          <section className="mb-12">
+            <div className="bg-cream/5 backdrop-blur-sm border border-white/10 p-6 lg:p-8">
+              <h3 className="font-serif text-xl text-cream font-semibold mb-4">
+                Инструкция по загрузке
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-cream/70">
+                <div className="space-y-3">
+                  <p className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-cream/20 flex items-center justify-center flex-shrink-0 text-sm">1</span>
+                    <span>Заполните название и описание объекта</span>
+                  </p>
+                  <p className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-cream/20 flex items-center justify-center flex-shrink-0 text-sm">2</span>
+                    <span>Укажите город и тип недвижимости</span>
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <p className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-cream/20 flex items-center justify-center flex-shrink-0 text-sm">3</span>
+                    <span>Загрузите PDF-презентацию</span>
+                  </p>
+                  <p className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-cream/20 flex items-center justify-center flex-shrink-0 text-sm">4</span>
+                    <span>Добавьте обложку (опционально)</span>
+                  </p>
                 </div>
               </div>
+            </div>
+          </section>
+        </main>
 
-              <div>
-                <label className="text-sm font-medium mb-1 block">Файл презентации (PDF) *</label>
-                <input
-                  type="file"
-                  accept=".pdf"
-                  onChange={e => setFormData({ ...formData, file: e.target.files?.[0] || null })}
-                  required
-                  className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
-                />
-              </div>
-
-              <div>
-                <label className="text-sm font-medium mb-1 block">Обложка (изображение)</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={e =>
-                    setFormData({ ...formData, thumbnail: e.target.files?.[0] || null })
-                  }
-                  className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-secondary file:text-secondary-foreground hover:file:bg-secondary/80"
-                />
-              </div>
-
-              <Button type="submit" className="w-full" disabled={isUploading}>
-                {isUploading ? 'Загрузка...' : 'Загрузить материал'}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
+        <Footer />
       </div>
+
+      {/* Right Sidebar */}
+      <Sidebar
+        user={{
+          name: session.user?.name || '',
+          email: session.user?.email || '',
+          role: (session.user?.role as 'ADMIN' | 'MANAGER' | 'PARTNER') || 'PARTNER',
+        }}
+      />
     </div>
   );
 }

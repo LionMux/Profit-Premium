@@ -6,19 +6,26 @@ export default auth(req => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
   const isApiAuthRoute = nextUrl.pathname.startsWith('/api/auth');
-  const isPublicRoute = nextUrl.pathname === '/login';
+  const isPublicRoute = nextUrl.pathname === '/login' || nextUrl.pathname === '/';
   const isApiRoute = nextUrl.pathname.startsWith('/api');
+  const isDashboardRoute = nextUrl.pathname.startsWith('/dashboard') || 
+                           nextUrl.pathname.startsWith('/materials') || 
+                           nextUrl.pathname.startsWith('/profile') || 
+                           nextUrl.pathname.startsWith('/contacts') || 
+                           nextUrl.pathname.startsWith('/admin');
 
   if (isApiAuthRoute) {
     return NextResponse.next();
   }
 
-  if (!isLoggedIn && !isPublicRoute && !isApiRoute) {
+  // Redirect unauthenticated users to login for dashboard routes
+  if (!isLoggedIn && isDashboardRoute) {
     return NextResponse.redirect(new URL('/login', nextUrl));
   }
 
-  if (isLoggedIn && isPublicRoute) {
-    return NextResponse.redirect(new URL('/', nextUrl));
+  // Redirect authenticated users to dashboard when accessing login
+  if (isLoggedIn && nextUrl.pathname === '/login') {
+    return NextResponse.redirect(new URL('/dashboard', nextUrl));
   }
 
   return NextResponse.next();

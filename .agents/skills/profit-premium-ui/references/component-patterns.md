@@ -1,516 +1,441 @@
-# Component Architecture Patterns
+# Component Patterns
 
-Common patterns for different component types in Profit-Premium.
+Reusable UI patterns for Profit-Premium.
 
-## Base UI Component Pattern
+## Stories Carousel
 
-For components in `src/components/ui/`:
+Horizontal scrolling cards with snap points.
 
-```typescript
-import * as React from 'react';
-import { cn } from '@/lib/utils';
-
-export interface ComponentProps extends React.HTMLAttributes<HTMLElement> {
-  // Additional props specific to component
-}
-
-const Component = React.forwardRef<HTMLElement, ComponentProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <element
-        ref={ref}
-        className={cn(
-          'base-classes',
-          className
-        )}
-        {...props}
-      />
-    );
-  }
-);
-Component.displayName = 'Component';
-
-export { Component };
-```
-
-## Component with Variants (using cva)
-
-```typescript
-import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/lib/utils';
-
-const componentVariants = cva(
-  'base-classes',
-  {
-    variants: {
-      variant: {
-        default: 'bg-primary text-primary-foreground',
-        secondary: 'bg-secondary text-secondary-foreground',
-        destructive: 'bg-destructive text-destructive-foreground',
-        outline: 'border border-input bg-background',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-      },
-      size: {
-        default: 'h-10 px-4 py-2',
-        sm: 'h-9 rounded-md px-3',
-        lg: 'h-11 rounded-md px-8',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-      size: 'default',
-    },
-  }
-);
-
-export interface ComponentProps
-  extends React.HTMLAttributes<HTMLElement>,
-    VariantProps<typeof componentVariants> {}
-
-const Component = React.forwardRef<HTMLElement, ComponentProps>(
-  ({ className, variant, size, ...props }, ref) => {
-    return (
-      <element
-        ref={ref}
-        className={cn(componentVariants({ variant, size, className }))}
-        {...props}
-      />
-    );
-  }
-);
-Component.displayName = 'Component';
-
-export { Component, componentVariants };
-```
-
-## Compound Component Pattern
-
-```typescript
-import * as React from 'react';
-import { cn } from '@/lib/utils';
-
-// Main component
-const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn('rounded-lg border bg-card text-card-foreground shadow-sm', className)}
-      {...props}
-    />
-  )
-);
-Card.displayName = 'Card';
-
-// Sub-components
-const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('flex flex-col space-y-1.5 p-6', className)} {...props} />
-  )
-);
-CardHeader.displayName = 'CardHeader';
-
-const CardTitle = React.forwardRef<HTMLHeadingElement, React.HTMLAttributes<HTMLHeadingElement>>(
-  ({ className, ...props }, ref) => (
-    <h3 ref={ref} className={cn('text-2xl font-semibold leading-none tracking-tight', className)} {...props} />
-  )
-);
-CardTitle.displayName = 'CardTitle';
-
-const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('p-6 pt-0', className)} {...props} />
-  )
-);
-CardContent.displayName = 'CardContent';
-
-export { Card, CardHeader, CardTitle, CardContent };
-```
-
-## Client Component Pattern
-
-For interactive components requiring React state:
-
-```typescript
+```tsx
+// StoriesCarousel.tsx
 'use client';
 
-import { useState, useCallback } from 'react';
-import { cn } from '@/lib/utils';
+import { useRef } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-interface ClientComponentProps {
-  // Props
-}
-
-export function ClientComponent({ ...props }: ClientComponentProps) {
-  const [state, setState] = useState(defaultValue);
-
-  const handleAction = useCallback(() => {
-    // Action
-  }, [/* deps */]);
-
-  return (
-    <div>
-      {/* JSX */}
-    </div>
-  );
-}
-```
-
-## Form Component Pattern
-
-```typescript
-'use client';
-
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/components/ui/use-toast';
-
-interface FormData {
-  field1: string;
-  field2: string;
-}
-
-export function FormComponent() {
-  const { showToast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState<FormData>({
-    field1: '',
-    field2: '',
-  });
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch('/api/endpoint', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        showToast('Успешно!', 'success');
-        setFormData({ field1: '', field2: '' });
-      } else {
-        showToast('Ошибка', 'error');
-      }
-    } catch {
-      showToast('Ошибка сети', 'error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label className="text-sm font-medium mb-1 block">Label *</label>
-        <Input
-          value={formData.field1}
-          onChange={e => setFormData({ ...formData, field1: e.target.value })}
-          required
-          placeholder="Placeholder"
-        />
-      </div>
-
-      <Button type="submit" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? 'Отправка...' : 'Отправить'}
-      </Button>
-    </form>
-  );
-}
-```
-
-## Navigation Component Pattern
-
-```typescript
-'use client';
-
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
-import { IconName } from 'lucide-react';
-
-const navItems = [
-  { href: '/', label: 'Главная', icon: Home },
-  { href: '/materials', label: 'Материалы', icon: FileText },
-];
-
-export function Sidebar() {
-  const pathname = usePathname();
-
-  return (
-    <nav className="space-y-2">
-      {navItems.map(item => {
-        const Icon = item.icon;
-        const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
-
-        return (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={cn(
-              'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors',
-              isActive
-                ? 'bg-primary text-primary-foreground'
-                : 'hover:bg-muted text-muted-foreground hover:text-foreground'
-            )}
-          >
-            <Icon className="h-5 w-5" />
-            <span className="font-medium">{item.label}</span>
-          </Link>
-        );
-      })}
-    </nav>
-  );
-}
-```
-
-## Server Component Pattern
-
-For data fetching components:
-
-```typescript
-import { prisma } from '@/lib/prisma';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
-
-export default async function DataList() {
-  const items = await prisma.model.findMany({
-    orderBy: { createdAt: 'desc' },
-  });
-
-  return (
-    <div className="grid gap-4">
-      {items.map(item => (
-        <Card key={item.id}>
-          <CardHeader>
-            <CardTitle>{item.title}</CardTitle>
-          </CardHeader>
-        </Card>
-      ))}
-    </div>
-  );
-}
-```
-
-## Card with Image Pattern
-
-```typescript
-import { cn } from '@/lib/utils';
-
-interface ImageCardProps {
-  imageUrl: string;
-  title: string;
-  badges?: string[];
-}
-
-export function ImageCard({ imageUrl, title, badges }: ImageCardProps) {
-  return (
-    <div className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="aspect-video bg-muted">
-        <img
-          src={imageUrl}
-          alt={title}
-          className="w-full h-full object-cover"
-        />
-      </div>
-      <div className="p-4">
-        <h3 className="font-semibold mb-1">{title}</h3>
-        {badges && (
-          <div className="flex gap-2 text-xs text-muted-foreground">
-            {badges.map(badge => (
-              <span key={badge} className="bg-muted px-2 py-1 rounded">
-                {badge}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-```
-
-## Story Card Pattern
-
-```typescript
-interface StoryCardProps {
+interface Story {
+  id: string;
   imageUrl: string;
   title: string;
   link?: string;
 }
 
-export function StoryCard({ imageUrl, title, link }: StoryCardProps) {
-  return (
-    <a
-      href={link || '#'}
-      className="flex-shrink-0 w-48 h-64 rounded-lg overflow-hidden relative group"
-    >
-      <img
-        src={imageUrl}
-        alt={title}
-        className="w-full h-full object-cover transition-transform group-hover:scale-105"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 p-4">
-        <p className="text-white font-medium text-sm">{title}</p>
-      </div>
-    </a>
-  );
-}
-```
-
-## Filter Chip Pattern
-
-```typescript
-'use client';
-
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { cn } from '@/lib/utils';
-
-interface FilterChipProps {
-  label: string;
-  href: string;
-  isActive: boolean;
+interface StoriesCarouselProps {
+  stories: Story[];
 }
 
-export function FilterChip({ label, href, isActive }: FilterChipProps) {
-  return (
-    <Link
-      href={href}
-      className={cn(
-        'px-4 py-2 rounded-lg text-sm font-medium transition-colors',
-        isActive
-          ? 'bg-primary text-primary-foreground'
-          : 'bg-muted text-muted-foreground hover:bg-muted/80'
-      )}
-    >
-      {label}
-    </Link>
-  );
-}
-```
+export function StoriesCarousel({ stories }: StoriesCarouselProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-## Modal/Dialog Pattern
-
-```typescript
-'use client';
-
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
-  children: React.ReactNode;
-}
-
-export function Modal({ isOpen, onClose, title, children }: ModalProps) {
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div
-        className="absolute inset-0 bg-black/50"
-        onClick={onClose}
-      />
-      <div className="relative bg-card rounded-lg shadow-lg w-full max-w-md mx-4">
-        <div className="flex items-center justify-between p-6 border-b">
-          <h2 className="text-lg font-semibold">{title}</h2>
-          <Button variant="ghost" size="icon" onClick={onClose}>
-            ✕
-          </Button>
-        </div>
-        <div className="p-6">
-          {children}
-        </div>
-      </div>
-    </div>
-  );
-}
-```
-
-## Toast Hook Pattern
-
-```typescript
-'use client';
-
-import { useToast } from '@/components/ui/use-toast';
-
-export function MyComponent() {
-  const { showToast } = useToast();
-
-  const handleAction = () => {
-    showToast('Операция выполнена', 'success');
-    // or
-    showToast('Произошла ошибка', 'error');
-    // or
-    showToast('Информация', 'info');
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 300;
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
   };
 
-  return <Button onClick={handleAction}>Action</Button>;
-}
-```
-
-## Loading State Pattern
-
-```typescript
-interface LoadingButtonProps {
-  isLoading: boolean;
-  children: React.ReactNode;
-}
-
-export function LoadingButton({ isLoading, children }: LoadingButtonProps) {
   return (
-    <Button disabled={isLoading}>
-      {isLoading ? (
-        <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Загрузка...
-        </>
-      ) : (
-        children
-      )}
-    </Button>
-  );
-}
-```
+    <div className="relative">
+      {/* Scroll container */}
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        {stories.map((story) => (
+          <a
+            key={story.id}
+            href={story.link || '#'}
+            className="flex-shrink-0 w-64 snap-start"
+          >
+            <div className="bg-cream rounded-lg overflow-hidden aspect-[4/5] relative group">
+              <img
+                src={story.imageUrl}
+                alt={story.title}
+                className="w-full h-full object-cover transition-transform group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-burgundy-dark/80 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="font-serif text-lg text-cream font-semibold">
+                  {story.title}
+                </h3>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
 
-## Error State Pattern
-
-```typescript
-interface ErrorMessageProps {
-  message?: string;
-}
-
-export function ErrorMessage({ message }: ErrorMessageProps) {
-  if (!message) return null;
-
-  return (
-    <p className="mt-1 text-sm text-red-500" role="alert">
-      {message}
-    </p>
-  );
-}
-```
-
-## Empty State Pattern
-
-```typescript
-interface EmptyStateProps {
-  message: string;
-}
-
-export function EmptyState({ message }: EmptyStateProps) {
-  return (
-    <div className="p-8 border-2 border-dashed rounded-lg text-center">
-      <p className="text-muted-foreground">{message}</p>
+      {/* Navigation arrows */}
+      <button
+        onClick={() => scroll('left')}
+        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 bg-cream rounded-full shadow-lg flex items-center justify-center hover:bg-cream-dark transition-colors"
+      >
+        <ChevronLeft className="w-5 h-5 text-burgundy-dark" />
+      </button>
+      <button
+        onClick={() => scroll('right')}
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 bg-cream rounded-full shadow-lg flex items-center justify-center hover:bg-cream-dark transition-colors"
+      >
+        <ChevronRight className="w-5 h-5 text-burgundy-dark" />
+      </button>
     </div>
   );
 }
+```
+
+## Material Card
+
+Card for displaying PDF materials.
+
+```tsx
+// MaterialCard.tsx
+import { FileText, Download } from 'lucide-react';
+
+interface Material {
+  id: string;
+  title: string;
+  description?: string;
+  fileUrl: string;
+  thumbnailUrl?: string;
+  city: string;
+  propertyType: string;
+}
+
+interface MaterialCardProps {
+  material: Material;
+}
+
+export function MaterialCard({ material }: MaterialCardProps) {
+  return (
+    <div className="bg-cream rounded-lg overflow-hidden group">
+      {/* Thumbnail */}
+      <div className="aspect-video relative bg-burgundy-dark">
+        {material.thumbnailUrl ? (
+          <img
+            src={material.thumbnailUrl}
+            alt={material.title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <FileText className="w-16 h-16 text-cream/30" />
+          </div>
+        )}
+        {/* Overlay on hover */}
+        <div className="absolute inset-0 bg-burgundy-dark/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <a
+            href={material.fileUrl}
+            download
+            className="bg-cream text-burgundy-dark px-4 py-2 rounded flex items-center gap-2 hover:bg-cream-dark transition-colors"
+          >
+            <Download className="w-4 h-4" />
+            Скачать PDF
+          </a>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-xs text-burgundy bg-burgundy/10 px-2 py-1 rounded">
+            {material.city}
+          </span>
+          <span className="text-xs text-burgundy/60">
+            {material.propertyType}
+          </span>
+        </div>
+        <h3 className="font-serif text-lg text-burgundy-dark font-semibold mb-1">
+          {material.title}
+        </h3>
+        {material.description && (
+          <p className="text-sm text-burgundy-dark/60 line-clamp-2">
+            {material.description}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+```
+
+## Action Card
+
+Card with icon, title, and action button.
+
+```tsx
+// ActionCard.tsx
+import { LucideIcon } from 'lucide-react';
+import Link from 'next/link';
+
+interface ActionCardProps {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  actionLabel: string;
+  href?: string;
+  onClick?: () => void;
+}
+
+export function ActionCard({
+  icon: Icon,
+  title,
+  description,
+  actionLabel,
+  href,
+  onClick,
+}: ActionCardProps) {
+  const content = (
+    <div className="bg-cream rounded-lg p-6 h-full flex flex-col">
+      <div className="w-12 h-12 bg-burgundy rounded-lg flex items-center justify-center mb-4">
+        <Icon className="w-6 h-6 text-cream" />
+      </div>
+      <h3 className="font-serif text-xl text-burgundy-dark font-semibold mb-2">
+        {title}
+      </h3>
+      <p className="text-sm text-burgundy-dark/60 mb-4 flex-1">
+        {description}
+      </p>
+      <button
+        onClick={onClick}
+        className="w-full bg-burgundy text-cream py-3 rounded-lg hover:bg-burgundy-medium transition-colors flex items-center justify-center gap-2"
+      >
+        <span className="text-sm font-medium">{actionLabel}</span>
+      </button>
+    </div>
+  );
+
+  if (href) {
+    return <Link href={href}>{content}</Link>;
+  }
+
+  return content;
+}
+```
+
+## Filter Bar
+
+Horizontal filter buttons for materials page.
+
+```tsx
+// FilterBar.tsx
+import { cn } from '@/lib/utils';
+
+interface FilterOption {
+  value: string;
+  label: string;
+}
+
+interface FilterBarProps {
+  options: FilterOption[];
+  selected: string;
+  onSelect: (value: string) => void;
+  label: string;
+}
+
+export function FilterBar({ options, selected, onSelect, label }: FilterBarProps) {
+  return (
+    <div className="space-y-3">
+      <span className="text-xs font-medium tracking-[0.2em] uppercase text-cream/60">
+        {label}
+      </span>
+      <div className="flex flex-wrap gap-2">
+        <button
+          onClick={() => onSelect('')}
+          className={cn(
+            'px-4 py-2 rounded-lg text-sm transition-colors',
+            selected === ''
+              ? 'bg-cream text-burgundy-dark'
+              : 'bg-white/10 text-cream hover:bg-white/20'
+          )}
+        >
+          Все
+        </button>
+        {options.map((option) => (
+          <button
+            key={option.value}
+            onClick={() => onSelect(option.value)}
+            className={cn(
+              'px-4 py-2 rounded-lg text-sm transition-colors',
+              selected === option.value
+                ? 'bg-cream text-burgundy-dark'
+                : 'bg-white/10 text-cream hover:bg-white/20'
+            )}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+## Glass Card
+
+Card with glass morphism effect for dark backgrounds.
+
+```tsx
+// GlassCard.tsx
+import { cn } from '@/lib/utils';
+
+interface GlassCardProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export function GlassCard({ children, className }: GlassCardProps) {
+  return (
+    <div
+      className={cn(
+        'bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg',
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+```
+
+## Gold Button
+
+Primary button for login page (gold accent).
+
+```tsx
+// GoldButton.tsx
+import { cn } from '@/lib/utils';
+
+interface GoldButtonProps {
+  children: React.ReactNode;
+  onClick?: () => void;
+  type?: 'button' | 'submit';
+  disabled?: boolean;
+  className?: string;
+}
+
+export function GoldButton({
+  children,
+  onClick,
+  type = 'button',
+  disabled,
+  className,
+}: GoldButtonProps) {
+  return (
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={cn(
+        'w-full py-3 px-6 bg-[#C9A86C] text-[#1a1a1a] font-medium',
+        'hover:bg-[#D4BC94] transition-colors disabled:opacity-50',
+        className
+      )}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+## Dark Input
+
+Input field for dark backgrounds (login page).
+
+```tsx
+// DarkInput.tsx
+import { cn } from '@/lib/utils';
+
+interface DarkInputProps {
+  type?: string;
+  placeholder?: string;
+  value: string;
+  onChange: (value: string) => void;
+  label?: string;
+  required?: boolean;
+}
+
+export function DarkInput({
+  type = 'text',
+  placeholder,
+  value,
+  onChange,
+  label,
+  required,
+}: DarkInputProps) {
+  return (
+    <div className="space-y-2">
+      {label && (
+        <label className="text-sm text-cream/80">
+          {label}
+          {required && <span className="text-red-400">*</span>}
+        </label>
+      )}
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        className={cn(
+          'w-full px-4 py-3 bg-white text-burgundy-dark placeholder:text-gray-400',
+          'border-0 focus:outline-none focus:ring-2 focus:ring-[#C9A86C]'
+        )}
+      />
+    </div>
+  );
+}
+```
+
+## Usage Examples
+
+### Stories section on admin page
+
+```tsx
+<section className="mb-12">
+  <StoriesCarousel stories={stories} />
+  <p className="mt-4 text-cream/60 text-sm tracking-wide">
+    НОВОСТИ, СТАРТЫ ПРОДАЖ В ФОРМАТЕ СТОРИС
+  </p>
+</section>
+```
+
+### Action cards grid
+
+```tsx
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <ActionCard
+    icon={Upload}
+    title="Загрузка материалов"
+    description="Добавьте новую презентацию или документ"
+    actionLabel="Открыть форму"
+    onClick={() => setShowUpload(true)}
+  />
+  <ActionCard
+    icon={FileText}
+    title="Материалы"
+    description="Доступ к презентациям и документам"
+    actionLabel="Перейти"
+    href="/materials"
+  />
+  <ActionCard
+    icon={LayoutGrid}
+    title="Администрирование"
+    description="Управление контентом"
+    actionLabel="Открыть"
+    href="/admin"
+  />
+</div>
+```
+
+### Filter bar on materials page
+
+```tsx
+<FilterBar
+  label="Город"
+  options={cities.map(c => ({ value: c, label: c }))}
+  selected={selectedCity}
+  onSelect={setSelectedCity}
+/>
 ```

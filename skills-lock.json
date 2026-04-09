@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "agentica-prompts": {
+      "source": "parcadei/Continuous-Claude-v3",
+      "sourceType": "github",
+      "computedHash": "e0ac2bed71c8e1d83b4c5a4c7ad36caed52ab2ab911e31d192cd00f030571416"
+    },
+    "discovery-interview": {
+      "source": "parcadei/Continuous-Claude-v3",
+      "sourceType": "github",
+      "computedHash": "934f3f1a7dd3a35e3a74f5716242ca2642a0efc6bee4f0c5f8b2233d7aefa9f3"
+    }
+  }
+}

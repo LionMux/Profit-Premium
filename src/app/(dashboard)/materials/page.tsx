@@ -1,4 +1,8 @@
 import { prisma } from '@/lib/prisma';
+import { FilterBar } from '@/components/materials/FilterBar';
+import { FilterDrawer } from '@/components/materials/FilterDrawer';
+import { MaterialCard } from '@/components/materials/MaterialCard';
+import { FileText, SlidersHorizontal } from 'lucide-react';
 
 interface MaterialsPageProps {
   searchParams: {
@@ -18,120 +22,84 @@ export default async function MaterialsPage({ searchParams }: MaterialsPageProps
   if (city) where.city = city;
   if (propertyType) where.propertyType = propertyType;
 
-  const materials = await prisma.material.findMany({
-    where,
-    orderBy: { createdAt: 'desc' },
-  });
+  const [materials, citiesData, propertyTypesData] = await Promise.all([
+    prisma.material.findMany({
+      where,
+      orderBy: { createdAt: 'desc' },
+    }),
+    prisma.material.findMany({
+      select: { city: true },
+      distinct: ['city'],
+    }),
+    prisma.material.findMany({
+      select: { propertyType: true },
+      distinct: ['propertyType'],
+    }),
+  ]);
 
-  const cities = await prisma.material.findMany({
-    select: { city: true },
-    distinct: ['city'],
-  });
-
-  const propertyTypes = await prisma.material.findMany({
-    select: { propertyType: true },
-    distinct: ['propertyType'],
-  });
+  const cities = citiesData.map((c) => c.city);
+  const propertyTypes = propertyTypesData.map((pt) => pt.propertyType);
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Материалы</h1>
-      </div>
-
-      <div className="flex gap-4">
-        <div className="flex gap-2">
-          <a
-            href="/materials"
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              !city
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-muted text-muted-foreground hover:bg-muted/80'
-            }`}
-          >
-            Все города
-          </a>
-          {cities.map(c => (
-            <a
-              key={c.city}
-              href={`/materials?city=${c.city}${propertyType ? `&propertyType=${propertyType}` : ''}`}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                city === c.city
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
-              }`}
-            >
-              {c.city}
-            </a>
-          ))}
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-2xl lg:text-3xl font-bold text-cream">Материалы</h1>
+          <p className="text-sm text-cream/60 mt-2">
+            Презентации и документы по объектам недвижимости
+          </p>
         </div>
+        
+        {/* Mobile filter button */}
+        <FilterDrawer
+          cities={cities}
+          propertyTypes={propertyTypes}
+          activeCity={city}
+          activeType={propertyType}
+        />
       </div>
 
-      <div className="flex gap-2">
-        <a
-          href="/materials"
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-            !propertyType
-              ? 'bg-secondary text-secondary-foreground'
-              : 'bg-muted text-muted-foreground hover:bg-muted/80'
-          }`}
-        >
-          Все типы
-        </a>
-        {propertyTypes.map(pt => (
-          <a
-            key={pt.propertyType}
-            href={`/materials?propertyType=${pt.propertyType}${city ? `&city=${city}` : ''}`}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              propertyType === pt.propertyType
-                ? 'bg-secondary text-secondary-foreground'
-                : 'bg-muted text-muted-foreground hover:bg-muted/80'
-            }`}
-          >
-            {pt.propertyType}
-          </a>
-        ))}
+      {/* Desktop Filters */}
+      <div className="hidden lg:block bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+        <div className="flex items-center gap-2 mb-4">
+          <SlidersHorizontal className="h-4 w-4 text-cream/60" />
+          <span className="text-sm font-medium text-cream/80">Фильтры</span>
+        </div>
+        <FilterBar
+          cities={cities}
+          propertyTypes={propertyTypes}
+          activeCity={city}
+          activeType={propertyType}
+        />
       </div>
 
+      {/* Results count */}
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-cream/60">
+          Найдено материалов: <span className="font-medium text-cream">{materials.length}</span>
+        </p>
+      </div>
+
+      {/* Materials Grid */}
       {materials.length === 0 ? (
-        <div className="p-8 border-2 border-dashed rounded-lg text-center">
-          <p className="text-muted-foreground">Материалы не найдены</p>
+        <div className="flex flex-col items-center justify-center py-16 px-4 border-2 border-dashed border-cream/20 rounded-xl bg-white/5">
+          <div className="h-16 w-16 rounded-full bg-white/10 flex items-center justify-center mb-4">
+            <FileText className="h-8 w-8 text-cream/40" />
+          </div>
+          <h3 className="text-lg font-medium text-cream mb-2">
+            Материалы не найдены
+          </h3>
+          <p className="text-sm text-cream/60 text-center max-w-md">
+            {city || propertyType
+              ? 'Попробуйте изменить фильтры или сбросить их, чтобы увидеть больше результатов'
+              : 'Новые материалы появятся здесь в ближайшее время'}
+          </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {materials.map(material => (
-            <div
-              key={material.id}
-              className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
-            >
-              {material.thumbnailUrl && (
-                <div className="aspect-video bg-muted">
-                  <img
-                    src={material.thumbnailUrl}
-                    alt={material.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              )}
-              <div className="p-4">
-                <h3 className="font-semibold mb-1">{material.title}</h3>
-                {material.description && (
-                  <p className="text-sm text-muted-foreground mb-3">{material.description}</p>
-                )}
-                <div className="flex gap-2 text-xs text-muted-foreground mb-3">
-                  <span className="bg-muted px-2 py-1 rounded">{material.city}</span>
-                  <span className="bg-muted px-2 py-1 rounded">{material.propertyType}</span>
-                </div>
-                <a
-                  href={material.fileUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline text-sm"
-                >
-                  Скачать презентацию →
-                </a>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {materials.map((material) => (
+            <MaterialCard key={material.id} material={material} />
           ))}
         </div>
       )}

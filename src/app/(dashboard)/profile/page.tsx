@@ -1,117 +1,145 @@
-'use client';
-
-import { useState } from 'react';
+import { auth } from '@/lib/auth';
+import { redirect } from 'next/navigation';
+import { ProfileInfo } from '@/components/profile/ProfileInfo';
+import { TransferClientForm } from '@/components/profile/TransferClientForm';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { User, Send, FileText, Settings } from 'lucide-react';
+import Link from 'next/link';
+import { AbstractSkyline, GeometricCity } from '@/components/illustrations/BuildingIllustrations';
 
-export default function ProfilePage() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState('');
-  const [formData, setFormData] = useState({
-    fullName: '',
-    phone: '',
-    city: '',
-    comment: '',
-  });
+export default async function ProfilePage() {
+  const session = await auth();
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setMessage('');
-
-    try {
-      const response = await fetch('/api/client-leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setMessage('Клиент успешно передан в CRM');
-        setFormData({ fullName: '', phone: '', city: '', comment: '' });
-      } else {
-        setMessage('Произошла ошибка. Попробуйте позже.');
-      }
-    } catch {
-      setMessage('Произошла ошибка. Попробуйте позже.');
-    } finally {
-      setIsSubmitting(false);
-    }
+  if (!session) {
+    redirect('/login');
   }
 
+  const isAdmin = session.user?.role === 'ADMIN' || session.user?.role === 'MANAGER';
+
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Личный кабинет</h1>
+    <div className="space-y-8 relative">
+      {/* Decorative skyline */}
+      <div className="absolute bottom-0 right-0 opacity-5 pointer-events-none w-96">
+        <GeometricCity className="w-full h-48 text-cream" />
+      </div>
+      {/* Header */}
+      <div>
+        <h1 className="text-2xl lg:text-3xl font-bold text-cream">Личный кабинет</h1>
+        <p className="text-sm text-cream/60 mt-2">
+          Управление профилем и передача клиентов в CRM
+        </p>
+      </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Передать клиента</CardTitle>
-          <CardDescription>
-            Заполните форму ниже, чтобы передать клиента в CRM систему
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {message && (
-            <div
-              className={`mb-4 p-3 rounded-md text-sm ${
-                message.includes('успешно')
-                  ? 'bg-green-50 text-green-600'
-                  : 'bg-red-50 text-red-500'
-              }`}
-            >
-              {message}
+      {/* Quick Actions */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Transfer Client Card */}
+        <Card className="bg-white/5 backdrop-blur-sm border-white/10 relative overflow-hidden">
+          <div className="absolute top-2 right-2 w-16 h-20 opacity-10">
+            <AbstractSkyline className="w-full h-full text-cream" />
+          </div>
+          <CardHeader className="pb-3">
+            <div className="h-10 w-10 rounded-lg bg-burgundy-light/50 flex items-center justify-center mb-2">
+              <Send className="h-5 w-5 text-white" />
             </div>
-          )}
+            <CardTitle className="text-cream text-lg">Передать клиента</CardTitle>
+            <CardDescription className="text-cream/60">
+              Быстрая передача лида в CRM систему
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button 
+                  type="button"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-cream text-burgundy-dark hover:bg-cream/90 rounded-md font-medium transition-colors cursor-pointer"
+                >
+                  <Send className="h-4 w-4" />
+                  Открыть форму
+                </button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[500px] bg-white">
+                <DialogHeader>
+                  <DialogTitle className="text-burgundy-dark text-xl">Передать клиента</DialogTitle>
+                  <DialogDescription className="text-muted-foreground">
+                    Заполните форму ниже, чтобы передать клиента в CRM систему
+                  </DialogDescription>
+                </DialogHeader>
+                <TransferClientForm />
+              </DialogContent>
+            </Dialog>
+          </CardContent>
+        </Card>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="text-sm font-medium mb-1 block">ФИО клиента *</label>
-              <Input
-                value={formData.fullName}
-                onChange={e => setFormData({ ...formData, fullName: e.target.value })}
-                required
-                placeholder="Иванов Иван Иванович"
-              />
+        {/* Materials Card */}
+        <Card className="bg-white/5 backdrop-blur-sm border-white/10 relative overflow-hidden">
+          <div className="absolute top-2 right-2 w-16 h-20 opacity-10">
+            <GeometricCity className="w-full h-full text-cream" />
+          </div>
+          <CardHeader className="pb-3">
+            <div className="h-10 w-10 rounded-lg bg-burgundy-light/50 flex items-center justify-center mb-2">
+              <FileText className="h-5 w-5 text-white" />
             </div>
+            <CardTitle className="text-cream text-lg">Материалы</CardTitle>
+            <CardDescription className="text-cream/60">
+              Доступ к презентациям и документам
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link href="/materials">
+              <Button variant="outline" className="w-full border-cream/30 text-cream hover:bg-white/10 hover:text-cream">
+                <FileText className="mr-2 h-4 w-4" />
+                Перейти к материалам
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
 
-            <div>
-              <label className="text-sm font-medium mb-1 block">Телефон *</label>
-              <Input
-                type="tel"
-                value={formData.phone}
-                onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                required
-                placeholder="+7 (999) 123-45-67"
-              />
-            </div>
+        {/* Admin Card (only for admins) */}
+        {isAdmin && (
+          <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+            <CardHeader className="pb-3">
+              <div className="h-10 w-10 rounded-lg bg-burgundy-light/50 flex items-center justify-center mb-2">
+                <Settings className="h-5 w-5 text-white" />
+              </div>
+              <CardTitle className="text-cream text-lg">Администрирование</CardTitle>
+              <CardDescription className="text-cream/60">
+                Управление контентом и загрузка файлов
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Link href="/admin">
+                <Button variant="outline" className="w-full border-cream/30 text-cream hover:bg-white/10 hover:text-cream">
+                  <Settings className="mr-2 h-4 w-4" />
+                  Открыть админку
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        )}
+      </div>
 
-            <div>
-              <label className="text-sm font-medium mb-1 block">Город *</label>
-              <Input
-                value={formData.city}
-                onChange={e => setFormData({ ...formData, city: e.target.value })}
-                required
-                placeholder="Москва"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm font-medium mb-1 block">Комментарий</label>
-              <textarea
-                value={formData.comment}
-                onChange={e => setFormData({ ...formData, comment: e.target.value })}
-                placeholder="Дополнительная информация о клиенте"
-                className="w-full min-h-[100px] px-3 py-2 rounded-md border border-input bg-background text-sm"
-              />
-            </div>
-
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? 'Отправка...' : 'Передать клиента'}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+      {/* Profile Info */}
+      <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-12 w-12 rounded-full bg-cream flex items-center justify-center">
+            <User className="h-6 w-6 text-burgundy-dark" />
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold text-cream">Информация о профиле</h2>
+            <p className="text-sm text-cream/60">Ваши персональные данные</p>
+          </div>
+        </div>
+        <ProfileInfo />
+      </div>
     </div>
   );
 }

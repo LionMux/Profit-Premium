@@ -1,0 +1,77 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - main [ref=e4]:
+      - generic [ref=e6]:
+        - heading "Новости, старты продаж в формате сторис" [level=2] [ref=e8]
+        - link "Новое предложение! Новое предложение!" [ref=e11] [cursor=pointer]:
+          - /url: /materials
+          - generic [ref=e12]:
+            - img "Новое предложение!" [ref=e13]
+            - heading "Новое предложение!" [level=3] [ref=e16]
+    - contentinfo [ref=e18]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - heading "Контакты" [level=3] [ref=e22]
+          - generic [ref=e23]:
+            - link "+7 (999) 123-45-67" [ref=e24] [cursor=pointer]:
+              - /url: tel:+79991234567
+              - img [ref=e25]
+              - generic [ref=e27]: +7 (999) 123-45-67
+            - link "info@profit-premium.ru" [ref=e28] [cursor=pointer]:
+              - /url: mailto:info@profit-premium.ru
+              - img [ref=e29]
+              - generic [ref=e32]: info@profit-premium.ru
+            - generic [ref=e33]:
+              - img [ref=e34]
+              - generic [ref=e37]: г. Москва, ул. Примерная, д. 123
+        - generic [ref=e38]:
+          - generic [ref=e39]:
+            - link "Telegram" [ref=e40] [cursor=pointer]:
+              - /url: https://t.me/profitpremium
+              - img [ref=e41]
+            - link "WhatsApp" [ref=e43] [cursor=pointer]:
+              - /url: https://wa.me/79991234567
+              - img [ref=e44]
+            - link "VKontakte" [ref=e46] [cursor=pointer]:
+              - /url: https://vk.com/profitpremium
+              - img [ref=e47]
+          - paragraph [ref=e49]: © 2026 ООО "Профит Премиум"
+  - complementary [ref=e50]:
+    - link "PROFIT PREMIUM" [ref=e52] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=e53]:
+        - generic [ref=e54]: PROFIT
+        - generic [ref=e55]: PREMIUM
+    - navigation [ref=e56]:
+      - link "ГЛАВНАЯ" [ref=e57] [cursor=pointer]:
+        - /url: /dashboard
+        - img [ref=e58]
+        - generic [ref=e61]: ГЛАВНАЯ
+      - link "МАТЕРИАЛЫ" [ref=e62] [cursor=pointer]:
+        - /url: /materials
+        - img [ref=e63]
+        - generic [ref=e66]: МАТЕРИАЛЫ
+      - link "ЛИЧНЫЙ КАБИНЕТ" [ref=e67] [cursor=pointer]:
+        - /url: /profile
+        - img [ref=e68]
+        - generic [ref=e71]: ЛИЧНЫЙ КАБИНЕТ
+      - link "КОНТАКТЫ" [ref=e72] [cursor=pointer]:
+        - /url: /contacts
+        - img [ref=e73]
+        - generic [ref=e75]: КОНТАКТЫ
+      - button "ПЕРЕДАТЬ КЛИЕНТА" [ref=e77] [cursor=pointer]:
+        - img [ref=e78]
+        - generic [ref=e81]: ПЕРЕДАТЬ КЛИЕНТА
+      - link "АДМИНКА" [ref=e83] [cursor=pointer]:
+        - /url: /admin
+        - img [ref=e84]
+        - generic [ref=e89]: АДМИНКА
+      - link "НА САЙТ" [ref=e91] [cursor=pointer]:
+        - /url: /
+        - img [ref=e92]
+        - generic [ref=e96]: НА САЙТ
+    - generic [ref=e98]:
+      - generic [ref=e99]: А
+      - generic [ref=e100]:
+        - paragraph [ref=e101]: Администратор
+        - paragraph [ref=e102]: admin@profit-premium.ru
