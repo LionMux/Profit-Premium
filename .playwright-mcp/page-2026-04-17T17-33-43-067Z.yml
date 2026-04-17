@@ -1,0 +1,122 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - main [ref=e4]:
+      - generic [ref=e5]:
+        - generic:
+          - img
+        - generic [ref=e6]:
+          - paragraph [ref=e7]: Добрый вечер
+          - heading "Администратор" [level=1] [ref=e8]
+          - paragraph [ref=e9]: Добро пожаловать в личный кабинет партнёра PROFIT PREMIUM. Здесь вы найдёте все материалы и инструменты для работы.
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - paragraph [ref=e12]: Новости и акции
+            - heading "Актуальные предложения" [level=2] [ref=e13]
+          - link "Новое предложение! Новое предложение!" [ref=e16] [cursor=pointer]:
+            - /url: /materials
+            - generic [ref=e17]:
+              - img "Новое предложение!" [ref=e18]
+              - heading "Новое предложение!" [level=3] [ref=e21]
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - paragraph [ref=e26]: Быстрый доступ
+            - heading "Разделы кабинета" [level=2] [ref=e27]
+          - generic [ref=e28]:
+            - link "МАТЕРИАЛЫ Презентации и документы по объектам недвижимости" [ref=e29] [cursor=pointer]:
+              - /url: /materials
+              - img [ref=e31]
+              - heading "МАТЕРИАЛЫ" [level=3] [ref=e34]
+              - paragraph [ref=e35]: Презентации и документы по объектам недвижимости
+              - img [ref=e37]
+            - link "ЛИЧНЫЙ КАБИНЕТ Управление профилем и передача клиентов" [ref=e40] [cursor=pointer]:
+              - /url: /profile
+              - img [ref=e42]
+              - heading "ЛИЧНЫЙ КАБИНЕТ" [level=3] [ref=e45]
+              - paragraph [ref=e46]: Управление профилем и передача клиентов
+              - img [ref=e48]
+            - link "КОНТАКТЫ Юридическая информация и реквизиты компании" [ref=e51] [cursor=pointer]:
+              - /url: /contacts
+              - img [ref=e53]
+              - heading "КОНТАКТЫ" [level=3] [ref=e55]
+              - paragraph [ref=e56]: Юридическая информация и реквизиты компании
+              - img [ref=e58]
+        - generic [ref=e62]:
+          - generic:
+            - img
+          - generic [ref=e63]:
+            - generic [ref=e64]:
+              - heading "Передать клиента" [level=3] [ref=e65]
+              - paragraph [ref=e66]: Заполните форму, чтобы передать клиента в CRM систему. Мы свяжемся с ним в течение 24 часов.
+            - link "ПЕРЕДАТЬ КЛИЕНТА" [ref=e67] [cursor=pointer]:
+              - /url: /profile
+              - img [ref=e68]
+              - text: ПЕРЕДАТЬ КЛИЕНТА
+              - img [ref=e71]
+    - contentinfo [ref=e75]:
+      - generic [ref=e76]:
+        - generic [ref=e77]:
+          - generic [ref=e78]:
+            - generic [ref=e79]: PROFIT PREMIUM
+            - paragraph [ref=e80]: Закрытый клуб для партнеров по недвижимости. Эксклюзивные объекты, персональный менеджер, быстрое оформление сделок.
+          - generic [ref=e81]:
+            - heading "РАЗДЕЛЫ" [level=4] [ref=e82]
+            - list [ref=e83]:
+              - listitem [ref=e84]:
+                - link "ГЛАВНАЯ" [ref=e85] [cursor=pointer]:
+                  - /url: /dashboard
+              - listitem [ref=e86]:
+                - link "МАТЕРИАЛЫ" [ref=e87] [cursor=pointer]:
+                  - /url: /materials
+              - listitem [ref=e88]:
+                - link "ПРОФИЛЬ" [ref=e89] [cursor=pointer]:
+                  - /url: /profile
+              - listitem [ref=e90]:
+                - link "КОНТАКТЫ" [ref=e91] [cursor=pointer]:
+                  - /url: /contacts
+          - generic [ref=e92]:
+            - heading "СОЦСЕТИ" [level=4] [ref=e93]
+            - generic [ref=e94]:
+              - link "TG" [ref=e95] [cursor=pointer]:
+                - /url: https://t.me/profitpremium
+              - link "WA" [ref=e96] [cursor=pointer]:
+                - /url: https://wa.me/79991234567
+              - link "ВК" [ref=e97] [cursor=pointer]:
+                - /url: https://vk.com/profitpremium
+        - generic [ref=e98]:
+          - paragraph [ref=e99]: © 2026 ООО "ПРОФИТ ПРЕМИУМ". ВСЕ ПРАВА ЗАЩИЩЕНЫ.
+          - generic [ref=e100]:
+            - link "КОНФИДЕНЦИАЛЬНОСТЬ" [ref=e101] [cursor=pointer]:
+              - /url: "#"
+            - link "СОГЛАШЕНИЕ" [ref=e102] [cursor=pointer]:
+              - /url: "#"
+  - banner [ref=e103]:
+    - link "PROFIT PREMIUM" [ref=e104] [cursor=pointer]:
+      - /url: /dashboard
+    - button "Меню" [ref=e105] [cursor=pointer]:
+      - img [ref=e106]
+  - generic:
+    - navigation:
+      - link "ГЛАВНАЯ":
+        - /url: /dashboard
+        - img
+        - generic: ГЛАВНАЯ
+      - link "МАТЕРИАЛЫ":
+        - /url: /materials
+        - img
+        - generic: МАТЕРИАЛЫ
+      - link "ЛИЧНЫЙ КАБИНЕТ":
+        - /url: /profile
+        - img
+        - generic: ЛИЧНЫЙ КАБИНЕТ
+      - link "КОНТАКТЫ":
+        - /url: /contacts
+        - img
+        - generic: КОНТАКТЫ
+      - link "АДМИНКА":
+        - /url: /admin
+        - img
+        - generic: АДМИНКА
+      - generic:
+        - button "Выйти":
+          - img
+          - text: Выйти

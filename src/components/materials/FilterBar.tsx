@@ -21,19 +21,19 @@ export function FilterBar({ cities, propertyTypes, activeCity, activeType }: Fil
 
   function updateFilter(city?: string, type?: string) {
     const params = new URLSearchParams(searchParams.toString());
-    
+
     if (city) {
       params.set('city', city);
     } else {
       params.delete('city');
     }
-    
+
     if (type) {
       params.set('propertyType', type);
     } else {
       params.delete('propertyType');
     }
-    
+
     router.push(`/materials?${params.toString()}`);
   }
 
@@ -42,87 +42,82 @@ export function FilterBar({ cities, propertyTypes, activeCity, activeType }: Fil
   }
 
   return (
-    <div className="space-y-6">
-      {/* Города */}
-      <div className="space-y-3">
-        <span className="text-sm font-medium text-cream/70">Город:</span>
-        <div className="flex flex-wrap gap-2">
+    <div className="space-y-4">
+      {/* Filter Pills */}
+      <div className="flex flex-wrap gap-2">
+        {/* Cities */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => updateFilter(undefined, activeType)}
+          className={cn(
+            ' px-4 py-1.5 h-auto text-sm font-medium transition-colors border',
+            !activeCity
+              ? 'bg-cream text-burgundy-dark border-cream hover:bg-cream/90'
+              : 'bg-transparent text-cream/80 border-cream/50 hover:bg-white/10 hover:text-cream'
+          )}
+        >
+          Все города
+        </Button>
+        {cities.map(city => (
           <Button
+            key={city}
             variant="ghost"
             size="sm"
-            onClick={() => updateFilter(undefined, activeType)}
+            onClick={() => updateFilter(city, activeType)}
             className={cn(
-              'rounded-full px-4 py-1.5 h-auto text-sm font-medium transition-colors border',
-              !activeCity
+              ' px-4 py-1.5 h-auto text-sm font-medium transition-colors border',
+              activeCity === city
                 ? 'bg-cream text-burgundy-dark border-cream hover:bg-cream/90'
-                : 'bg-transparent text-cream/80 border-cream/30 hover:bg-white/10 hover:text-cream'
+                : 'bg-transparent text-cream/80 border-cream/50 hover:bg-white/10 hover:text-cream'
             )}
           >
-            Все
+            {city}
           </Button>
-          {cities.map((city) => (
-            <Button
-              key={city}
-              variant="ghost"
-              size="sm"
-              onClick={() => updateFilter(city, activeType)}
-              className={cn(
-                'rounded-full px-4 py-1.5 h-auto text-sm font-medium transition-colors border',
-                activeCity === city
-                  ? 'bg-cream text-burgundy-dark border-cream hover:bg-cream/90'
-                  : 'bg-transparent text-cream/80 border-cream/30 hover:bg-white/10 hover:text-cream'
-              )}
-            >
-              {city}
-            </Button>
-          ))}
-        </div>
+        ))}
       </div>
 
-      {/* Типы недвижимости */}
-      <div className="space-y-3">
-        <span className="text-sm font-medium text-cream/70">Тип недвижимости:</span>
-        <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2">
+        {/* Property Types */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => updateFilter(activeCity, undefined)}
+          className={cn(
+            ' px-4 py-1.5 h-auto text-sm font-medium transition-colors border',
+            !activeType
+              ? 'bg-cream text-burgundy-dark border-cream hover:bg-cream/90'
+              : 'bg-transparent text-cream/80 border-cream/50 hover:bg-white/10 hover:text-cream'
+          )}
+        >
+          Все типы
+        </Button>
+        {propertyTypes.map(type => (
           <Button
+            key={type}
             variant="ghost"
             size="sm"
-            onClick={() => updateFilter(activeCity, undefined)}
+            onClick={() => updateFilter(activeCity, type)}
             className={cn(
-              'rounded-full px-4 py-1.5 h-auto text-sm font-medium transition-colors border',
-              !activeType
-                ? 'bg-burgundy-light text-white border-burgundy-light hover:bg-burgundy-light/90'
-                : 'bg-transparent text-cream/80 border-cream/30 hover:bg-white/10 hover:text-cream'
+              ' px-4 py-1.5 h-auto text-sm font-medium transition-colors border',
+              activeType === type
+                ? 'bg-cream text-burgundy-dark border-cream hover:bg-cream/90'
+                : 'bg-transparent text-cream/80 border-cream/50 hover:bg-white/10 hover:text-cream'
             )}
           >
-            Все
+            {type}
           </Button>
-          {propertyTypes.map((type) => (
-            <Button
-              key={type}
-              variant="ghost"
-              size="sm"
-              onClick={() => updateFilter(activeCity, type)}
-              className={cn(
-                'rounded-full px-4 py-1.5 h-auto text-sm font-medium transition-colors border',
-                activeType === type
-                  ? 'bg-burgundy-light text-white border-burgundy-light hover:bg-burgundy-light/90'
-                  : 'bg-transparent text-cream/80 border-cream/30 hover:bg-white/10 hover:text-cream'
-              )}
-            >
-              {type}
-            </Button>
-          ))}
-        </div>
+        ))}
       </div>
 
       {/* Активные фильтры */}
       {hasActiveFilters && (
-        <div className="flex items-center gap-3 pt-4 border-t border-white/10">
+        <div className="flex items-center gap-3 pt-2">
           <span className="text-sm text-cream/60">Активные:</span>
           <div className="flex flex-wrap gap-2">
             {activeCity && (
-              <Badge 
-                variant="secondary" 
+              <Badge
+                variant="secondary"
                 className="cursor-pointer bg-cream/20 text-cream hover:bg-cream/30 border-0"
                 onClick={() => updateFilter(undefined, activeType)}
               >
@@ -131,7 +126,7 @@ export function FilterBar({ cities, propertyTypes, activeCity, activeType }: Fil
               </Badge>
             )}
             {activeType && (
-              <Badge 
+              <Badge
                 variant="secondary"
                 className="cursor-pointer bg-cream/20 text-cream hover:bg-cream/30 border-0"
                 onClick={() => updateFilter(activeCity, undefined)}

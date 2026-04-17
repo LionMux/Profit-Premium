@@ -1,0 +1,201 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - main [ref=e4]:
+      - generic [ref=e5]:
+        - img [ref=e7]
+        - generic [ref=e27]:
+          - paragraph [ref=e28]: Презентации и документы
+          - generic [ref=e29]:
+            - generic [ref=e30]:
+              - heading "Материалы" [level=1] [ref=e31]
+              - paragraph [ref=e32]: Все презентации и документы по объектам недвижимости. Используйте фильтры для быстрого поиска.
+            - generic [ref=e33]:
+              - generic [ref=e34]:
+                - img [ref=e36]
+                - generic [ref=e39]:
+                  - paragraph [ref=e40]: "2"
+                  - paragraph [ref=e41]: материалов
+              - generic [ref=e42]:
+                - img [ref=e44]
+                - generic [ref=e48]:
+                  - paragraph [ref=e49]: "2"
+                  - paragraph [ref=e50]: городов
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - generic [ref=e53]:
+              - img [ref=e54]
+              - text: Фильтры
+            - generic [ref=e56]:
+              - generic [ref=e57]:
+                - button "Все города" [ref=e58]
+                - button "Москва" [ref=e59]
+                - button "Санкт-Петербург" [ref=e60]
+              - generic [ref=e61]:
+                - button "Все типы" [ref=e62]
+                - button "Квартира" [ref=e63]
+                - button "Дом" [ref=e64]
+          - button "Фильтры" [ref=e66]:
+            - img [ref=e67]
+            - text: Фильтры
+        - generic [ref=e69]:
+          - paragraph [ref=e71]: "Найдено: 2"
+          - generic [ref=e72]:
+            - generic [ref=e73]:
+              - generic [ref=e74]:
+                - img "ЖК Солнечный - Презентация" [ref=e75]
+                - generic [ref=e76]: PDF
+                - link [ref=e77] [cursor=pointer]:
+                  - /url: /uploads/sample1.pdf
+                  - img [ref=e78]
+              - generic [ref=e81]:
+                - heading "ЖК Солнечный - Презентация" [level=3] [ref=e82]
+                - paragraph [ref=e83]: Полная презентация жилого комплекса
+                - generic [ref=e84]:
+                  - generic [ref=e85]:
+                    - img [ref=e86]
+                    - text: Москва
+                  - generic [ref=e89]:
+                    - img [ref=e90]
+                    - text: Квартира
+                - generic [ref=e93]:
+                  - generic [ref=e94]:
+                    - img [ref=e95]
+                    - text: 8 апреля 2026 г.
+                  - link "Открыть" [ref=e97] [cursor=pointer]:
+                    - /url: /uploads/sample1.pdf
+                    - text: Открыть
+                    - img [ref=e98]
+            - generic [ref=e101]:
+              - generic [ref=e102]:
+                - img "Коттеджный поселок Ромашки" [ref=e103]
+                - generic [ref=e104]: PDF
+                - link [ref=e105] [cursor=pointer]:
+                  - /url: /uploads/sample2.pdf
+                  - img [ref=e106]
+              - generic [ref=e109]:
+                - heading "Коттеджный поселок Ромашки" [level=3] [ref=e110]
+                - paragraph [ref=e111]: Презентация коттеджного поселка
+                - generic [ref=e112]:
+                  - generic [ref=e113]:
+                    - img [ref=e114]
+                    - text: Санкт-Петербург
+                  - generic [ref=e117]:
+                    - img [ref=e118]
+                    - text: Дом
+                - generic [ref=e121]:
+                  - generic [ref=e122]:
+                    - img [ref=e123]
+                    - text: 8 апреля 2026 г.
+                  - link "Открыть" [ref=e125] [cursor=pointer]:
+                    - /url: /uploads/sample2.pdf
+                    - text: Открыть
+                    - img [ref=e126]
+    - contentinfo [ref=e129]:
+      - generic [ref=e130]:
+        - generic [ref=e131]:
+          - generic [ref=e132]:
+            - generic [ref=e133]: PROFIT PREMIUM
+            - paragraph [ref=e134]: Закрытый клуб для партнеров по недвижимости. Эксклюзивные объекты, персональный менеджер, быстрое оформление сделок.
+          - generic [ref=e135]:
+            - heading "РАЗДЕЛЫ" [level=4] [ref=e136]
+            - list [ref=e137]:
+              - listitem [ref=e138]:
+                - link "ГЛАВНАЯ" [ref=e139] [cursor=pointer]:
+                  - /url: /dashboard
+              - listitem [ref=e140]:
+                - link "МАТЕРИАЛЫ" [ref=e141] [cursor=pointer]:
+                  - /url: /materials
+              - listitem [ref=e142]:
+                - link "ПРОФИЛЬ" [ref=e143] [cursor=pointer]:
+                  - /url: /profile
+              - listitem [ref=e144]:
+                - link "КОНТАКТЫ" [ref=e145] [cursor=pointer]:
+                  - /url: /contacts
+          - generic [ref=e146]:
+            - heading "СОЦСЕТИ" [level=4] [ref=e147]
+            - generic [ref=e148]:
+              - link "TG" [ref=e149] [cursor=pointer]:
+                - /url: https://t.me/profitpremium
+              - link "WA" [ref=e150] [cursor=pointer]:
+                - /url: https://wa.me/79991234567
+              - link "ВК" [ref=e151] [cursor=pointer]:
+                - /url: https://vk.com/profitpremium
+        - generic [ref=e152]:
+          - paragraph [ref=e153]: © 2026 ООО "ПРОФИТ ПРЕМИУМ". ВСЕ ПРАВА ЗАЩИЩЕНЫ.
+          - generic [ref=e154]:
+            - link "КОНФИДЕНЦИАЛЬНОСТЬ" [ref=e155] [cursor=pointer]:
+              - /url: "#"
+            - link "СОГЛАШЕНИЕ" [ref=e156] [cursor=pointer]:
+              - /url: "#"
+  - banner [ref=e157]:
+    - link "PROFIT PREMIUM" [ref=e158] [cursor=pointer]:
+      - /url: /dashboard
+    - button "Меню" [ref=e159]:
+      - img
+  - navigation [ref=e162]:
+    - link "ГЛАВНАЯ" [ref=e163] [cursor=pointer]:
+      - /url: /dashboard
+      - img [ref=e164]
+      - text: ГЛАВНАЯ
+    - link "МАТЕРИАЛЫ" [ref=e167] [cursor=pointer]:
+      - /url: /materials
+      - img [ref=e168]
+      - text: МАТЕРИАЛЫ
+    - link "ЛИЧНЫЙ КАБИНЕТ" [ref=e171] [cursor=pointer]:
+      - /url: /profile
+      - img [ref=e172]
+      - text: ЛИЧНЫЙ КАБИНЕТ
+    - link "КОНТАКТЫ" [ref=e175] [cursor=pointer]:
+      - /url: /contacts
+      - img [ref=e176]
+      - text: КОНТАКТЫ
+    - link "АДМИНКА" [ref=e178] [cursor=pointer]:
+      - /url: /admin
+      - img [ref=e179]
+      - text: АДМИНКА
+    - button "Выйти" [ref=e185]:
+      - img [ref=e186]
+      - text: Выйти
+  - complementary [ref=e189]:
+    - link "PROFIT PREMIUM" [ref=e191] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=e192]:
+        - generic [ref=e193]: PROFIT
+        - generic [ref=e194]: PREMIUM
+    - navigation [ref=e195]:
+      - link "ГЛАВНАЯ" [ref=e196] [cursor=pointer]:
+        - /url: /dashboard
+        - img [ref=e197]
+        - text: ГЛАВНАЯ
+      - link "МАТЕРИАЛЫ" [ref=e200] [cursor=pointer]:
+        - /url: /materials
+        - img [ref=e201]
+        - text: МАТЕРИАЛЫ
+      - link "ЛИЧНЫЙ КАБИНЕТ" [ref=e204] [cursor=pointer]:
+        - /url: /profile
+        - img [ref=e205]
+        - text: ЛИЧНЫЙ КАБИНЕТ
+      - link "КОНТАКТЫ" [ref=e208] [cursor=pointer]:
+        - /url: /contacts
+        - img [ref=e209]
+        - text: КОНТАКТЫ
+      - button "ПЕРЕДАТЬ КЛИЕНТА" [ref=e212]:
+        - img [ref=e213]
+        - text: ПЕРЕДАТЬ КЛИЕНТА
+      - link "АДМИНКА" [ref=e217] [cursor=pointer]:
+        - /url: /admin
+        - img [ref=e218]
+        - text: АДМИНКА
+      - link "НА САЙТ" [ref=e224] [cursor=pointer]:
+        - /url: /
+        - img [ref=e225]
+        - text: НА САЙТ
+    - generic [ref=e229]:
+      - generic [ref=e230]:
+        - generic [ref=e231]: А
+        - generic [ref=e232]:
+          - paragraph [ref=e233]: Администратор
+          - paragraph [ref=e234]: admin@profit-premium.ru
+      - button "Выйти" [ref=e235]:
+        - img [ref=e236]
+        - text: Выйти

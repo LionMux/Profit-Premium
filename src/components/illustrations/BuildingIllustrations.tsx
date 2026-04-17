@@ -1,11 +1,6 @@
 export function SkyscraperIllustration({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 200 250"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
+    <svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       {/* Main building */}
       <rect x="80" y="80" width="40" height="170" fill="currentColor" fillOpacity="0.3" />
       {/* Top spire */}
@@ -28,12 +23,7 @@ export function SkyscraperIllustration({ className }: { className?: string }) {
 
 export function BuildingComplexIllustration({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 200 250"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
+    <svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       {/* Left tower */}
       <rect x="30" y="120" width="35" height="130" fill="currentColor" fillOpacity="0.25" />
       {/* Center tower - tallest */}
@@ -53,18 +43,33 @@ export function BuildingComplexIllustration({ className }: { className?: string 
 
 export function ModernBuildingIllustration({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 200 250"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
+    <svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       {/* Main building body */}
-      <rect x="75" y="100" width="50" height="150" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeOpacity="0.3" strokeWidth="1" />
+      <rect
+        x="75"
+        y="100"
+        width="50"
+        height="150"
+        fill="currentColor"
+        fillOpacity="0.15"
+        stroke="currentColor"
+        strokeOpacity="0.3"
+        strokeWidth="1"
+      />
       {/* Top extension */}
       <rect x="87" y="70" width="26" height="30" fill="currentColor" fillOpacity="0.25" />
       {/* Side wing */}
-      <rect x="130" y="150" width="30" height="100" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeOpacity="0.2" strokeWidth="1" />
+      <rect
+        x="130"
+        y="150"
+        width="30"
+        height="100"
+        fill="currentColor"
+        fillOpacity="0.1"
+        stroke="currentColor"
+        strokeOpacity="0.2"
+        strokeWidth="1"
+      />
       {/* Glass horizontal lines */}
       <rect x="80" y="120" width="40" height="3" fill="currentColor" fillOpacity="0.4" />
       <rect x="80" y="145" width="40" height="3" fill="currentColor" fillOpacity="0.4" />
@@ -77,12 +82,7 @@ export function ModernBuildingIllustration({ className }: { className?: string }
 
 export function AbstractSkyline({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 400 200"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
+    <svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       {/* Vertical lines of varying heights */}
       <rect x="20" y="40" width="2" height="120" fill="currentColor" fillOpacity="0.2" />
       <rect x="40" y="70" width="2" height="90" fill="currentColor" fillOpacity="0.3" />
@@ -109,12 +109,7 @@ export function AbstractSkyline({ className }: { className?: string }) {
 
 export function GeometricCity({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 200 160"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
+    <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       {/* Geometric shapes */}
       <rect x="20" y="60" width="30" height="30" fill="currentColor" fillOpacity="0.2" />
       <rect x="60" y="40" width="25" height="50" fill="currentColor" fillOpacity="0.25" />
@@ -130,12 +125,7 @@ export function GeometricCity({ className }: { className?: string }) {
 
 export function ArchPattern({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 200 160"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
+    <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       {/* Pillars of varying heights */}
       <rect x="25" y="80" width="25" height="80" fill="currentColor" fillOpacity="0.2" />
       <rect x="60" y="60" width="30" height="100" fill="currentColor" fillOpacity="0.25" />

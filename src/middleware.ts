@@ -8,11 +8,12 @@ export default auth(req => {
   const isApiAuthRoute = nextUrl.pathname.startsWith('/api/auth');
   const isPublicRoute = nextUrl.pathname === '/login' || nextUrl.pathname === '/';
   const isApiRoute = nextUrl.pathname.startsWith('/api');
-  const isDashboardRoute = nextUrl.pathname.startsWith('/dashboard') || 
-                           nextUrl.pathname.startsWith('/materials') || 
-                           nextUrl.pathname.startsWith('/profile') || 
-                           nextUrl.pathname.startsWith('/contacts') || 
-                           nextUrl.pathname.startsWith('/admin');
+  const isDashboardRoute =
+    nextUrl.pathname.startsWith('/dashboard') ||
+    nextUrl.pathname.startsWith('/materials') ||
+    nextUrl.pathname.startsWith('/profile') ||
+    nextUrl.pathname.startsWith('/contacts') ||
+    nextUrl.pathname.startsWith('/admin');
 
   if (isApiAuthRoute) {
     return NextResponse.next();

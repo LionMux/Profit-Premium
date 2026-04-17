@@ -45,12 +45,8 @@ export function StoriesCarousel({ stories }: StoriesCarouselProps) {
         className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        {stories.map((story) => (
-          <a
-            key={story.id}
-            href={story.link || '#'}
-            className="flex-shrink-0 w-64 snap-start"
-          >
+        {stories.map(story => (
+          <a key={story.id} href={story.link || '#'} className="flex-shrink-0 w-64 snap-start">
             <div className="bg-cream rounded-lg overflow-hidden aspect-[4/5] relative group">
               <img
                 src={story.imageUrl}
@@ -59,9 +55,7 @@ export function StoriesCarousel({ stories }: StoriesCarouselProps) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-burgundy-dark/80 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4">
-                <h3 className="font-serif text-lg text-cream font-semibold">
-                  {story.title}
-                </h3>
+                <h3 className="font-serif text-lg text-cream font-semibold">{story.title}</h3>
               </div>
             </div>
           </a>
@@ -143,17 +137,13 @@ export function MaterialCard({ material }: MaterialCardProps) {
           <span className="text-xs text-burgundy bg-burgundy/10 px-2 py-1 rounded">
             {material.city}
           </span>
-          <span className="text-xs text-burgundy/60">
-            {material.propertyType}
-          </span>
+          <span className="text-xs text-burgundy/60">{material.propertyType}</span>
         </div>
         <h3 className="font-serif text-lg text-burgundy-dark font-semibold mb-1">
           {material.title}
         </h3>
         {material.description && (
-          <p className="text-sm text-burgundy-dark/60 line-clamp-2">
-            {material.description}
-          </p>
+          <p className="text-sm text-burgundy-dark/60 line-clamp-2">{material.description}</p>
         )}
       </div>
     </div>
@@ -192,12 +182,8 @@ export function ActionCard({
       <div className="w-12 h-12 bg-burgundy rounded-lg flex items-center justify-center mb-4">
         <Icon className="w-6 h-6 text-cream" />
       </div>
-      <h3 className="font-serif text-xl text-burgundy-dark font-semibold mb-2">
-        {title}
-      </h3>
-      <p className="text-sm text-burgundy-dark/60 mb-4 flex-1">
-        {description}
-      </p>
+      <h3 className="font-serif text-xl text-burgundy-dark font-semibold mb-2">{title}</h3>
+      <p className="text-sm text-burgundy-dark/60 mb-4 flex-1">{description}</p>
       <button
         onClick={onClick}
         className="w-full bg-burgundy text-cream py-3 rounded-lg hover:bg-burgundy-medium transition-colors flex items-center justify-center gap-2"
@@ -238,9 +224,7 @@ interface FilterBarProps {
 export function FilterBar({ options, selected, onSelect, label }: FilterBarProps) {
   return (
     <div className="space-y-3">
-      <span className="text-xs font-medium tracking-[0.2em] uppercase text-cream/60">
-        {label}
-      </span>
+      <span className="text-xs font-medium tracking-[0.2em] uppercase text-cream/60">{label}</span>
       <div className="flex flex-wrap gap-2">
         <button
           onClick={() => onSelect('')}
@@ -253,7 +237,7 @@ export function FilterBar({ options, selected, onSelect, label }: FilterBarProps
         >
           Все
         </button>
-        {options.map((option) => (
+        {options.map(option => (
           <button
             key={option.value}
             onClick={() => onSelect(option.value)}
@@ -288,12 +272,7 @@ interface GlassCardProps {
 
 export function GlassCard({ children, className }: GlassCardProps) {
   return (
-    <div
-      className={cn(
-        'bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg',
-        className
-      )}
-    >
+    <div className={cn('bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg', className)}>
       {children}
     </div>
   );
@@ -376,7 +355,7 @@ export function DarkInput({
       <input
         type={type}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
         className={cn(
           'w-full px-4 py-3 bg-white text-burgundy-dark placeholder:text-gray-400',

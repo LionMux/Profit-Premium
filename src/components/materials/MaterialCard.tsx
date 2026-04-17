@@ -1,17 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { FileText, Download, Calendar } from 'lucide-react';
+import { FileText, Download, Calendar, ArrowUpRight, MapPin, Home } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { useEffect, useState } from 'react';
 
 interface Material {
   id: string;
@@ -26,10 +19,12 @@ interface Material {
 
 interface MaterialCardProps {
   material: Material;
+  delay?: number;
   className?: string;
 }
 
-export function MaterialCard({ material, className }: MaterialCardProps) {
+export function MaterialCard({ material, delay = 0, className }: MaterialCardProps) {
+  const [isVisible, setIsVisible] = useState(false);
   const isPdf = material.fileUrl.toLowerCase().endsWith('.pdf');
   const formattedDate = new Date(material.createdAt).toLocaleDateString('ru-RU', {
     day: 'numeric',
@@ -37,8 +32,20 @@ export function MaterialCard({ material, className }: MaterialCardProps) {
     year: 'numeric',
   });
 
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), delay * 1000 + 100);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
   return (
-    <Card className={cn('overflow-hidden group hover:shadow-xl transition-all duration-300 bg-white/5 backdrop-blur-sm border-white/10', className)}>
+    <div
+      className={cn(
+        'group relative bg-burgundy border border-white/10  overflow-hidden',
+        'transition-all duration-500 ease-out hover:bg-burgundy-medium/30 hover:shadow-xl hover:shadow-black/10',
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
+        className
+      )}
+    >
       {/* Thumbnail */}
       <div className="aspect-video relative bg-burgundy-medium/30 overflow-hidden">
         {material.thumbnailUrl ? (
@@ -46,80 +53,99 @@ export function MaterialCard({ material, className }: MaterialCardProps) {
             src={material.thumbnailUrl}
             alt={material.title}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            {isPdf ? (
-              <FileText className="h-16 w-16 text-cream/30" />
-            ) : (
-              <div className="h-16 w-16 rounded-lg bg-white/10 flex items-center justify-center">
-                <FileText className="h-8 w-8 text-cream/50" />
-              </div>
-            )}
+            <div className="h-20 w-20 bg-cream/10 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+              <FileText className="h-10 w-10 text-cream/40" />
+            </div>
           </div>
         )}
-        
+
         {/* Overlay on hover */}
-        <div className="absolute inset-0 bg-burgundy/0 group-hover:bg-burgundy/20 transition-colors duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-burgundy-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+        {/* PDF Badge */}
+        {isPdf && (
+          <div className="absolute top-3 left-3 px-2 py-1 bg-cream/20 backdrop-blur-sm text-[10px] text-cream uppercase tracking-wider">
+            PDF
+          </div>
+        )}
+
+        {/* Download Button (appears on hover) */}
+        <a
+          href={material.fileUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cn(
+            'absolute bottom-3 right-3 h-10 w-10',
+            'bg-cream text-burgundy-dark flex items-center justify-center',
+            'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0',
+            'transition-all duration-300 hover:bg-cream/90'
+          )}
+        >
+          <Download className="h-5 w-5" />
+        </a>
       </div>
 
-      <CardHeader className="pb-2">
-        <div className="flex items-start justify-between gap-2">
-          <CardTitle className="text-lg font-semibold line-clamp-1 flex-1 text-cream">
-            {material.title}
-          </CardTitle>
-        </div>
-        {material.description && (
-          <CardDescription className="line-clamp-2 text-sm text-cream/60">
-            {material.description}
-          </CardDescription>
-        )}
-      </CardHeader>
+      {/* Content */}
+      <div className="p-5">
+        {/* Title */}
+        <h3 className="font-serif text-lg text-cream font-semibold mb-2 line-clamp-1 group-hover:text-cream transition-colors">
+          {material.title}
+        </h3>
 
-      <CardContent className="space-y-4">
+        {/* Description */}
+        {material.description && (
+          <p className="text-sm text-cream/60 line-clamp-2 mb-4 leading-relaxed">
+            {material.description}
+          </p>
+        )}
+
         {/* Badges */}
-        <div className="flex flex-wrap gap-2">
-          <Badge 
-            variant="outline" 
-            className="bg-cream/10 text-cream border-cream/30"
+        <div className="flex flex-wrap gap-2 mb-4">
+          <Badge
+            variant="outline"
+            className="bg-cream/10 text-cream border-cream/30 text-[10px] tracking-wider uppercase"
           >
+            <MapPin className="h-3 w-3 mr-1" />
             {material.city}
           </Badge>
-          <Badge 
+          <Badge
             variant="outline"
-            className="bg-burgundy-light/30 text-cream border-burgundy-light/50"
+            className="bg-burgundy-light/30 text-cream border-burgundy-light/50 text-[10px] tracking-wider uppercase"
           >
+            <Home className="h-3 w-3 mr-1" />
             {material.propertyType}
           </Badge>
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between pt-2 border-t border-white/10">
-          <div className="flex items-center gap-1 text-xs text-cream/50">
-            <Calendar className="h-3 w-3" />
+        <div className="flex items-center justify-between pt-4 border-t border-white/10">
+          <div className="flex items-center gap-1.5 text-xs text-cream/50">
+            <Calendar className="h-3.5 w-3.5" />
             <span>{formattedDate}</span>
           </div>
-          
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-cream hover:text-cream hover:bg-white/10"
-            asChild
+
+          <a
+            href={material.fileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              'flex items-center gap-1.5 text-xs text-cream/60 hover:text-cream',
+              'transition-colors duration-200'
+            )}
           >
-            <a
-              href={material.fileUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1"
-            >
-              <Download className="h-4 w-4" />
-              <span className="hidden sm:inline">Скачать</span>
-            </a>
-          </Button>
+            <span className="hidden sm:inline">Открыть</span>
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+
+      {/* Bottom Border Animation */}
+      <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-cream/30 transition-all duration-500 group-hover:w-full" />
+    </div>
   );
 }

@@ -82,8 +82,10 @@ export function UploadCard() {
           thumbnail: null,
         });
         // Reset file inputs
-        const fileInputs = document.querySelectorAll('input[type="file"]') as NodeListOf<HTMLInputElement>;
-        fileInputs.forEach((input) => (input.value = ''));
+        const fileInputs = document.querySelectorAll(
+          'input[type="file"]'
+        ) as NodeListOf<HTMLInputElement>;
+        fileInputs.forEach(input => (input.value = ''));
       } else {
         setMessageType('error');
         setMessage('Ошибка при добавлении материала');
@@ -103,7 +105,7 @@ export function UploadCard() {
         <div className="absolute top-4 right-4 w-20 h-24 opacity-20">
           <SkyscraperIllustration className="w-full h-full text-burgundy" />
         </div>
-        
+
         <div className="w-12 h-12 bg-burgundy rounded-lg flex items-center justify-center mb-4">
           <Upload className="w-6 h-6 text-cream" />
         </div>
@@ -145,9 +147,7 @@ export function UploadCard() {
       {message && (
         <div
           className={`mb-4 p-3 rounded-lg flex items-center gap-2 text-sm ${
-            messageType === 'success'
-              ? 'bg-green-100 text-green-800'
-              : 'bg-red-100 text-red-800'
+            messageType === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
           }`}
         >
           {messageType === 'success' ? (
@@ -168,7 +168,7 @@ export function UploadCard() {
           <input
             type="text"
             value={formData.title}
-            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+            onChange={e => setFormData({ ...formData, title: e.target.value })}
             required
             placeholder="Например: ЖК Новый Горизонт"
             className="w-full px-3 py-2 bg-white border border-burgundy/20 text-burgundy-dark placeholder:text-gray-400 focus:outline-none focus:border-burgundy"
@@ -179,7 +179,7 @@ export function UploadCard() {
           <label className="block text-sm text-burgundy-dark/80 mb-1">Описание</label>
           <textarea
             value={formData.description}
-            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+            onChange={e => setFormData({ ...formData, description: e.target.value })}
             placeholder="Краткое описание объекта"
             rows={2}
             className="w-full px-3 py-2 bg-white border border-burgundy/20 text-burgundy-dark placeholder:text-gray-400 focus:outline-none focus:border-burgundy resize-none"
@@ -192,7 +192,7 @@ export function UploadCard() {
             <input
               type="text"
               value={formData.city}
-              onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+              onChange={e => setFormData({ ...formData, city: e.target.value })}
               required
               placeholder="Москва"
               className="w-full px-3 py-2 bg-white border border-burgundy/20 text-burgundy-dark placeholder:text-gray-400 focus:outline-none focus:border-burgundy"
@@ -203,7 +203,7 @@ export function UploadCard() {
             <input
               type="text"
               value={formData.propertyType}
-              onChange={(e) => setFormData({ ...formData, propertyType: e.target.value })}
+              onChange={e => setFormData({ ...formData, propertyType: e.target.value })}
               required
               placeholder="Квартира"
               className="w-full px-3 py-2 bg-white border border-burgundy/20 text-burgundy-dark placeholder:text-gray-400 focus:outline-none focus:border-burgundy"
@@ -219,14 +219,12 @@ export function UploadCard() {
           <input
             type="file"
             accept=".pdf"
-            onChange={(e) => setFormData({ ...formData, file: e.target.files?.[0] || null })}
+            onChange={e => setFormData({ ...formData, file: e.target.files?.[0] || null })}
             required
             className="w-full text-sm text-burgundy-dark/70 file:mr-3 file:py-2 file:px-3 file:border-0 file:text-sm file:bg-burgundy file:text-cream hover:file:bg-burgundy-medium cursor-pointer"
           />
           {formData.file && (
-            <p className="text-xs text-burgundy-dark/50 mt-1">
-              Выбран: {formData.file.name}
-            </p>
+            <p className="text-xs text-burgundy-dark/50 mt-1">Выбран: {formData.file.name}</p>
           )}
         </div>
 
@@ -238,7 +236,7 @@ export function UploadCard() {
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => setFormData({ ...formData, thumbnail: e.target.files?.[0] || null })}
+            onChange={e => setFormData({ ...formData, thumbnail: e.target.files?.[0] || null })}
             className="w-full text-sm text-burgundy-dark/70 file:mr-3 file:py-2 file:px-3 file:border-0 file:text-sm file:bg-burgundy/80 file:text-cream hover:file:bg-burgundy cursor-pointer"
           />
         </div>

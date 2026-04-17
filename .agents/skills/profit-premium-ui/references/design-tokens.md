@@ -6,36 +6,36 @@ Complete design system specifications for Profit-Premium.
 
 ### Primary Colors (Burgundy)
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `burgundy-dark` | `#3D1220` | Main content background |
-| `burgundy` | `#5C1E2D` | Primary brand color, active states |
-| `burgundy-medium` | `#7A2B3E` | Hover states, secondary elements |
-| `burgundy-light` | `#9B4458` | Light accents, icons |
+| Token             | Value     | Usage                              |
+| ----------------- | --------- | ---------------------------------- |
+| `burgundy-dark`   | `#3D1220` | Main content background            |
+| `burgundy`        | `#5C1E2D` | Primary brand color, active states |
+| `burgundy-medium` | `#7A2B3E` | Hover states, secondary elements   |
+| `burgundy-light`  | `#9B4458` | Light accents, icons               |
 
 ### Secondary Colors (Cream)
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `cream` | `#F0EAE0` | Sidebar background, cards |
-| `cream-dark` | `#E0D5C5` | Hover states, borders |
-| `cream-light` | `#F8F4EF` | Light backgrounds |
+| Token         | Value     | Usage                     |
+| ------------- | --------- | ------------------------- |
+| `cream`       | `#F0EAE0` | Sidebar background, cards |
+| `cream-dark`  | `#E0D5C5` | Hover states, borders     |
+| `cream-light` | `#F8F4EF` | Light backgrounds         |
 
 ### Accent Colors (Gold - for Login)
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `gold` | `#C9A86C` | Login buttons, accents |
-| `gold-light` | `#D4BC94` | Hover states |
-| `dark-bg` | `#1a1a1a` | Login page background |
+| Token        | Value     | Usage                  |
+| ------------ | --------- | ---------------------- |
+| `gold`       | `#C9A86C` | Login buttons, accents |
+| `gold-light` | `#D4BC94` | Hover states           |
+| `dark-bg`    | `#1a1a1a` | Login page background  |
 
 ### Utility Colors
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `white/5` | `rgba(255,255,255,0.05)` | Glass card backgrounds |
-| `white/10` | `rgba(255,255,255,0.10)` | Subtle borders |
-| `white/20` | `rgba(255,255,255,0.20)` | Input borders |
+| Token      | Value                    | Usage                  |
+| ---------- | ------------------------ | ---------------------- |
+| `white/5`  | `rgba(255,255,255,0.05)` | Glass card backgrounds |
+| `white/10` | `rgba(255,255,255,0.10)` | Subtle borders         |
+| `white/20` | `rgba(255,255,255,0.20)` | Input borders          |
 | `white/70` | `rgba(255,255,255,0.70)` | Secondary text on dark |
 
 ## Typography
@@ -43,20 +43,20 @@ Complete design system specifications for Profit-Premium.
 ### Font Families
 
 ```css
---font-serif: 'Cormorant', Georgia, serif;    /* Headings */
---font-sans: 'Inter', system-ui, sans-serif;  /* Body text */
+--font-serif: 'Cormorant', Georgia, serif; /* Headings */
+--font-sans: 'Inter', system-ui, sans-serif; /* Body text */
 ```
 
 ### Type Scale
 
-| Level | Size | Weight | Line Height | Usage |
-|-------|------|--------|-------------|-------|
-| H1 | 48-72px | 600 | 1.0 | Page titles |
-| H2 | 32-48px | 600 | 1.1 | Section headings |
-| H3 | 24-32px | 600 | 1.2 | Card titles |
-| Body | 14-16px | 400 | 1.6 | Paragraphs |
-| Small | 12-14px | 400 | 1.5 | Labels, captions |
-| Label | 12px | 500 | 1.0 | Tracking 0.1em uppercase |
+| Level | Size    | Weight | Line Height | Usage                    |
+| ----- | ------- | ------ | ----------- | ------------------------ |
+| H1    | 48-72px | 600    | 1.0         | Page titles              |
+| H2    | 32-48px | 600    | 1.1         | Section headings         |
+| H3    | 24-32px | 600    | 1.2         | Card titles              |
+| Body  | 14-16px | 400    | 1.6         | Paragraphs               |
+| Small | 12-14px | 400    | 1.5         | Labels, captions         |
+| Label | 12px    | 500    | 1.0         | Tracking 0.1em uppercase |
 
 ### Typography Patterns
 
@@ -96,16 +96,16 @@ Complete design system specifications for Profit-Premium.
 
 ### Scale
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `space-1` | 4px | Tight gaps |
-| `space-2` | 8px | Small gaps |
-| `space-3` | 12px | Standard gaps |
-| `space-4` | 16px | Component padding |
-| `space-6` | 24px | Section gaps |
-| `space-8` | 32px | Large sections |
-| `space-10` | 40px | Page padding |
-| `space-16` | 64px | Major sections |
+| Token      | Value | Usage             |
+| ---------- | ----- | ----------------- |
+| `space-1`  | 4px   | Tight gaps        |
+| `space-2`  | 8px   | Small gaps        |
+| `space-3`  | 12px  | Standard gaps     |
+| `space-4`  | 16px  | Component padding |
+| `space-6`  | 24px  | Section gaps      |
+| `space-8`  | 32px  | Large sections    |
+| `space-10` | 40px  | Page padding      |
+| `space-16` | 64px  | Major sections    |
 
 ### Common Patterns
 
@@ -128,13 +128,13 @@ Complete design system specifications for Profit-Premium.
 
 ## Border Radius
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `none` | 0 | Inputs, buttons (minimal style) |
-| `sm` | 4px | Small elements |
-| `DEFAULT` | 8px | Cards, containers |
-| `lg` | 12px | Large cards |
-| `full` | 9999px | Avatars, pills |
+| Token     | Value  | Usage                           |
+| --------- | ------ | ------------------------------- |
+| `none`    | 0      | Inputs, buttons (minimal style) |
+| `sm`      | 4px    | Small elements                  |
+| `DEFAULT` | 8px    | Cards, containers               |
+| `lg`      | 12px   | Large cards                     |
+| `full`    | 9999px | Avatars, pills                  |
 
 **Note**: Prefer minimal or no border radius for premium aesthetic.
 
@@ -150,13 +150,13 @@ backdrop-blur: blur(8px);
 
 ## Z-Index Scale
 
-| Layer | Z-Index | Usage |
-|-------|---------|-------|
-| Base | 0 | Content |
-| Sidebar | 40 | Fixed sidebar |
-| Modal overlay | 50 | Dialog backdrop |
-| Modal content | 60 | Dialog content |
-| Toast | 100 | Notifications |
+| Layer         | Z-Index | Usage           |
+| ------------- | ------- | --------------- |
+| Base          | 0       | Content         |
+| Sidebar       | 40      | Fixed sidebar   |
+| Modal overlay | 50      | Dialog backdrop |
+| Modal content | 60      | Dialog content  |
+| Toast         | 100     | Notifications   |
 
 ## Animation
 
@@ -167,17 +167,19 @@ backdrop-blur: blur(8px);
 transition: all 0.2s ease-out;
 
 /* Button hover */
-transition: colors 0.2s, background-color 0.2s;
+transition:
+  colors 0.2s,
+  background-color 0.2s;
 ```
 
 ### Durations
 
-| Duration | Usage |
-|----------|-------|
-| 150ms | Micro-interactions |
-| 200ms | Standard transitions |
-| 300ms | Page transitions |
-| 500ms | Complex animations |
+| Duration | Usage                |
+| -------- | -------------------- |
+| 150ms    | Micro-interactions   |
+| 200ms    | Standard transitions |
+| 300ms    | Page transitions     |
+| 500ms    | Complex animations   |
 
 ## Tailwind Configuration
 

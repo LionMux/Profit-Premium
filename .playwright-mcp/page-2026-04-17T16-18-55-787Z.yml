@@ -1,0 +1,181 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - main [ref=e4]:
+        - generic [ref=e5]:
+          - generic:
+            - img
+          - generic [ref=e6]:
+            - paragraph [ref=e7]: Юридическая информация
+            - heading "Контакты и реквизиты" [level=1] [ref=e8]
+            - paragraph [ref=e9]: Полная юридическая информация о компании, контактные данные и банковские реквизиты.
+          - generic [ref=e10]:
+            - generic [ref=e11]:
+              - generic [ref=e12]:
+                - img [ref=e14]
+                - generic [ref=e16]:
+                  - heading "Юридическая информация" [level=2] [ref=e17]
+                  - paragraph [ref=e18]: Реквизиты компании
+              - generic [ref=e19]:
+                - generic [ref=e21]:
+                  - generic [ref=e22]: Наименование
+                  - generic [ref=e23]: ООО "Профит Премиум"
+                - generic [ref=e25]:
+                  - generic [ref=e26]: ИНН
+                  - generic [ref=e27]: "7701234567"
+                - generic [ref=e29]:
+                  - generic [ref=e30]: КПП
+                  - generic [ref=e31]: "770101001"
+                - generic [ref=e33]:
+                  - generic [ref=e34]: ОГРН
+                  - generic [ref=e35]: "1157746123456"
+                - generic [ref=e37]:
+                  - generic [ref=e38]: Юридический адрес
+                  - generic [ref=e39]: г. Москва, ул. Примерная, д. 123, офис 456
+            - generic [ref=e40]:
+              - generic [ref=e41]:
+                - img [ref=e43]
+                - generic [ref=e45]:
+                  - heading "Контактная информация" [level=2] [ref=e46]
+                  - paragraph [ref=e47]: Свяжитесь с нами
+              - generic [ref=e48]:
+                - generic [ref=e50]:
+                  - img [ref=e52]
+                  - generic [ref=e54]:
+                    - paragraph [ref=e55]: Телефон
+                    - link "+7 (999) 123-45-67" [ref=e56] [cursor=pointer]:
+                      - /url: tel:+79991234567
+                - generic [ref=e58]:
+                  - img [ref=e60]
+                  - generic [ref=e63]:
+                    - paragraph [ref=e64]: Email
+                    - link "info@profit-premium.ru" [ref=e65] [cursor=pointer]:
+                      - /url: mailto:info@profit-premium.ru
+                - generic [ref=e67]:
+                  - img [ref=e69]
+                  - generic [ref=e72]:
+                    - paragraph [ref=e73]: Адрес
+                    - paragraph [ref=e74]: г. Москва, ул. Примерная, д. 123, офис 456
+                - generic [ref=e76]:
+                  - img [ref=e78]
+                  - generic [ref=e81]:
+                    - paragraph [ref=e82]: Режим работы
+                    - paragraph [ref=e83]: "Пн-Пт: 9:00 - 18:00"
+            - generic [ref=e84]:
+              - generic [ref=e85]:
+                - img [ref=e87]
+                - generic [ref=e89]:
+                  - heading "Банковские реквизиты" [level=2] [ref=e90]
+                  - paragraph [ref=e91]: Для оплаты услуг
+              - generic [ref=e92]:
+                - generic [ref=e94]:
+                  - generic [ref=e95]: Банк
+                  - generic [ref=e96]: ПАО СБЕРБАНК РОССИИ, г. Москва
+                - generic [ref=e98]:
+                  - generic [ref=e99]: Расчетный счет
+                  - generic [ref=e100]: "40702810100000001234"
+                - generic [ref=e102]:
+                  - generic [ref=e103]: Корреспондентский счет
+                  - generic [ref=e104]: "30101810400000000225"
+                - generic [ref=e106]:
+                  - generic [ref=e107]: БИК
+                  - generic [ref=e108]: "044525225"
+            - generic [ref=e109]:
+              - generic [ref=e110]:
+                - img [ref=e112]
+                - generic [ref=e115]:
+                  - heading "Дополнительно" [level=2] [ref=e116]
+                  - paragraph [ref=e117]: Полезная информация
+              - generic [ref=e118]:
+                - paragraph [ref=e119]: Если у вас есть вопросы по работе с личным кабинетом или необходима помощь в передаче клиентов, пожалуйста, свяжитесь с нами по указанным контактам или воспользуйтесь формой обратной связи в разделе "Личный кабинет".
+                - generic [ref=e120]:
+                  - paragraph [ref=e121]: Социальные сети
+                  - generic [ref=e122]:
+                    - link "Telegram" [ref=e123] [cursor=pointer]:
+                      - /url: "#"
+                    - link "WhatsApp" [ref=e124] [cursor=pointer]:
+                      - /url: "#"
+                    - link "VK" [ref=e125] [cursor=pointer]:
+                      - /url: "#"
+          - paragraph [ref=e127]: © 2024 ООО "Профит Премиум". Все права защищены.
+      - contentinfo [ref=e128]:
+        - generic [ref=e129]:
+          - generic [ref=e130]:
+            - generic [ref=e131]:
+              - generic [ref=e132]: PROFIT PREMIUM
+              - paragraph [ref=e133]: Закрытый клуб для партнеров по недвижимости. Эксклюзивные объекты, персональный менеджер, быстрое оформление сделок.
+            - generic [ref=e134]:
+              - heading "РАЗДЕЛЫ" [level=4] [ref=e135]
+              - list [ref=e136]:
+                - listitem [ref=e137]:
+                  - link "ГЛАВНАЯ" [ref=e138] [cursor=pointer]:
+                    - /url: /dashboard
+                - listitem [ref=e139]:
+                  - link "МАТЕРИАЛЫ" [ref=e140] [cursor=pointer]:
+                    - /url: /materials
+                - listitem [ref=e141]:
+                  - link "ПРОФИЛЬ" [ref=e142] [cursor=pointer]:
+                    - /url: /profile
+                - listitem [ref=e143]:
+                  - link "КОНТАКТЫ" [ref=e144] [cursor=pointer]:
+                    - /url: /contacts
+            - generic [ref=e145]:
+              - heading "СОЦСЕТИ" [level=4] [ref=e146]
+              - generic [ref=e147]:
+                - link "TG" [ref=e148] [cursor=pointer]:
+                  - /url: https://t.me/profitpremium
+                - link "WA" [ref=e149] [cursor=pointer]:
+                  - /url: https://wa.me/79991234567
+                - link "ВК" [ref=e150] [cursor=pointer]:
+                  - /url: https://vk.com/profitpremium
+          - generic [ref=e151]:
+            - paragraph [ref=e152]: © 2026 ООО "ПРОФИТ ПРЕМИУМ". ВСЕ ПРАВА ЗАЩИЩЕНЫ.
+            - generic [ref=e153]:
+              - link "КОНФИДЕНЦИАЛЬНОСТЬ" [ref=e154] [cursor=pointer]:
+                - /url: "#"
+              - link "СОГЛАШЕНИЕ" [ref=e155] [cursor=pointer]:
+                - /url: "#"
+    - complementary [ref=e156]:
+      - link "PROFIT PREMIUM" [ref=e158] [cursor=pointer]:
+        - /url: /dashboard
+        - generic [ref=e159]:
+          - generic [ref=e160]: PROFIT
+          - generic [ref=e161]: PREMIUM
+      - navigation [ref=e162]:
+        - link "ГЛАВНАЯ" [ref=e163] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e164]
+          - generic [ref=e167]: ГЛАВНАЯ
+        - link "МАТЕРИАЛЫ" [ref=e168] [cursor=pointer]:
+          - /url: /materials
+          - img [ref=e169]
+          - generic [ref=e172]: МАТЕРИАЛЫ
+        - link "ЛИЧНЫЙ КАБИНЕТ" [ref=e173] [cursor=pointer]:
+          - /url: /profile
+          - img [ref=e174]
+          - generic [ref=e177]: ЛИЧНЫЙ КАБИНЕТ
+        - link "КОНТАКТЫ" [ref=e178] [cursor=pointer]:
+          - /url: /contacts
+          - img [ref=e179]
+          - generic [ref=e181]: КОНТАКТЫ
+        - button "ПЕРЕДАТЬ КЛИЕНТА" [ref=e183] [cursor=pointer]:
+          - img [ref=e184]
+          - generic [ref=e187]: ПЕРЕДАТЬ КЛИЕНТА
+        - link "АДМИНКА" [ref=e189] [cursor=pointer]:
+          - /url: /admin
+          - img [ref=e190]
+          - generic [ref=e195]: АДМИНКА
+        - link "НА САЙТ" [ref=e197] [cursor=pointer]:
+          - /url: /
+          - img [ref=e198]
+          - generic [ref=e202]: НА САЙТ
+      - generic [ref=e203]:
+        - generic [ref=e204]:
+          - generic [ref=e205]: А
+          - generic [ref=e206]:
+            - paragraph [ref=e207]: Администратор
+            - paragraph [ref=e208]: admin@profit-premium.ru
+        - button "Выйти" [ref=e209] [cursor=pointer]:
+          - img [ref=e210]
+          - text: Выйти
+  - alert [ref=e213]

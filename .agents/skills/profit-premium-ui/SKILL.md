@@ -12,6 +12,7 @@ Design system and component patterns for Profit-Premium real estate partner port
 **Profit-Premium** — закрытый личный кабинет для партнеров-агентов по недвижимости. Premium aesthetic with burgundy-cream color palette, elegant serif typography, and right-sidebar navigation.
 
 ### Core Visual Language
+
 - **Colors**: Deep burgundy (#3D1220, #5C1E2D) paired with warm cream (#F0EAE0, #E0D5C5)
 - **Typography**: Cormorant serif for headings, Inter sans-serif for body
 - **Layout**: Right sidebar navigation, burgundy main content area
@@ -26,12 +27,10 @@ Design system and component patterns for Profit-Premium real estate partner port
 <div className="min-h-screen flex flex-col lg:flex-row">
   {/* Main Content - Burgundy Background */}
   <div className="flex-1 flex flex-col min-h-screen bg-burgundy-dark">
-    <main className="flex-1 p-6 lg:p-10">
-      {/* Page content */}
-    </main>
+    <main className="flex-1 p-6 lg:p-10">{/* Page content */}</main>
     <Footer />
   </div>
-  
+
   {/* Right Sidebar - Cream Background */}
   <Sidebar user={user} />
 </div>
@@ -48,7 +47,7 @@ Design system and component patterns for Profit-Premium real estate partner port
     <h1 className="font-serif text-cream text-3xl">Вход в личный кабинет</h1>
     <LoginForm />
   </div>
-  
+
   {/* Right - Visual panel */}
   <div className="hidden lg:block w-1/2 bg-gradient-to-br from-[#C9A86C] to-[#E0D5C5]">
     {/* 3D city visualization or abstract pattern */}
@@ -63,6 +62,7 @@ Read [references/design-tokens.md](references/design-tokens.md) for complete col
 ## Component Patterns
 
 Read [references/component-patterns.md](references/component-patterns.md) for:
+
 - Stories carousel implementation
 - Material cards with PDF previews
 - Filter bars and drawers
@@ -72,6 +72,7 @@ Read [references/component-patterns.md](references/component-patterns.md) for:
 ## Page Templates
 
 Read [references/page-templates.md](references/page-templates.md) for:
+
 - Login page (split-screen)
 - Admin dashboard with Stories
 - Profile page layout
@@ -80,6 +81,7 @@ Read [references/page-templates.md](references/page-templates.md) for:
 ## Image References
 
 When user references design images:
+
 - **Image1**: Split-screen login with dark left panel, gold accents
 - **Image2**: Admin panel with Stories carousel, cream cards on burgundy
 
@@ -147,12 +149,14 @@ src/
 ## Do's and Don'ts
 
 **Do:**
+
 - Use serif font (font-serif) for all headings
 - Maintain high contrast (cream on burgundy)
 - Use generous padding and whitespace
 - Keep sidebar consistently on the right
 
 **Don't:**
+
 - Use bright colors (stick to burgundy/cream palette)
 - Move sidebar to left
 - Use heavy shadows or borders

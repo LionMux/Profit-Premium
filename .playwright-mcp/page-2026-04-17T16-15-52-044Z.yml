@@ -1,0 +1,147 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - main [ref=e4]:
+        - generic [ref=e5]:
+          - generic:
+            - img
+          - generic [ref=e6]:
+            - paragraph [ref=e7]: Управление профилем
+            - heading "Личный кабинет" [level=1] [ref=e8]
+            - paragraph [ref=e9]: Управляйте своими данными и передавайте клиентов в CRM систему.
+            - generic [ref=e10]:
+              - generic [ref=e11]:
+                - paragraph [ref=e12]: "0"
+                - paragraph [ref=e13]: Передано клиентов
+              - generic [ref=e14]:
+                - paragraph [ref=e15]: Администратор
+                - paragraph [ref=e16]: Статус аккаунта
+              - generic [ref=e17]:
+                - paragraph [ref=e18]: 24ч
+                - paragraph [ref=e19]: Время ответа
+          - generic [ref=e21]:
+            - generic:
+              - img
+            - generic [ref=e22]:
+              - generic [ref=e24]: А
+              - generic [ref=e25]:
+                - generic [ref=e26]:
+                  - heading "Администратор" [level=2] [ref=e27]
+                  - generic [ref=e28]: Администратор
+                - generic [ref=e29]:
+                  - generic [ref=e30]:
+                    - img [ref=e31]
+                    - generic [ref=e34]: admin@profit-premium.ru
+                  - generic [ref=e35]:
+                    - img [ref=e36]
+                    - generic [ref=e38]: Полный доступ
+          - generic [ref=e39]:
+            - paragraph [ref=e40]: Быстрые действия
+            - generic [ref=e41]:
+              - generic [ref=e42]:
+                - img [ref=e44]
+                - img [ref=e65]
+                - heading "ПЕРЕДАТЬ КЛИЕНТА" [level=3] [ref=e68]
+                - paragraph [ref=e69]: Быстрая передача лида в CRM систему
+                - button "Открыть форму" [ref=e70] [cursor=pointer]:
+                  - img [ref=e71]
+                  - text: Открыть форму
+              - link "МАТЕРИАЛЫ Доступ к презентациям и документам Перейти →" [ref=e74] [cursor=pointer]:
+                - /url: /materials
+                - img [ref=e76]
+                - img [ref=e86]
+                - heading "МАТЕРИАЛЫ" [level=3] [ref=e89]
+                - paragraph [ref=e90]: Доступ к презентациям и документам
+                - generic [ref=e91]:
+                  - text: Перейти
+                  - generic [ref=e92]: →
+              - link "АДМИНИСТРИРОВАНИЕ Управление контентом и загрузка файлов Открыть панель →" [ref=e93] [cursor=pointer]:
+                - /url: /admin
+                - img [ref=e95]
+                - heading "АДМИНИСТРИРОВАНИЕ" [level=3] [ref=e98]
+                - paragraph [ref=e99]: Управление контентом и загрузка файлов
+                - generic [ref=e100]:
+                  - text: Открыть панель
+                  - generic [ref=e101]: →
+          - paragraph [ref=e103]: Информация о профиле
+      - contentinfo [ref=e109]:
+        - generic [ref=e110]:
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - generic [ref=e113]: PROFIT PREMIUM
+              - paragraph [ref=e114]: Закрытый клуб для партнеров по недвижимости. Эксклюзивные объекты, персональный менеджер, быстрое оформление сделок.
+            - generic [ref=e115]:
+              - heading "РАЗДЕЛЫ" [level=4] [ref=e116]
+              - list [ref=e117]:
+                - listitem [ref=e118]:
+                  - link "ГЛАВНАЯ" [ref=e119] [cursor=pointer]:
+                    - /url: /dashboard
+                - listitem [ref=e120]:
+                  - link "МАТЕРИАЛЫ" [ref=e121] [cursor=pointer]:
+                    - /url: /materials
+                - listitem [ref=e122]:
+                  - link "ПРОФИЛЬ" [ref=e123] [cursor=pointer]:
+                    - /url: /profile
+                - listitem [ref=e124]:
+                  - link "КОНТАКТЫ" [ref=e125] [cursor=pointer]:
+                    - /url: /contacts
+            - generic [ref=e126]:
+              - heading "СОЦСЕТИ" [level=4] [ref=e127]
+              - generic [ref=e128]:
+                - link "TG" [ref=e129] [cursor=pointer]:
+                  - /url: https://t.me/profitpremium
+                - link "WA" [ref=e130] [cursor=pointer]:
+                  - /url: https://wa.me/79991234567
+                - link "ВК" [ref=e131] [cursor=pointer]:
+                  - /url: https://vk.com/profitpremium
+          - generic [ref=e132]:
+            - paragraph [ref=e133]: © 2026 ООО "ПРОФИТ ПРЕМИУМ". ВСЕ ПРАВА ЗАЩИЩЕНЫ.
+            - generic [ref=e134]:
+              - link "КОНФИДЕНЦИАЛЬНОСТЬ" [ref=e135] [cursor=pointer]:
+                - /url: "#"
+              - link "СОГЛАШЕНИЕ" [ref=e136] [cursor=pointer]:
+                - /url: "#"
+    - complementary [ref=e137]:
+      - link "PROFIT PREMIUM" [ref=e139] [cursor=pointer]:
+        - /url: /dashboard
+        - generic [ref=e140]:
+          - generic [ref=e141]: PROFIT
+          - generic [ref=e142]: PREMIUM
+      - navigation [ref=e143]:
+        - link "ГЛАВНАЯ" [ref=e144] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e145]
+          - generic [ref=e148]: ГЛАВНАЯ
+        - link "МАТЕРИАЛЫ" [ref=e149] [cursor=pointer]:
+          - /url: /materials
+          - img [ref=e150]
+          - generic [ref=e153]: МАТЕРИАЛЫ
+        - link "ЛИЧНЫЙ КАБИНЕТ" [ref=e154] [cursor=pointer]:
+          - /url: /profile
+          - img [ref=e155]
+          - generic [ref=e158]: ЛИЧНЫЙ КАБИНЕТ
+        - link "КОНТАКТЫ" [ref=e159] [cursor=pointer]:
+          - /url: /contacts
+          - img [ref=e160]
+          - generic [ref=e162]: КОНТАКТЫ
+        - button "ПЕРЕДАТЬ КЛИЕНТА" [ref=e164] [cursor=pointer]:
+          - img [ref=e165]
+          - generic [ref=e168]: ПЕРЕДАТЬ КЛИЕНТА
+        - link "АДМИНКА" [ref=e170] [cursor=pointer]:
+          - /url: /admin
+          - img [ref=e171]
+          - generic [ref=e176]: АДМИНКА
+        - link "НА САЙТ" [ref=e178] [cursor=pointer]:
+          - /url: /
+          - img [ref=e179]
+          - generic [ref=e183]: НА САЙТ
+      - generic [ref=e184]:
+        - generic [ref=e185]:
+          - generic [ref=e186]: А
+          - generic [ref=e187]:
+            - paragraph [ref=e188]: Администратор
+            - paragraph [ref=e189]: admin@profit-premium.ru
+        - button "Выйти" [ref=e190] [cursor=pointer]:
+          - img [ref=e191]
+          - text: Выйти
+  - alert [ref=e194]

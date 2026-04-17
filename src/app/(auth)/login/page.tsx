@@ -6,7 +6,10 @@ import { useRouter } from 'next/navigation';
 import { PhoneInput } from '@/components/auth/PhoneInput';
 import { useToast } from '@/components/ui/use-toast';
 import { Eye, EyeOff } from 'lucide-react';
-import { BuildingComplexIllustration, AbstractSkyline } from '@/components/illustrations/BuildingIllustrations';
+import {
+  BuildingComplexIllustration,
+  AbstractSkyline,
+} from '@/components/illustrations/BuildingIllustrations';
 
 // Countdown timer for resend code
 const RESEND_DELAY = 60; // seconds
@@ -239,9 +242,7 @@ export default function LoginPage() {
                 resetSmsForm();
               }}
               className={`pb-3 text-sm font-medium transition-colors relative ${
-                authType === 'email'
-                  ? 'text-cream'
-                  : 'text-cream/50 hover:text-cream/80'
+                authType === 'email' ? 'text-cream' : 'text-cream/50 hover:text-cream/80'
               }`}
             >
               E-mail
@@ -252,9 +253,7 @@ export default function LoginPage() {
             <button
               onClick={() => handleAuthTypeChange('sms')}
               className={`pb-3 text-sm font-medium transition-colors relative ${
-                authType === 'sms'
-                  ? 'text-cream'
-                  : 'text-cream/50 hover:text-cream/80'
+                authType === 'sms' ? 'text-cream' : 'text-cream/50 hover:text-cream/80'
               }`}
             >
               По СМС
@@ -268,7 +267,10 @@ export default function LoginPage() {
             // Email login form
             <form onSubmit={handleEmailSubmit} className="space-y-5">
               {emailError && (
-                <div className="p-3 text-sm text-red-300 bg-red-500/10 border border-red-500/20" role="alert">
+                <div
+                  className="p-3 text-sm text-red-300 bg-red-500/10 border border-red-500/20"
+                  role="alert"
+                >
                   {emailError}
                 </div>
               )}
@@ -281,12 +283,12 @@ export default function LoginPage() {
                   id="email"
                   type="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value)}
                   required
                   placeholder="partner@example.com"
                   autoComplete="email"
                   disabled={isLoading}
-                  className="w-full px-4 py-3 bg-white text-burgundy-dark placeholder:text-gray-400 border-0 focus:outline-none focus:ring-2 focus:ring-cream/50 transition-shadow"
+                  className="w-full px-4 py-3 bg-white text-burgundy-dark placeholder:text-gray-400 border-0 focus:outline-none focus:ring-2 focus:ring-cream/50 transition-shadow "
                 />
               </div>
 
@@ -317,30 +319,42 @@ export default function LoginPage() {
                   id="password"
                   type={showPassword ? 'text' : 'password'}
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={e => setPassword(e.target.value)}
                   required
                   placeholder="••••••••"
                   autoComplete="current-password"
                   disabled={isLoading}
-                  className="w-full px-4 py-3 bg-white text-burgundy-dark placeholder:text-gray-400 border-0 focus:outline-none focus:ring-2 focus:ring-cream/50 transition-shadow"
+                  className="w-full px-4 py-3 bg-white text-burgundy-dark placeholder:text-gray-400 border-0 focus:outline-none focus:ring-2 focus:ring-cream/50 transition-shadow "
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3 bg-cream text-burgundy-dark font-medium hover:bg-cream-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 bg-cream text-burgundy-dark font-medium hover:bg-cream-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed "
               >
                 {isLoading ? 'Вход...' : 'Войти'}
               </button>
 
-              <label className="flex items-center gap-3 text-sm text-cream/80 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                  className="w-4 h-4 accent-cream border-cream/30 bg-transparent"
-                />
+              <label className="flex items-center gap-3 text-sm text-cream/80 cursor-pointer select-none group">
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={e => setRememberMe(e.target.checked)}
+                    className="peer sr-only"
+                  />
+                  <div className="w-5 h-5 border border-cream/40 transition-colors peer-checked:bg-cream peer-checked:border-cream flex items-center justify-center">
+                    <svg
+                      className="w-3 h-3 text-burgundy opacity-0 peer-checked:opacity-100 transition-opacity"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                </div>
                 Запомнить меня
               </label>
             </form>
@@ -348,7 +362,10 @@ export default function LoginPage() {
             // SMS login form
             <form onSubmit={handleSmsSubmit} className="space-y-5">
               {smsError && (
-                <div className="p-3 text-sm text-red-300 bg-red-500/10 border border-red-500/20" role="alert">
+                <div
+                  className="p-3 text-sm text-red-300 bg-red-500/10 border border-red-500/20"
+                  role="alert"
+                >
                   {smsError}
                 </div>
               )}
@@ -384,7 +401,7 @@ export default function LoginPage() {
                     type="text"
                     inputMode="numeric"
                     value={code}
-                    onChange={(e) => {
+                    onChange={e => {
                       const value = e.target.value.replace(/\D/g, '').slice(0, 6);
                       setCode(value);
                     }}
@@ -392,7 +409,7 @@ export default function LoginPage() {
                     placeholder="123456"
                     maxLength={6}
                     disabled={isLoading}
-                    className="w-full px-4 py-3 bg-white text-burgundy-dark placeholder:text-gray-400 border-0 focus:outline-none focus:ring-2 focus:ring-cream/50 transition-shadow font-mono text-lg tracking-widest text-center"
+                    className="w-full px-4 py-3 bg-white text-burgundy-dark placeholder:text-gray-400 border-0 focus:outline-none focus:ring-2 focus:ring-cream/50 transition-shadow font-mono text-lg tracking-widest text-center "
                     autoComplete="one-time-code"
                   />
 
@@ -464,8 +481,7 @@ export default function LoginPage() {
         {/* Footer */}
         <div className="absolute bottom-8 left-8 lg:left-16">
           <p className="text-xs text-cream/40">
-            Эксперты в недвижимости{' '}
-            <span className="text-cream/60">profitpremium.ru</span>
+            Эксперты в недвижимости <span className="text-cream/60">profitpremium.ru</span>
           </p>
         </div>
       </div>
@@ -474,7 +490,7 @@ export default function LoginPage() {
       <div className="hidden lg:flex w-1/2 bg-cream relative overflow-hidden items-center justify-center">
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-cream via-cream-dark/30 to-burgundy/20" />
-        
+
         {/* Decorative skyline at bottom */}
         <div className="absolute bottom-0 left-0 right-0 opacity-20">
           <AbstractSkyline className="w-full h-48 text-burgundy" />
@@ -486,7 +502,7 @@ export default function LoginPage() {
           <div className="w-48 h-60 mx-auto mb-8 relative">
             <BuildingComplexIllustration className="w-full h-full text-burgundy" />
           </div>
-          
+
           {/* Text */}
           <h2 className="font-serif text-4xl text-burgundy-dark font-semibold mb-4">
             Profit Premium
@@ -494,10 +510,10 @@ export default function LoginPage() {
           <p className="text-burgundy-dark/60 text-lg max-w-sm mx-auto leading-relaxed">
             Закрытый клуб для партнеров по недвижимости
           </p>
-          
+
           {/* Decorative line */}
           <div className="mt-8 w-16 h-0.5 bg-burgundy/30 mx-auto" />
-          
+
           {/* Features */}
           <div className="mt-8 space-y-2 text-sm text-burgundy-dark/50">
             <p>Эксклюзивные объекты</p>

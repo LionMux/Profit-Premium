@@ -24,17 +24,9 @@ const transferSchema = z.object({
     .min(3, 'Минимум 3 символа')
     .max(100, 'Максимум 100 символов')
     .regex(/^[а-яА-ЯёЁa-zA-Z\s]+$/, 'Только буквы и пробелы'),
-  phone: z
-    .string()
-    .regex(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Введите корректный номер телефона'),
-  city: z
-    .string()
-    .min(2, 'Минимум 2 символа')
-    .max(50, 'Максимум 50 символов'),
-  comment: z
-    .string()
-    .max(500, 'Максимум 500 символов')
-    .optional(),
+  phone: z.string().regex(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Введите корректный номер телефона'),
+  city: z.string().min(2, 'Минимум 2 символа').max(50, 'Максимум 50 символов'),
+  comment: z.string().max(500, 'Максимум 500 символов').optional(),
 });
 
 type TransferFormData = z.infer<typeof transferSchema>;
@@ -137,7 +129,7 @@ export function TransferClientForm({
       {/* Status message */}
       {submitStatus !== 'idle' && (
         <div
-          className={`p-3 rounded-md text-sm ${
+          className={`p-3  text-sm ${
             submitStatus === 'success'
               ? 'bg-green-50 text-green-600 border border-green-200'
               : 'bg-red-50 text-red-500 border border-red-200'
@@ -250,11 +242,7 @@ export function TransferClientForm({
     return (
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
-          <Button
-            variant={buttonVariant}
-            size={buttonSize}
-            className={buttonClassName}
-          >
+          <Button variant={buttonVariant} size={buttonSize} className={buttonClassName}>
             <Send className="mr-2 h-4 w-4" />
             Передать клиента
           </Button>
@@ -272,9 +260,5 @@ export function TransferClientForm({
     );
   }
 
-  return (
-    <div className="space-y-4">
-      {formContent}
-    </div>
-  );
+  return <div className="space-y-4">{formContent}</div>;
 }

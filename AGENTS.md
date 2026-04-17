@@ -17,32 +17,33 @@
 
 ### Core User Flows
 
-1. **Авторизация**: email + пароль ИЛИ SMS-код → редирект на главную
-2. **Главная**: блок "сторис" (карусель карточек) + навигация
-3. **Материалы**: фильтрация презентаций по городу и типу недвижимости (кнопки)
-4. **Личный кабинет**: профиль + кнопка "Передать клиента" → форма → Bitrix24
-5. **Контакты**: юридическая информация о компании (ИНН, ОГРН, адрес)
-6. **Админка**: загрузка новых презентаций (для менеджеров)
+1. **Авторизация**: email + пароль ИЛИ SMS-код → редирект на `/dashboard`
+2. **Лендинг** (`/`): публичная страница с разделами Hero, Преимущества, Услуги, Команда, Отзывы, Контакты
+3. **Главная** (`/dashboard`): блок "сторис" (карусель карточек) + навигация
+4. **Материалы** (`/materials`): фильтрация презентаций по городу и типу недвижимости (кнопки)
+5. **Личный кабинет** (`/profile`): профиль + кнопка "Передать клиента" → форма → сохранение в БД (Bitrix24 — TODO)
+6. **Контакты** (`/contacts`): юридическая информация о компании (ИНН, ОГРН, адрес, реквизиты)
+7. **Админка** (`/admin`): загрузка новых презентаций, статистика, управление сторис (для ADMIN/MANAGER)
 
 ---
 
 ## Technology Stack
 
-| Component | Technology | Purpose |
-|-----------|------------|---------|
-| Framework | Next.js 14.2.3 (App Router) | React framework с SSR/SSG |
-| Language | TypeScript 5.4.5 | Type safety |
-| Styling | Tailwind CSS 3.4.3 | Utility-first CSS |
-| UI Kit | shadcn/ui + Radix UI | Headless components |
-| ORM | Prisma 5.13.0 | Database access |
-| Database | PostgreSQL 15+ | Primary data storage |
-| Auth | NextAuth.js 5.0.0-beta.17 (Auth.js) | JWT-based authentication |
-| SMS | SMS.ru API | SMS code delivery |
-| Validation | Zod 3.23.6 | Schema validation |
-| Testing | Playwright 1.44.0 | E2E testing |
-| Linting | ESLint 8.57.0 + Prettier 3.2.5 | Code quality |
-| CI/CD | GitHub Actions | Automated testing |
-| Deployment | Docker + Docker Compose | Production hosting |
+| Component  | Technology                          | Purpose                   |
+| ---------- | ----------------------------------- | ------------------------- |
+| Framework  | Next.js 14.2.3 (App Router)         | React framework с SSR/SSG |
+| Language   | TypeScript 5.4.5                    | Type safety               |
+| Styling    | Tailwind CSS 3.4.3                  | Utility-first CSS         |
+| UI Kit     | shadcn/ui + Radix UI                | Headless components       |
+| ORM        | Prisma 5.13.0                       | Database access           |
+| Database   | PostgreSQL 15+                      | Primary data storage      |
+| Auth       | NextAuth.js 5.0.0-beta.17 (Auth.js) | JWT-based authentication  |
+| SMS        | SMS.ru API                          | SMS code delivery         |
+| Validation | Zod 3.23.6                          | Schema validation         |
+| Testing    | Playwright 1.44.0                   | E2E testing               |
+| Linting    | ESLint 8.57.0 + Prettier 3.8.1      | Code quality              |
+| CI/CD      | GitHub Actions                      | Automated testing         |
+| Deployment | Docker + Docker Compose             | Production hosting        |
 
 ---
 
@@ -52,51 +53,65 @@
 profit-premium/
 ├── prisma/
 │   ├── schema.prisma        # Database schema
-│   └── seed.ts              # Seed data (test users, materials)
+│   └── seed.ts              # Seed data (test users, materials, stories)
 ├── public/
-│   └── uploads/             # Uploaded files (gitignored)
+│   ├── uploads/             # Uploaded files (gitignored in production)
+│   └── presentations/       # Static presentations
 ├── src/
 │   ├── app/                 # Next.js App Router
 │   │   ├── (auth)/          # Route group: authentication pages
 │   │   │   ├── layout.tsx
 │   │   │   └── login/page.tsx           # Login page (email + SMS)
 │   │   ├── (dashboard)/     # Route group: authenticated pages
-│   │   │   ├── layout.tsx               # Dashboard layout with auth check
-│   │   │   ├── page.tsx                 # Homepage (stories carousel)
-│   │   │   ├── materials/page.tsx       # Materials with filters
-│   │   │   ├── profile/page.tsx         # Profile page
+│   │   │   ├── layout.tsx               # Dashboard layout with right sidebar
+│   │   │   ├── dashboard/page.tsx       # Homepage with stories carousel
+│   │   │   ├── materials/page.tsx       # Materials with city/type filters
+│   │   │   ├── profile/page.tsx         # Profile + client transfer form
 │   │   │   └── contacts/page.tsx        # Legal company info
-│   │   ├── admin/page.tsx               # Admin panel (upload materials)
+│   │   ├── admin/page.tsx               # Admin panel (stats, upload, stories)
 │   │   ├── api/                         # API Routes
 │   │   │   ├── auth/[...nextauth]/route.ts    # NextAuth endpoint
 │   │   │   ├── auth/sms/send/route.ts         # Send SMS code
 │   │   │   ├── auth/sms/verify/route.ts       # Verify SMS code
 │   │   │   ├── client-leads/route.ts          # Create client lead
-│   │   │   ├── materials/route.ts             # CRUD materials
-│   │   │   └── upload/route.ts                # File upload
-│   │   ├── layout.tsx                   # Root layout
-│   │   └── page.tsx                     # Redirects to /login
+│   │   │   ├── materials/route.ts             # GET/POST materials
+│   │   │   └── upload/route.ts                # File upload (admin only)
+│   │   ├── layout.tsx                   # Root layout (fonts, metadata)
+│   │   └── page.tsx                     # Public landing page
 │   ├── components/
 │   │   ├── ui/                          # shadcn/ui components
+│   │   │   ├── badge.tsx
 │   │   │   ├── button.tsx
 │   │   │   ├── card.tsx
-│   │   │   ├── input.tsx
 │   │   │   ├── dialog.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── label.tsx
+│   │   │   ├── separator.tsx
 │   │   │   ├── sheet.tsx
+│   │   │   ├── skeleton.tsx
+│   │   │   ├── textarea.tsx
 │   │   │   └── use-toast.tsx
 │   │   ├── layout/                      # Layout components
-│   │   │   ├── Header.tsx               # Top header with user info
+│   │   │   ├── Header.tsx
 │   │   │   ├── Sidebar.tsx              # Right sidebar navigation
-│   │   │   └── Footer.tsx               # Footer component
+│   │   │   ├── Footer.tsx
+│   │   │   └── ProfitPremiumLogo.tsx
 │   │   ├── auth/                        # Auth components
 │   │   │   └── PhoneInput.tsx           # Masked phone input
 │   │   ├── materials/                   # Materials components
-│   │   │   ├── MaterialCard.tsx         # Material card display
+│   │   │   ├── MaterialCard.tsx
 │   │   │   ├── FilterBar.tsx            # Desktop filter buttons
 │   │   │   └── FilterDrawer.tsx         # Mobile filter drawer
 │   │   ├── profile/                     # Profile components
-│   │   │   ├── ProfileInfo.tsx          # User profile display
-│   │   │   └── TransferClientForm.tsx   # Client transfer form
+│   │   │   ├── ProfileInfo.tsx
+│   │   │   └── TransferClientForm.tsx
+│   │   ├── stories/                     # Stories components
+│   │   │   └── StoriesCarousel.tsx
+│   │   ├── admin/                       # Admin components
+│   │   │   ├── ActionCard.tsx
+│   │   │   └── UploadCard.tsx
+│   │   ├── illustrations/               # SVG illustrations
+│   │   │   └── BuildingIllustrations.tsx
 │   │   ├── landing/                     # Landing page sections
 │   │   │   ├── HeroSection.tsx
 │   │   │   ├── AdvantagesSection.tsx
@@ -108,12 +123,12 @@ profit-premium/
 │   │   └── providers/                   # Context providers
 │   │       └── SessionProvider.tsx      # NextAuth session provider
 │   ├── lib/                             # Utilities
-│   │   ├── auth.ts                      # NextAuth configuration
+│   │   ├── auth.ts                      # NextAuth configuration + helpers
 │   │   ├── prisma.ts                    # Prisma client singleton
 │   │   ├── sms.ts                       # SMS.ru API client
 │   │   └── utils.ts                     # cn(), formatPhoneNumber(), generateSMSCode()
 │   ├── types/                           # TypeScript types
-│   │   ├── index.ts                     # Global types
+│   │   ├── index.ts                     # Global application types
 │   │   └── next-auth.d.ts               # NextAuth type extensions
 │   ├── styles/
 │   │   └── globals.css                  # Tailwind imports + CSS variables
@@ -126,7 +141,7 @@ profit-premium/
 ├── docker-compose.yml                   # Production Docker setup
 ├── Dockerfile                           # Multi-stage Docker build
 ├── next.config.js                       # Next.js config (CORS, images)
-├── tailwind.config.ts                   # Tailwind + custom colors
+├── tailwind.config.ts                   # Tailwind + custom colors/fonts
 ├── playwright.config.ts                 # Playwright config (Edge browser)
 ├── package.json
 └── tsconfig.json                        # TypeScript with path aliases
@@ -170,30 +185,69 @@ model User {
   @@map("users")
 }
 
-// NextAuth models: Account, Session, VerificationToken
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
 
 model SmsCode {
-  id          String   @id @default(uuid())
-  phone       String
-  code        String
-  expiresAt   DateTime
-  attempts    Int      @default(0)
-  createdAt   DateTime @default(now())
+  id        String   @id @default(uuid())
+  phone     String
+  code      String
+  expiresAt DateTime
+  attempts  Int      @default(0)
+  createdAt DateTime @default(now())
 
   @@index([phone, createdAt])
   @@map("sms_codes")
 }
 
 model Material {
-  id              String   @id @default(uuid())
-  title           String
-  description     String?
-  fileUrl         String
-  thumbnailUrl    String?
-  city            String
-  propertyType    String
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id           String   @id @default(uuid())
+  title        String
+  description  String?
+  fileUrl      String
+  thumbnailUrl String?
+  city         String
+  propertyType String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   @@index([city])
   @@index([propertyType])
@@ -267,19 +321,19 @@ npm run dev
 
 ### Available Commands
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server (http://localhost:3000) |
-| `npm run build` | Build production bundle |
-| `npm start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run format:check` | Check Prettier formatting |
-| `npm run format:write` | Fix Prettier formatting |
-| `npm run test:e2e` | Run Playwright E2E tests |
-| `npm run db:generate` | Generate Prisma client |
-| `npm run db:migrate` | Create and apply migration |
-| `npm run db:studio` | Open Prisma Studio |
-| `npm run db:seed` | Seed database with test data |
+| Command                | Description                                      |
+| ---------------------- | ------------------------------------------------ |
+| `npm run dev`          | Start development server (http://localhost:3000) |
+| `npm run build`        | Build production bundle                          |
+| `npm start`            | Start production server                          |
+| `npm run lint`         | Run ESLint (`next/core-web-vitals`)              |
+| `npm run format:check` | Check Prettier formatting                        |
+| `npm run format:write` | Fix Prettier formatting                          |
+| `npm run test:e2e`     | Run Playwright E2E tests                         |
+| `npm run db:generate`  | Generate Prisma client                           |
+| `npm run db:migrate`   | Create and apply migration                       |
+| `npm run db:studio`    | Open Prisma Studio                               |
+| `npm run db:seed`      | Seed database with test data                     |
 
 ### Test Credentials (from seed.ts)
 
@@ -326,13 +380,13 @@ npm run dev
 
 ### File Naming Conventions
 
-| Type | Pattern | Example |
-|------|---------|---------|
+| Type       | Pattern    | Example                         |
+| ---------- | ---------- | ------------------------------- |
 | Components | PascalCase | `Sidebar.tsx`, `PhoneInput.tsx` |
-| Pages | page.tsx | `app/materials/page.tsx` |
-| API Routes | route.ts | `app/api/materials/route.ts` |
-| Utilities | camelCase | `auth.ts`, `utils.ts` |
-| Types | camelCase | `types/index.ts` |
+| Pages      | page.tsx   | `app/materials/page.tsx`        |
+| API Routes | route.ts   | `app/api/materials/route.ts`    |
+| Utilities  | camelCase  | `auth.ts`, `utils.ts`           |
+| Types      | camelCase  | `types/index.ts`                |
 
 ### Code Patterns
 
@@ -360,6 +414,11 @@ colors: {
   },
 }
 ```
+
+### Fonts
+
+- **Sans**: `Inter` (latin + cyrillic) — `--font-inter`
+- **Serif**: `Cormorant Garamond` (400-700) — `--font-cormorant`
 
 ---
 
@@ -393,12 +452,13 @@ npx playwright test auth.spec.ts
 
 ### Manual Testing Checklist
 
-- [ ] Вход по email работает корректно
+- [ ] Вход по email работает корректно (редирект на `/dashboard`)
 - [ ] Вход по SMS отправляет код и авторизует
 - [ ] Фильтрация материалов по городу и типу
 - [ ] Форма передачи клиента создает запись в БД
-- [ ] Загрузка файлов работает (admin)
-- [ ] Выход из системы перенаправляет на /login
+- [ ] Загрузка файлов работает (admin/manager)
+- [ ] Выход из системы перенаправляет на `/login`
+- [ ] Лендинг (`/`) доступен без авторизации
 
 ---
 
@@ -409,7 +469,7 @@ npx playwright test auth.spec.ts
 - ✅ NextAuth.js с JWT стратегией (30 days)
 - ✅ Пароли хешируются bcrypt (10 rounds)
 - ✅ Защита роутов через `middleware.ts`
-- ✅ Проверка ролей (ADMIN, MANAGER, PARTNER) в API
+- ✅ Проверка ролей (ADMIN, MANAGER, PARTNER) в API и на страницах
 - ✅ SMS rate limit: max 3 SMS в час на номер
 - ✅ SMS код действителен 5 минут, max 3 попытки
 
@@ -478,8 +538,10 @@ GitHub Actions (`.github/workflows/ci.yml`):
 4. Generate Prisma client
 5. Run ESLint
 6. Check formatting
-7. Type check
+7. Type check (`tsc --noEmit`)
 8. Build
+
+Триггеры: push и pull_request на ветки `main` и `develop`.
 
 ### Backup Strategy
 
@@ -496,9 +558,16 @@ GitHub Actions (`.github/workflows/ci.yml`):
 1. **Email + Password**: credentials provider с проверкой bcrypt
 2. **SMS**:
    - `/api/auth/sms/send` — генерация 6-значного кода, сохранение в БД, отправка через SMS.ru
-   - `/api/auth/sms/verify` — проверка кода, обновление попыток
+   - `/api/auth/sms/verify` — проверка кода, обновление попыток, возврат данных пользователя
    - Rate limiting: 3 SMS/час на номер
    - Код действителен 5 минут, 3 попытки
+   - При первой SMS-авторизации пользователь создается автоматически с ролью PARTNER
+
+### Route Protection (middleware.ts)
+
+- Публичные роуты: `/`, `/login`, `/api/auth/*`
+- Защищенные роуты (требуют авторизации): `/dashboard`, `/materials`, `/profile`, `/contacts`, `/admin`
+- Авторизованных пользователей с `/login` редиректит на `/dashboard`
 
 ### Phone Number Format
 
@@ -508,9 +577,9 @@ GitHub Actions (`.github/workflows/ci.yml`):
 
 ### Materials Filtering
 
-- Query параметры: `?city=Moscow&propertyType=Apartment`
+- Query параметры: `?city=Москва&propertyType=Квартира`
 - Server-side filtering через Prisma
-- UI: кнопки фильтров с активным состоянием
+- UI: кнопки фильтров с активным состоянием (`FilterBar` для десктопа, `FilterDrawer` для мобильных)
 
 ### Client Lead Transfer
 
@@ -518,6 +587,12 @@ GitHub Actions (`.github/workflows/ci.yml`):
 - Валидация: Zod schema
 - Сохранение в БД с привязкой к пользователю
 - TODO: интеграция с Bitrix24
+
+### Landing Page
+
+- Корневой `/` — публичная страница (не требует авторизации)
+- Секции: Hero, Advantages, Services, Team, Reviews, Contact
+- Фиксированный правый Sidebar на десктопе
 
 ---
 
@@ -535,10 +610,11 @@ GitHub Actions (`.github/workflows/ci.yml`):
 
 ## Changelog
 
-| Date | Author | Changes |
-|------|--------|---------|
-| 2026-04-07 | Agent | Project initialized |
-| 2026-04-08 | Agent | Updated AGENTS.md with actual project structure |
+| Date       | Author | Changes                                         |
+| ---------- | ------ | ----------------------------------------------- |
+| 2026-04-07 | Agent  | Project initialized                             |
+| 2026-04-08 | Agent  | Updated AGENTS.md with actual project structure |
+| 2026-04-17 | Agent  | Full audit and update based on actual codebase  |
 
 ---
 

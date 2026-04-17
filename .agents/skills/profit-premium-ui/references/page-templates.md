@@ -89,9 +89,7 @@ export default function LoginPage() {
               </div>
             </>
           ) : (
-            <>
-              {/* SMS form fields */}
-            </>
+            <>{/* SMS form fields */}</>
           )}
 
           <button
@@ -187,7 +185,9 @@ export default async function AdminPage() {
                 title="Загрузка материалов"
                 description="Добавьте новую презентацию или документ"
                 actionLabel="Открыть форму"
-                onClick={() => {/* Open upload modal */}}
+                onClick={() => {
+                  /* Open upload modal */
+                }}
               />
               <ActionCard
                 icon={FileText}
@@ -250,12 +250,8 @@ export default async function ProfilePage() {
         <main className="flex-1 p-6 lg:p-10">
           {/* Header */}
           <div className="mb-10">
-            <h1 className="font-serif text-4xl text-cream font-semibold mb-2">
-              Личный кабинет
-            </h1>
-            <p className="text-cream/60">
-              Управление профилем и передача клиентов в CRM
-            </p>
+            <h1 className="font-serif text-4xl text-cream font-semibold mb-2">Личный кабинет</h1>
+            <p className="text-cream/60">Управление профилем и передача клиентов в CRM</p>
           </div>
 
           {/* Stories */}
@@ -271,7 +267,9 @@ export default async function ProfilePage() {
                 title="Передать клиента"
                 description="Быстрая передача лида в CRM систему"
                 actionLabel="Открыть форму"
-                onClick={() => {/* Open transfer modal */}}
+                onClick={() => {
+                  /* Open transfer modal */
+                }}
               />
               <ActionCard
                 icon={FileText}
@@ -347,33 +345,29 @@ export default async function MaterialsPage({
         <main className="flex-1 p-6 lg:p-10">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="font-serif text-4xl text-cream font-semibold mb-2">
-              Материалы
-            </h1>
-            <p className="text-cream/60">
-              Презентации и документы по объектам недвижимости
-            </p>
+            <h1 className="font-serif text-4xl text-cream font-semibold mb-2">Материалы</h1>
+            <p className="text-cream/60">Презентации и документы по объектам недвижимости</p>
           </div>
 
           {/* Filters */}
           <div className="mb-8 space-y-4">
             <FilterBar
               label="Город"
-              options={cities.map((c) => ({ value: c, label: c }))}
+              options={cities.map(c => ({ value: c, label: c }))}
               selected={searchParams.city || ''}
-              onSelect={(city) => updateFilter('city', city)}
+              onSelect={city => updateFilter('city', city)}
             />
             <FilterBar
               label="Тип недвижимости"
-              options={propertyTypes.map((t) => ({ value: t, label: t }))}
+              options={propertyTypes.map(t => ({ value: t, label: t }))}
               selected={searchParams.type || ''}
-              onSelect={(type) => updateFilter('type', type)}
+              onSelect={type => updateFilter('type', type)}
             />
           </div>
 
           {/* Materials Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {materials.map((material) => (
+            {materials.map(material => (
               <MaterialCard key={material.id} material={material} />
             ))}
           </div>
@@ -412,11 +406,7 @@ import { auth } from '@/lib/auth';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { Footer } from '@/components/layout/Footer';
 
-export default async function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();
 
   if (!session) {
@@ -427,9 +417,7 @@ export default async function DashboardLayout({
     <div className="min-h-screen flex flex-col lg:flex-row">
       {/* Main Content Area - Burgundy Background */}
       <div className="flex-1 flex flex-col min-h-screen bg-burgundy-dark">
-        <main className="flex-1 p-6 lg:p-10 overflow-auto">
-          {children}
-        </main>
+        <main className="flex-1 p-6 lg:p-10 overflow-auto">{children}</main>
         <Footer />
       </div>
 
@@ -450,16 +438,8 @@ export default async function DashboardLayout({
 
 ```tsx
 // app/(auth)/layout.tsx
-export default function AuthLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="min-h-screen">
-      {children}
-    </div>
-  );
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
+  return <div className="min-h-screen">{children}</div>;
 }
 ```
 
@@ -491,6 +471,6 @@ export async function fetchCities() {
     select: { city: true },
     distinct: ['city'],
   });
-  return materials.map((m) => m.city);
+  return materials.map(m => m.city);
 }
 ```
