@@ -29,21 +29,22 @@
 
 ## Technology Stack
 
-| Component  | Technology                          | Purpose                   |
-| ---------- | ----------------------------------- | ------------------------- |
-| Framework  | Next.js 14.2.3 (App Router)         | React framework с SSR/SSG |
-| Language   | TypeScript 5.4.5                    | Type safety               |
-| Styling    | Tailwind CSS 3.4.3                  | Utility-first CSS         |
-| UI Kit     | shadcn/ui + Radix UI                | Headless components       |
-| ORM        | Prisma 5.13.0                       | Database access           |
-| Database   | PostgreSQL 15+                      | Primary data storage      |
-| Auth       | NextAuth.js 5.0.0-beta.17 (Auth.js) | JWT-based authentication  |
-| SMS        | SMS.ru API                          | SMS code delivery         |
-| Validation | Zod 3.23.6                          | Schema validation         |
-| Testing    | Playwright 1.44.0                   | E2E testing               |
-| Linting    | ESLint 8.57.0 + Prettier 3.8.1      | Code quality              |
-| CI/CD      | GitHub Actions                      | Automated testing         |
-| Deployment | Docker + Docker Compose             | Production hosting        |
+| Component    | Technology                          | Purpose                           |
+| ------------ | ----------------------------------- | --------------------------------- |
+| Framework    | Next.js 14.2.3 (App Router)         | React framework с SSR/SSG         |
+| Language     | TypeScript 5.4.5                    | Type safety                       |
+| Styling      | Tailwind CSS 3.4.3                  | Utility-first CSS                 |
+| UI Kit       | shadcn/ui + Radix UI                | Headless components               |
+| Forms        | react-hook-form + Zod               | Form handling and validation      |
+| ORM          | Prisma 5.13.0                       | Database access                   |
+| Database     | PostgreSQL 15+                      | Primary data storage              |
+| Auth         | NextAuth.js 5.0.0-beta.17 (Auth.js) | JWT-based authentication          |
+| SMS          | SMS.ru API                          | SMS code delivery                 |
+| Validation   | Zod 3.23.6                          | Schema validation                 |
+| Testing      | Playwright 1.44.0                   | E2E testing                       |
+| Linting      | ESLint 8.57.0 + Prettier 3.8.1      | Code quality                      |
+| CI/CD        | GitHub Actions                      | Automated testing                 |
+| Deployment   | Docker + Docker Compose             | Production hosting                |
 
 ---
 
@@ -52,30 +53,51 @@
 ```
 profit-premium/
 ├── prisma/
+│   ├── migrations/          # Database migrations
 │   ├── schema.prisma        # Database schema
 │   └── seed.ts              # Seed data (test users, materials, stories)
 ├── public/
 │   ├── uploads/             # Uploaded files (gitignored in production)
-│   └── presentations/       # Static presentations
+│   ├── presentations/       # Static presentations
+│   └── stories/             # Story images
+├── scripts/
+│   ├── seed-stories.ts      # Standalone stories seed script
+│   └── verify-db.ts         # Database connectivity verification
 ├── src/
 │   ├── app/                 # Next.js App Router
 │   │   ├── (auth)/          # Route group: authentication pages
 │   │   │   ├── layout.tsx
-│   │   │   └── login/page.tsx           # Login page (email + SMS)
+│   │   │   └── login/
+│   │   │       └── page.tsx           # Login page (email + SMS)
 │   │   ├── (dashboard)/     # Route group: authenticated pages
 │   │   │   ├── layout.tsx               # Dashboard layout with right sidebar
-│   │   │   ├── dashboard/page.tsx       # Homepage with stories carousel
-│   │   │   ├── materials/page.tsx       # Materials with city/type filters
-│   │   │   ├── profile/page.tsx         # Profile + client transfer form
-│   │   │   └── contacts/page.tsx        # Legal company info
-│   │   ├── admin/page.tsx               # Admin panel (stats, upload, stories)
+│   │   │   ├── dashboard/
+│   │   │   │   └── page.tsx             # Homepage with stories carousel
+│   │   │   ├── materials/
+│   │   │   │   └── page.tsx             # Materials with city/type filters
+│   │   │   ├── profile/
+│   │   │   │   └── page.tsx             # Profile + client transfer form
+│   │   │   └── contacts/
+│   │   │       └── page.tsx             # Legal company info
+│   │   ├── admin/
+│   │   │   └── page.tsx                 # Admin panel (stats, upload, stories)
 │   │   ├── api/                         # API Routes
-│   │   │   ├── auth/[...nextauth]/route.ts    # NextAuth endpoint
-│   │   │   ├── auth/sms/send/route.ts         # Send SMS code
-│   │   │   ├── auth/sms/verify/route.ts       # Verify SMS code
-│   │   │   ├── client-leads/route.ts          # Create client lead
-│   │   │   ├── materials/route.ts             # GET/POST materials
-│   │   │   └── upload/route.ts                # File upload (admin only)
+│   │   │   ├── auth/[...nextauth]/
+│   │   │   │   └── route.ts             # NextAuth endpoint
+│   │   │   ├── auth/sms/send/
+│   │   │   │   └── route.ts             # Send SMS code
+│   │   │   ├── auth/sms/verify/
+│   │   │   │   └── route.ts             # Verify SMS code
+│   │   │   ├── client-leads/
+│   │   │   │   └── route.ts             # Create client lead
+│   │   │   ├── materials/
+│   │   │   │   └── route.ts             # GET/POST materials
+│   │   │   ├── stories/
+│   │   │   │   ├── route.ts             # GET/POST stories
+│   │   │   │   └── [id]/
+│   │   │   │       └── route.ts         # PATCH/DELETE individual story
+│   │   │   └── upload/
+│   │   │       └── route.ts             # File upload (admin only)
 │   │   ├── layout.tsx                   # Root layout (fonts, metadata)
 │   │   └── page.tsx                     # Public landing page
 │   ├── components/
@@ -98,6 +120,9 @@ profit-premium/
 │   │   │   └── ProfitPremiumLogo.tsx
 │   │   ├── auth/                        # Auth components
 │   │   │   └── PhoneInput.tsx           # Masked phone input
+│   │   ├── dashboard/                   # Dashboard components
+│   │   │   ├── QuickActionCard.tsx
+│   │   │   └── WelcomeSection.tsx
 │   │   ├── materials/                   # Materials components
 │   │   │   ├── MaterialCard.tsx
 │   │   │   ├── FilterBar.tsx            # Desktop filter buttons
@@ -109,7 +134,10 @@ profit-premium/
 │   │   │   └── StoriesCarousel.tsx
 │   │   ├── admin/                       # Admin components
 │   │   │   ├── ActionCard.tsx
-│   │   │   └── UploadCard.tsx
+│   │   │   ├── StatCard.tsx
+│   │   │   ├── StoriesManager.tsx
+│   │   │   ├── UploadCard.tsx
+│   │   │   └── UploadMaterialCard.tsx
 │   │   ├── illustrations/               # SVG illustrations
 │   │   │   └── BuildingIllustrations.tsx
 │   │   ├── landing/                     # Landing page sections
@@ -119,7 +147,8 @@ profit-premium/
 │   │   │   ├── TeamSection.tsx
 │   │   │   ├── ReviewsSection.tsx
 │   │   │   ├── ContactSection.tsx
-│   │   │   └── Sidebar.tsx
+│   │   │   ├── Sidebar.tsx
+│   │   │   └── AccountPromptDialog.tsx
 │   │   └── providers/                   # Context providers
 │   │       └── SessionProvider.tsx      # NextAuth session provider
 │   ├── lib/                             # Utilities
@@ -177,8 +206,8 @@ model User {
   updatedAt    DateTime @updatedAt
 
   clientLeads ClientLead[]
-  accounts    Account[]    // NextAuth
-  sessions    Session[]    // NextAuth
+  accounts    Account[]
+  sessions    Session[]
 
   @@index([role])
   @@index([isActive])
@@ -395,6 +424,8 @@ npm run dev
 - Использовать `cn()` из `lib/utils.ts` для условных классов Tailwind
 - Server Components по умолчанию, `'use client'` только при необходимости
 - API responses в формате: `{ success: boolean, data?: any, error?: string }`
+- Формы: `react-hook-form` + `@hookform/resolvers/zod` + Zod схемы
+- Компоненты группируются по **домену/фиче**, а не по типу
 
 ### Custom Colors (Tailwind)
 
@@ -446,9 +477,18 @@ npx playwright test auth.spec.ts
 
 ### Test Files
 
-- `auth.spec.ts` — тесты авторизации (email и SMS)
-- `materials.spec.ts` — тесты страницы материалов
-- `client-transfer.spec.ts` — тесты формы передачи клиента
+| File                       | Tests | Описание                                               |
+| -------------------------- | ----- | ------------------------------------------------------ |
+| `auth.spec.ts`             | 4     | Логин страница, email вход, SMS таб, неудачный вход    |
+| `materials.spec.ts`        | 2     | Отображение страницы, фильтр по городу с URL assertion |
+| `client-transfer.spec.ts`  | 2     | Видимость формы, успешная отправка с toast             |
+
+### Testing Strategy Notes
+
+- Только **E2E тесты** — юнит/интеграционные тесты отсутствуют
+- Тесты зависят от **seed-данных** в базе
+- Auth-тесты используют UI-логин (`beforeEach`)
+- **CI pipeline НЕ запускает Playwright тесты** — только lint, format, typecheck, build
 
 ### Manual Testing Checklist
 
@@ -467,7 +507,7 @@ npx playwright test auth.spec.ts
 ### Authentication & Authorization
 
 - ✅ NextAuth.js с JWT стратегией (30 days)
-- ✅ Пароли хешируются bcrypt (10 rounds)
+- ✅ Пароли хешируются bcryptjs (10 rounds)
 - ✅ Защита роутов через `middleware.ts`
 - ✅ Проверка ролей (ADMIN, MANAGER, PARTNER) в API и на страницах
 - ✅ SMS rate limit: max 3 SMS в час на номер
@@ -555,7 +595,7 @@ GitHub Actions (`.github/workflows/ci.yml`):
 
 ### Authentication Flow
 
-1. **Email + Password**: credentials provider с проверкой bcrypt
+1. **Email + Password**: credentials provider с проверкой bcryptjs
 2. **SMS**:
    - `/api/auth/sms/send` — генерация 6-значного кода, сохранение в БД, отправка через SMS.ru
    - `/api/auth/sms/verify` — проверка кода, обновление попыток, возврат данных пользователя
@@ -588,11 +628,27 @@ GitHub Actions (`.github/workflows/ci.yml`):
 - Сохранение в БД с привязкой к пользователю
 - TODO: интеграция с Bitrix24
 
+### Stories Management
+
+- Модель `Story` с полями: imageUrl, title, link, order, isActive
+- API: полный CRUD через `/api/stories` и `/api/stories/[id]`
+- Компонент `StoriesCarousel` — drag-to-scroll карусель с авто-воспроизведением
+- Управление сторис доступно в админ-панели через `StoriesManager`
+
 ### Landing Page
 
 - Корневой `/` — публичная страница (не требует авторизации)
 - Секции: Hero, Advantages, Services, Team, Reviews, Contact
 - Фиксированный правый Sidebar на десктопе
+- Анимации: fadeIn, fadeInUp, slideIn, scaleIn, shimmer, pulse-soft (определены в `globals.css`)
+
+### Design System Notes
+
+- **Aesthetic**: бордовый (`#5C1E2D`) + кремовый (`#F0EAE0`) палитра
+- **Corners**: преимущественно острые углы (`rounded-none` или без скругления)
+- **Glassmorphism**: `bg-white/5 backdrop-blur-sm border border-white/10`
+- **Labels**: uppercase с широким трекингом (`tracking-[0.3em] uppercase text-[10px]`)
+- **Illustrations**: декоративные SVG с очень низкой непрозрачностью (`opacity-[0.04]`)
 
 ---
 
@@ -615,6 +671,7 @@ GitHub Actions (`.github/workflows/ci.yml`):
 | 2026-04-07 | Agent  | Project initialized                             |
 | 2026-04-08 | Agent  | Updated AGENTS.md with actual project structure |
 | 2026-04-17 | Agent  | Full audit and update based on actual codebase  |
+| 2026-04-23 | Agent  | Comprehensive update: added missing components, API routes, testing notes, design system details |
 
 ---
 

@@ -2,7 +2,7 @@ import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
 import { ProfileInfo } from '@/components/profile/ProfileInfo';
-import { TransferClientDialog } from '@/components/profile/TransferClientDialog';
+import { TransferClientForm } from '@/components/profile/TransferClientForm';
 import { FileText, Send, Settings, User, Shield, Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { AbstractSkyline, GeometricCity } from '@/components/illustrations/BuildingIllustrations';
@@ -131,7 +131,11 @@ export default async function ProfilePage() {
               Быстрая передача лида в CRM систему
             </p>
 
-            <TransferClientDialog />
+            <TransferClientForm
+              showAsModal
+              buttonVariant="default"
+              buttonClassName="w-full flex items-center justify-center gap-2 px-4 py-3 bg-cream text-burgundy-dark hover:bg-cream/90 font-medium transition-all duration-300 hover:shadow-lg hover:shadow-cream/20 h-auto"
+            />
           </div>
 
           {/* Materials Card */}

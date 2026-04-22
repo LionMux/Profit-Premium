@@ -33,20 +33,65 @@ export function UploadMaterialCard() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const formData = new FormData(e.currentTarget);
-    if (selectedFile) {
-      formData.append('file', selectedFile);
-    }
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Step 1: Upload main file
+      if (!selectedFile) {
+        throw new Error('Файл не выбран');
+      }
 
-      // TODO: Replace with actual API call
-      // const response = await fetch('/api/materials', {
-      //   method: 'POST',
-      //   body: formData,
-      // });
+      const uploadFormData = new FormData();
+      uploadFormData.append('file', selectedFile);
+
+      const uploadRes = await fetch('/api/upload', {
+        method: 'POST',
+        body: uploadFormData,
+      });
+
+      if (!uploadRes.ok) {
+        const err = await uploadRes.json();
+        throw new Error(err.error || 'Ошибка загрузки файла');
+      }
+
+      const uploadData = await uploadRes.json();
+      const fileUrl = uploadData.url;
+
+      // Step 2: Upload thumbnail if provided
+      let thumbnailUrl: string | undefined;
+      const thumbnailFile = (form.querySelector('input[name="thumbnail"]') as HTMLInputElement)?.files?.[0];
+      if (thumbnailFile) {
+        const thumbFormData = new FormData();
+        thumbFormData.append('file', thumbnailFile);
+        const thumbRes = await fetch('/api/upload', {
+          method: 'POST',
+          body: thumbFormData,
+        });
+        if (thumbRes.ok) {
+          const thumbData = await thumbRes.json();
+          thumbnailUrl = thumbData.url;
+        }
+      }
+
+      // Step 3: Create material record
+      const materialRes = await fetch('/api/materials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: formData.get('title') as string,
+          description: (formData.get('description') as string) || undefined,
+          fileUrl,
+          thumbnailUrl,
+          city: formData.get('city') as string,
+          propertyType: formData.get('propertyType') as string,
+        }),
+      });
+
+      if (!materialRes.ok) {
+        const err = await materialRes.json();
+        throw new Error(err.error || 'Ошибка создания материала');
+      }
 
       setIsSuccess(true);
 
@@ -58,6 +103,7 @@ export function UploadMaterialCard() {
       }, 1500);
     } catch (error) {
       console.error('Error uploading material:', error);
+      alert(error instanceof Error ? error.message : 'Произошла ошибка');
     } finally {
       setIsSubmitting(false);
     }
