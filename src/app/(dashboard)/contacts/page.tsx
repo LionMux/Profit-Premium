@@ -89,9 +89,7 @@ export default function ContactsPage() {
               <h2 className="font-serif text-xl text-cream font-semibold">
                 Юридическая информация
               </h2>
-              <p className="text-xs text-cream/50 uppercase tracking-wider">
-                Реквизиты компании
-              </p>
+              <p className="text-xs text-cream/50 uppercase tracking-wider">Реквизиты компании</p>
             </div>
           </div>
 
@@ -104,9 +102,7 @@ export default function ContactsPage() {
                     {item.value}
                   </span>
                 </div>
-                {index < legalInfo.length - 1 && (
-                  <Separator className="bg-white/10 mt-4" />
-                )}
+                {index < legalInfo.length - 1 && <Separator className="bg-white/10 mt-4" />}
               </div>
             ))}
           </div>
@@ -119,12 +115,8 @@ export default function ContactsPage() {
               <Phone className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h2 className="font-serif text-xl text-cream font-semibold">
-                Контактная информация
-              </h2>
-              <p className="text-xs text-cream/50 uppercase tracking-wider">
-                Свяжитесь с нами
-              </p>
+              <h2 className="font-serif text-xl text-cream font-semibold">Контактная информация</h2>
+              <p className="text-xs text-cream/50 uppercase tracking-wider">Свяжитесь с нами</p>
             </div>
           </div>
 
@@ -149,9 +141,7 @@ export default function ContactsPage() {
                     )}
                   </div>
                 </div>
-                {index < contactInfo.length - 1 && (
-                  <Separator className="bg-white/10 mt-4" />
-                )}
+                {index < contactInfo.length - 1 && <Separator className="bg-white/10 mt-4" />}
               </div>
             ))}
           </div>
@@ -164,12 +154,8 @@ export default function ContactsPage() {
               <Landmark className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h2 className="font-serif text-xl text-cream font-semibold">
-                Банковские реквизиты
-              </h2>
-              <p className="text-xs text-cream/50 uppercase tracking-wider">
-                Для оплаты услуг
-              </p>
+              <h2 className="font-serif text-xl text-cream font-semibold">Банковские реквизиты</h2>
+              <p className="text-xs text-cream/50 uppercase tracking-wider">Для оплаты услуг</p>
             </div>
           </div>
 
@@ -182,9 +168,7 @@ export default function ContactsPage() {
                     {item.value}
                   </span>
                 </div>
-                {index < bankDetails.length - 1 && (
-                  <Separator className="bg-white/10 mt-4" />
-                )}
+                {index < bankDetails.length - 1 && <Separator className="bg-white/10 mt-4" />}
               </div>
             ))}
           </div>
@@ -197,28 +181,22 @@ export default function ContactsPage() {
               <FileText className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h2 className="font-serif text-xl text-cream font-semibold">
-                Дополнительно
-              </h2>
-              <p className="text-xs text-cream/50 uppercase tracking-wider">
-                Полезная информация
-              </p>
+              <h2 className="font-serif text-xl text-cream font-semibold">Дополнительно</h2>
+              <p className="text-xs text-cream/50 uppercase tracking-wider">Полезная информация</p>
             </div>
           </div>
 
           <div className="space-y-4 text-cream/70">
             <p className="text-sm leading-relaxed">
-              Если у вас есть вопросы по работе с личным кабинетом или необходима помощь
-              в передаче клиентов, пожалуйста, свяжитесь с нами по указанным контактам
-              или воспользуйтесь формой обратной связи в разделе &quot;Личный кабинет&quot;.
+              Если у вас есть вопросы по работе с личным кабинетом или необходима помощь в передаче
+              клиентов, пожалуйста, свяжитесь с нами по указанным контактам или воспользуйтесь
+              формой обратной связи в разделе &quot;Личный кабинет&quot;.
             </p>
 
             <div className="pt-4 border-t border-white/10">
-              <p className="text-xs text-cream/50 uppercase tracking-wider mb-3">
-                Социальные сети
-              </p>
+              <p className="text-xs text-cream/50 uppercase tracking-wider mb-3">Социальные сети</p>
               <div className="flex gap-3">
-                {['Telegram', 'WhatsApp', 'VK'].map((social) => (
+                {['Telegram', 'WhatsApp', 'VK'].map(social => (
                   <a
                     key={social}
                     href="#"

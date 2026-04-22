@@ -1,3 +1,7 @@
 node_modules
 .next
+public
+memory-obsidian
+.playwright-mcp
+screenshots
 .agents/skills/**/assets/templates

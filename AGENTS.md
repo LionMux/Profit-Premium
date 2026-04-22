@@ -29,22 +29,22 @@
 
 ## Technology Stack
 
-| Component    | Technology                          | Purpose                           |
-| ------------ | ----------------------------------- | --------------------------------- |
-| Framework    | Next.js 14.2.3 (App Router)         | React framework с SSR/SSG         |
-| Language     | TypeScript 5.4.5                    | Type safety                       |
-| Styling      | Tailwind CSS 3.4.3                  | Utility-first CSS                 |
-| UI Kit       | shadcn/ui + Radix UI                | Headless components               |
-| Forms        | react-hook-form + Zod               | Form handling and validation      |
-| ORM          | Prisma 5.13.0                       | Database access                   |
-| Database     | PostgreSQL 15+                      | Primary data storage              |
-| Auth         | NextAuth.js 5.0.0-beta.17 (Auth.js) | JWT-based authentication          |
-| SMS          | SMS.ru API                          | SMS code delivery                 |
-| Validation   | Zod 3.23.6                          | Schema validation                 |
-| Testing      | Playwright 1.44.0                   | E2E testing                       |
-| Linting      | ESLint 8.57.0 + Prettier 3.8.1      | Code quality                      |
-| CI/CD        | GitHub Actions                      | Automated testing                 |
-| Deployment   | Docker + Docker Compose             | Production hosting                |
+| Component  | Technology                          | Purpose                      |
+| ---------- | ----------------------------------- | ---------------------------- |
+| Framework  | Next.js 14.2.3 (App Router)         | React framework с SSR/SSG    |
+| Language   | TypeScript 5.4.5                    | Type safety                  |
+| Styling    | Tailwind CSS 3.4.3                  | Utility-first CSS            |
+| UI Kit     | shadcn/ui + Radix UI                | Headless components          |
+| Forms      | react-hook-form + Zod               | Form handling and validation |
+| ORM        | Prisma 5.13.0                       | Database access              |
+| Database   | PostgreSQL 15+                      | Primary data storage         |
+| Auth       | NextAuth.js 5.0.0-beta.17 (Auth.js) | JWT-based authentication     |
+| SMS        | SMS.ru API                          | SMS code delivery            |
+| Validation | Zod 3.23.6                          | Schema validation            |
+| Testing    | Playwright 1.44.0                   | E2E testing                  |
+| Linting    | ESLint 8.57.0 + Prettier 3.8.1      | Code quality                 |
+| CI/CD      | GitHub Actions                      | Automated testing            |
+| Deployment | Docker + Docker Compose             | Production hosting           |
 
 ---
 
@@ -477,11 +477,11 @@ npx playwright test auth.spec.ts
 
 ### Test Files
 
-| File                       | Tests | Описание                                               |
-| -------------------------- | ----- | ------------------------------------------------------ |
-| `auth.spec.ts`             | 4     | Логин страница, email вход, SMS таб, неудачный вход    |
-| `materials.spec.ts`        | 2     | Отображение страницы, фильтр по городу с URL assertion |
-| `client-transfer.spec.ts`  | 2     | Видимость формы, успешная отправка с toast             |
+| File                      | Tests | Описание                                               |
+| ------------------------- | ----- | ------------------------------------------------------ |
+| `auth.spec.ts`            | 4     | Логин страница, email вход, SMS таб, неудачный вход    |
+| `materials.spec.ts`       | 2     | Отображение страницы, фильтр по городу с URL assertion |
+| `client-transfer.spec.ts` | 2     | Видимость формы, успешная отправка с toast             |
 
 ### Testing Strategy Notes
 
@@ -666,11 +666,11 @@ GitHub Actions (`.github/workflows/ci.yml`):
 
 ## Changelog
 
-| Date       | Author | Changes                                         |
-| ---------- | ------ | ----------------------------------------------- |
-| 2026-04-07 | Agent  | Project initialized                             |
-| 2026-04-08 | Agent  | Updated AGENTS.md with actual project structure |
-| 2026-04-17 | Agent  | Full audit and update based on actual codebase  |
+| Date       | Author | Changes                                                                                          |
+| ---------- | ------ | ------------------------------------------------------------------------------------------------ |
+| 2026-04-07 | Agent  | Project initialized                                                                              |
+| 2026-04-08 | Agent  | Updated AGENTS.md with actual project structure                                                  |
+| 2026-04-17 | Agent  | Full audit and update based on actual codebase                                                   |
 | 2026-04-23 | Agent  | Comprehensive update: added missing components, API routes, testing notes, design system details |
 
 ---

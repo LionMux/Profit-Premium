@@ -46,19 +46,22 @@ const leadStatusClasses: Record<string, string> = {
 const adminGallery = [
   {
     title: 'Контроль материалов',
-    description: 'Следите за качеством каталога, обновляйте презентации и держите витрину объектов актуальной.',
+    description:
+      'Следите за качеством каталога, обновляйте презентации и держите витрину объектов актуальной.',
     href: '/materials',
     imageUrl: '/stories/admin-gallery-1.jpg',
   },
   {
     title: 'Управление CRM-потоком',
-    description: 'Контролируйте статусы лидов, скорость обработки и корректность передачи в Bitrix.',
+    description:
+      'Контролируйте статусы лидов, скорость обработки и корректность передачи в Bitrix.',
     href: '/profile',
     imageUrl: '/stories/admin-gallery-2.jpg',
   },
   {
     title: 'Команда и доступы',
-    description: 'Администраторский взгляд на роли, новых пользователей и структуру работы кабинета.',
+    description:
+      'Администраторский взгляд на роли, новых пользователей и структуру работы кабинета.',
     href: '/dashboard',
     imageUrl: '/stories/admin-gallery-3.jpg',
   },
@@ -212,13 +215,11 @@ export default async function AdminPage() {
                   {session.user?.name || 'Администратор'}
                 </h1>
                 <p className="text-cream/60 max-w-2xl text-base lg:text-lg leading-relaxed">
-                  Администраторская панель для контроля материалов, лидов, сторис и команды.
-                  Всё подчинено одной задаче: быстро видеть состояние системы и действовать без
+                  Администраторская панель для контроля материалов, лидов, сторис и команды. Всё
+                  подчинено одной задаче: быстро видеть состояние системы и действовать без
                   визуального шума.
                 </p>
               </div>
-
-
             </div>
 
             <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_320px] gap-6">
@@ -276,8 +277,8 @@ export default async function AdminPage() {
 
                 <div className="border-t border-white/10 pt-5">
                   <p className="text-sm text-cream/60 leading-relaxed mb-5">
-                    Здесь важен взгляд администратора: контент, команда, CRM и состояние
-                    клиентского потока в одном ритме.
+                    Здесь важен взгляд администратора: контент, команда, CRM и состояние клиентского
+                    потока в одном ритме.
                   </p>
                   <Link
                     href="/profile"
@@ -333,7 +334,7 @@ export default async function AdminPage() {
 
                 <div className="space-y-3">
                   {recentLeads.length > 0 ? (
-                    recentLeads.map((lead) => (
+                    recentLeads.map(lead => (
                       <div
                         key={lead.id}
                         className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-3 border-b border-white/10 last:border-b-0"
@@ -386,7 +387,7 @@ export default async function AdminPage() {
 
                 <div className="space-y-3">
                   {recentMaterials.length > 0 ? (
-                    recentMaterials.map((material) => (
+                    recentMaterials.map(material => (
                       <div
                         key={material.id}
                         className="border border-white/10 bg-black/10 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
@@ -424,7 +425,7 @@ export default async function AdminPage() {
                     { label: 'Администраторы', value: adminCount, icon: ShieldCheck },
                     { label: 'Менеджеры', value: managerCount, icon: UserCheck },
                     { label: 'Партнёры', value: partnerCount, icon: Users2 },
-                  ].map((item) => (
+                  ].map(item => (
                     <div
                       key={item.label}
                       className="border border-white/10 bg-black/10 p-4 flex items-center justify-between gap-4"
@@ -441,7 +442,7 @@ export default async function AdminPage() {
                 </div>
 
                 <div className="pt-6 border-t border-white/10 space-y-3">
-                  {recentUsers.map((user) => (
+                  {recentUsers.map(user => (
                     <div key={user.id} className="flex items-center justify-between gap-4">
                       <div>
                         <p className="text-sm text-cream">{user.name}</p>
@@ -465,7 +466,7 @@ export default async function AdminPage() {
 
           <section className="mb-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {adminGallery.map((card) => (
+              {adminGallery.map(card => (
                 <Link
                   key={card.title}
                   href={card.href}
@@ -508,8 +509,8 @@ export default async function AdminPage() {
                 </div>
                 <div className="border border-white/10 bg-black/10 px-5 py-4 max-w-sm">
                   <p className="text-sm text-cream/70 leading-relaxed">
-                    Администраторский дашборд должен показывать состояние бизнеса с первого
-                    экрана: где материалы, как движется CRM, что происходит с командой и контентом.
+                    Администраторский дашборд должен показывать состояние бизнеса с первого экрана:
+                    где материалы, как движется CRM, что происходит с командой и контентом.
                   </p>
                 </div>
               </div>
@@ -540,7 +541,7 @@ export default async function AdminPage() {
                     text: 'Следите за ролями команды и чистотой клиентского пути без лишних барьеров.',
                     icon: CheckCircle2,
                   },
-                ].map((item) => (
+                ].map(item => (
                   <div key={item.step} className="border border-white/10 bg-black/10 p-5 lg:p-6">
                     <div className="flex items-center justify-between mb-5">
                       <span className="text-cream/45 text-[10px] tracking-[0.26em] uppercase">
@@ -557,7 +558,8 @@ export default async function AdminPage() {
               <div className="mt-8 pt-6 border-t border-white/10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                 <div className="flex items-center gap-3 text-cream/60 text-sm">
                   <Clock3 className="h-4 w-4" />
-                  Производственный взгляд администратора: минимум визуального шума, максимум управления
+                  Производственный взгляд администратора: минимум визуального шума, максимум
+                  управления
                 </div>
                 <Link
                   href="/materials"

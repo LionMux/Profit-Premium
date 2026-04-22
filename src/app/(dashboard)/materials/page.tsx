@@ -38,17 +38,20 @@ export default async function MaterialsPage({ searchParams }: MaterialsPageProps
     }),
   ]);
 
-  const cities = citiesData.map((c) => c.city);
-  const propertyTypes = propertyTypesData.map((pt) => pt.propertyType);
+  const cities = citiesData.map(c => c.city);
+  const propertyTypes = propertyTypesData.map(pt => pt.propertyType);
 
   // Group materials by city for display
-  const materialsByCity = materials.reduce((acc, material) => {
-    if (!acc[material.city]) {
-      acc[material.city] = [];
-    }
-    acc[material.city].push(material);
-    return acc;
-  }, {} as Record<string, typeof materials>);
+  const materialsByCity = materials.reduce(
+    (acc, material) => {
+      if (!acc[material.city]) {
+        acc[material.city] = [];
+      }
+      acc[material.city].push(material);
+      return acc;
+    },
+    {} as Record<string, typeof materials>
+  );
 
   return (
     <div className="min-h-[calc(100vh-200px)] relative">
@@ -68,8 +71,8 @@ export default async function MaterialsPage({ searchParams }: MaterialsPageProps
               Материалы
             </h1>
             <p className="text-cream/60 max-w-lg leading-relaxed">
-              Все презентации и документы по объектам недвижимости.
-              Используйте фильтры для быстрого поиска.
+              Все презентации и документы по объектам недвижимости. Используйте фильтры для быстрого
+              поиска.
             </p>
           </div>
 
@@ -134,12 +137,8 @@ export default async function MaterialsPage({ searchParams }: MaterialsPageProps
         <div className="flex items-center justify-between mb-6">
           <p className="text-sm text-cream/60">
             Найдено: <span className="font-medium text-cream">{materials.length}</span>
-            {city && (
-              <span className="text-cream/40"> в {city}</span>
-            )}
-            {propertyType && (
-              <span className="text-cream/40">, {propertyType}</span>
-            )}
+            {city && <span className="text-cream/40"> в {city}</span>}
+            {propertyType && <span className="text-cream/40">, {propertyType}</span>}
           </p>
 
           {(city || propertyType) && (
@@ -158,9 +157,7 @@ export default async function MaterialsPage({ searchParams }: MaterialsPageProps
             <div className="h-20 w-20 bg-cream/10 flex items-center justify-center mb-6">
               <FileText className="h-10 w-10 text-cream/30" />
             </div>
-            <h3 className="font-serif text-xl text-cream mb-2">
-              Материалы не найдены
-            </h3>
+            <h3 className="font-serif text-xl text-cream mb-2">Материалы не найдены</h3>
             <p className="text-cream/60 text-center max-w-md">
               {city || propertyType
                 ? 'Попробуйте изменить фильтры или сбросить их, чтобы увидеть больше результатов'
@@ -178,11 +175,7 @@ export default async function MaterialsPage({ searchParams }: MaterialsPageProps
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {materials.map((material, index) => (
-              <MaterialCard
-                key={material.id}
-                material={material}
-                delay={index * 0.05}
-              />
+              <MaterialCard key={material.id} material={material} delay={index * 0.05} />
             ))}
           </div>
         )}

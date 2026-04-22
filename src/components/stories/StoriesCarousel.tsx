@@ -50,12 +50,16 @@ export function StoriesCarousel({
     }
   }, []);
 
-  const scroll = useCallback((direction: 'left' | 'right') => {
-    const newIndex = direction === 'left'
-      ? Math.max(0, currentIndex - 1)
-      : Math.min(stories.length - 1, currentIndex + 1);
-    scrollToIndex(newIndex);
-  }, [currentIndex, stories.length, scrollToIndex]);
+  const scroll = useCallback(
+    (direction: 'left' | 'right') => {
+      const newIndex =
+        direction === 'left'
+          ? Math.max(0, currentIndex - 1)
+          : Math.min(stories.length - 1, currentIndex + 1);
+      scrollToIndex(newIndex);
+    },
+    [currentIndex, stories.length, scrollToIndex]
+  );
 
   // Auto-play
   useEffect(() => {
@@ -167,11 +171,7 @@ export function StoriesCarousel({
         onMouseLeave={handleMouseLeave}
       >
         {stories.map((story, index) => (
-          <StoryCard
-            key={story.id}
-            story={story}
-            isActive={index === currentIndex}
-          />
+          <StoryCard key={story.id} story={story} isActive={index === currentIndex} />
         ))}
       </div>
 
@@ -184,9 +184,7 @@ export function StoriesCarousel({
               onClick={() => scrollToIndex(index)}
               className={cn(
                 'h-2 rounded-full transition-all duration-300',
-                index === currentIndex
-                  ? 'w-8 bg-cream'
-                  : 'w-2 bg-cream/40 hover:bg-cream/60'
+                index === currentIndex ? 'w-8 bg-cream' : 'w-2 bg-cream/40 hover:bg-cream/60'
               )}
               aria-label={`Перейти к слайду ${index + 1}`}
             />
@@ -197,13 +195,7 @@ export function StoriesCarousel({
   );
 }
 
-function StoryCard({
-  story,
-  isActive,
-}: {
-  story: Story;
-  isActive: boolean;
-}) {
+function StoryCard({ story, isActive }: { story: Story; isActive: boolean }) {
   const content = (
     <div
       className={cn(
@@ -244,12 +236,7 @@ function StoryCard({
 
   if (story.link) {
     return (
-      <a
-        href={story.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block"
-      >
+      <a href={story.link} target="_blank" rel="noopener noreferrer" className="block">
         {content}
       </a>
     );

@@ -2,10 +2,7 @@ import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
 import { auth } from '@/lib/auth';
 import { StoriesCarousel } from '@/components/stories/StoriesCarousel';
-import {
-  ArrowRight,
-  FileText,
-} from 'lucide-react';
+import { ArrowRight, FileText } from 'lucide-react';
 import { AbstractSkyline } from '@/components/illustrations/BuildingIllustrations';
 
 const fallbackStories = [
@@ -34,8 +31,6 @@ const fallbackStories = [
     link: '/contacts',
   },
 ];
-
-
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -86,12 +81,10 @@ export default async function DashboardPage() {
               {userName}
             </h1>
             <p className="text-cream/60 max-w-2xl text-base lg:text-lg leading-relaxed">
-              Актуальные предложения, материалы для клиентов и передача лидов — всё в одном
-              рабочем пространстве для партнёрской продажи недвижимости.
+              Актуальные предложения, материалы для клиентов и передача лидов — всё в одном рабочем
+              пространстве для партнёрской продажи недвижимости.
             </p>
           </div>
-
-
         </div>
 
         <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_320px] gap-6">
@@ -115,9 +108,7 @@ export default async function DashboardPage() {
             <p className="text-cream/45 text-[10px] tracking-[0.28em] uppercase mb-3">
               Рабочий статус
             </p>
-            <h3 className="font-serif text-2xl text-cream font-semibold mb-4">
-              Личный кабинет
-            </h3>
+            <h3 className="font-serif text-2xl text-cream font-semibold mb-4">Личный кабинет</h3>
 
             <div className="space-y-4 mb-6">
               <div className="border border-white/10 bg-black/10 p-4">
@@ -169,7 +160,7 @@ export default async function DashboardPage() {
 
           <div className="space-y-3">
             {recentMaterials.length > 0 ? (
-              recentMaterials.map((material) => (
+              recentMaterials.map(material => (
                 <div
                   key={material.id}
                   className="border border-white/10 bg-black/10 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
@@ -204,8 +195,6 @@ export default async function DashboardPage() {
           </div>
         </div>
       </section>
-
-
     </div>
   );
 }

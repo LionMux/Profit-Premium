@@ -28,17 +28,16 @@ export function Footer() {
               PROFIT PREMIUM
             </div>
             <p className="text-cream/60 text-xs tracking-wider leading-relaxed">
-              Закрытый клуб для партнеров по недвижимости. Эксклюзивные объекты, персональный менеджер, быстрое оформление сделок.
+              Закрытый клуб для партнеров по недвижимости. Эксклюзивные объекты, персональный
+              менеджер, быстрое оформление сделок.
             </p>
           </div>
 
           {/* Navigation */}
           <div>
-            <h4 className="text-cream text-[10px] font-bold tracking-[0.3em] mb-5">
-              РАЗДЕЛЫ
-            </h4>
+            <h4 className="text-cream text-[10px] font-bold tracking-[0.3em] mb-5">РАЗДЕЛЫ</h4>
             <ul className="space-y-3">
-              {navLinks.map((link) => (
+              {navLinks.map(link => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -53,11 +52,9 @@ export function Footer() {
 
           {/* Social Links */}
           <div>
-            <h4 className="text-cream text-[10px] font-bold tracking-[0.3em] mb-5">
-              СОЦСЕТИ
-            </h4>
+            <h4 className="text-cream text-[10px] font-bold tracking-[0.3em] mb-5">СОЦСЕТИ</h4>
             <div className="flex gap-3">
-              {socialLinks.map((social) => (
+              {socialLinks.map(social => (
                 <a
                   key={social.label}
                   href={social.href}

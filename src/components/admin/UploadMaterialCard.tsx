@@ -60,7 +60,8 @@ export function UploadMaterialCard() {
 
       // Step 2: Upload thumbnail if provided
       let thumbnailUrl: string | undefined;
-      const thumbnailFile = (form.querySelector('input[name="thumbnail"]') as HTMLInputElement)?.files?.[0];
+      const thumbnailFile = (form.querySelector('input[name="thumbnail"]') as HTMLInputElement)
+        ?.files?.[0];
       if (thumbnailFile) {
         const thumbFormData = new FormData();
         thumbFormData.append('file', thumbnailFile);
@@ -125,9 +126,7 @@ export function UploadMaterialCard() {
             <Upload className="h-6 w-6 text-burgundy-dark" />
           </div>
 
-          <h3 className="text-sm font-bold tracking-[0.15em] mb-2">
-            ЗАГРУЗИТЬ МАТЕРИАЛ
-          </h3>
+          <h3 className="text-sm font-bold tracking-[0.15em] mb-2">ЗАГРУЗИТЬ МАТЕРИАЛ</h3>
           <p className="text-sm text-burgundy-dark/70 leading-relaxed text-left">
             Добавить новую презентацию или документ
           </p>
@@ -154,9 +153,7 @@ export function UploadMaterialCard() {
             <div className="h-16 w-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
               <Check className="h-8 w-8 text-green-600" />
             </div>
-            <h3 className="text-lg font-semibold text-burgundy-dark mb-2">
-              Успешно загружено!
-            </h3>
+            <h3 className="text-lg font-semibold text-burgundy-dark mb-2">Успешно загружено!</h3>
             <p className="text-sm text-muted-foreground text-center">
               Материал добавлен и доступен в разделе &quot;Материалы&quot;
             </p>
@@ -230,24 +227,19 @@ export function UploadMaterialCard() {
                   id="file-upload"
                   required
                 />
-                <label
-                  htmlFor="file-upload"
-                  className="flex flex-col items-center cursor-pointer"
-                >
+                <label htmlFor="file-upload" className="flex flex-col items-center cursor-pointer">
                   {selectedFile ? (
                     <>
                       <div className="h-12 w-12 rounded-full bg-burgundy/10 flex items-center justify-center mb-3">
                         <FileText className="h-6 w-6 text-burgundy" />
                       </div>
-                      <p className="text-sm font-medium text-burgundy-dark">
-                        {selectedFile.name}
-                      </p>
+                      <p className="text-sm font-medium text-burgundy-dark">{selectedFile.name}</p>
                       <p className="text-xs text-muted-foreground mt-1">
                         {(selectedFile.size / 1024 / 1024).toFixed(2)} МБ
                       </p>
                       <button
                         type="button"
-                        onClick={(e) => {
+                        onClick={e => {
                           e.preventDefault();
                           setSelectedFile(null);
                         }}
@@ -262,12 +254,8 @@ export function UploadMaterialCard() {
                       <div className="h-12 w-12 rounded-full bg-burgundy/10 flex items-center justify-center mb-3">
                         <Upload className="h-6 w-6 text-burgundy" />
                       </div>
-                      <p className="text-sm font-medium text-burgundy-dark">
-                        Нажмите для загрузки
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        PDF, DOC до 50 МБ
-                      </p>
+                      <p className="text-sm font-medium text-burgundy-dark">Нажмите для загрузки</p>
+                      <p className="text-xs text-muted-foreground mt-1">PDF, DOC до 50 МБ</p>
                     </>
                   )}
                 </label>
