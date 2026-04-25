@@ -1,0 +1,27 @@
+version: 1
+agent:
+  name: profit-premium-main
+  description: |
+    Главный оркестратор для Profit-Premium. Управляет workflow
+    Plan-Explore-Execute-Validate-Checkpoint. Не пишет код сам —
+    делегирует специализированным субагентам.
+  extend: default
+  system_prompt_path: ./prompts/main.md
+  subagents:
+    planner:
+      path: ./planner.yaml
+      description: |
+        Анализ кодовой базы и составление детального плана реализации.
+        Read-only режим: не пишет код, только исследует и планирует.
+    executor:
+      path: ./executor.yaml
+      description: |
+        Исполнение плана: написание кода, компонентов, API routes.
+        Запускается после одобрения плана. Работает по чанкам
+        с checkpoint-паузами после каждого шага.
+    validator:
+      path: ./validator.yaml
+      description: |
+        Валидация и тестирование: запуск линтеров, тип-чекера,
+        E2E тестов. Запускается после каждого чанка
+        исполнения и в финале задачи.

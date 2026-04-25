@@ -1,0 +1,461 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - link "PROFIT PREMIUM" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e6]:
+        - generic [ref=e7]: PROFIT
+        - generic [ref=e8]: PREMIUM
+    - navigation [ref=e9]:
+      - link "ЛИЧНЫЙ КАБИНЕТ" [ref=e10] [cursor=pointer]:
+        - /url: /login
+      - link "О НАС" [ref=e11] [cursor=pointer]:
+        - /url: "#about"
+      - link "УСЛУГИ" [ref=e12] [cursor=pointer]:
+        - /url: "#services"
+      - link "КОМАНДА" [ref=e13] [cursor=pointer]:
+        - /url: "#team"
+      - link "ОТЗЫВЫ" [ref=e14] [cursor=pointer]:
+        - /url: "#reviews"
+      - link "КОНТАКТЫ" [ref=e15] [cursor=pointer]:
+        - /url: "#contacts"
+    - link "ОСТАВИТЬ ЗАЯВКУ" [ref=e17] [cursor=pointer]:
+      - /url: "#contacts"
+  - main [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e21]:
+        - paragraph [ref=e22]: АГЕНТСТВО НЕДВИЖИМОСТИ
+        - heading "Найдём вашу квартиру" [level=1] [ref=e23]:
+          - generic "Найдём" [ref=e24]:
+            - generic [ref=e25]: Н
+            - generic [ref=e26]: а
+            - generic [ref=e27]: й
+            - generic [ref=e28]: д
+            - generic [ref=e29]: ё
+            - generic [ref=e30]: м
+          - generic "вашу" [ref=e31]:
+            - generic [ref=e32]: в
+            - generic [ref=e33]: а
+            - generic [ref=e34]: ш
+            - generic [ref=e35]: у
+          - generic "квартиру" [ref=e36]:
+            - generic [ref=e37]: к
+            - generic [ref=e38]: в
+            - generic [ref=e39]: а
+            - generic [ref=e40]: р
+            - generic [ref=e41]: т
+            - generic [ref=e42]: и
+            - generic [ref=e43]: р
+            - generic [ref=e44]: у
+        - paragraph [ref=e45]: Подбираем, покупаем и продаём недвижимость. Наши услуги для вас бесплатны.
+        - generic [ref=e46]:
+          - link "ПОДОБРАТЬ КВАРТИРУ" [ref=e47] [cursor=pointer]:
+            - /url: "#contacts"
+          - link "УЗНАТЬ БОЛЬШЕ" [ref=e48] [cursor=pointer]:
+            - /url: "#about"
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - generic [ref=e51]:
+            - generic [ref=e53]:
+              - generic [ref=e54]: "0"
+              - generic [ref=e55]: "1"
+              - generic [ref=e56]: "2"
+              - generic [ref=e57]: "3"
+              - generic [ref=e58]: "4"
+              - generic [ref=e59]: "5"
+              - generic [ref=e60]: "6"
+              - generic [ref=e61]: "7"
+              - generic [ref=e62]: "8"
+              - generic [ref=e63]: "9"
+              - generic [ref=e64]: "0"
+              - generic [ref=e65]: "1"
+              - generic [ref=e66]: "2"
+              - generic [ref=e67]: "3"
+              - generic [ref=e68]: "4"
+              - generic [ref=e69]: "5"
+              - generic [ref=e70]: "6"
+              - generic [ref=e71]: "7"
+              - generic [ref=e72]: "8"
+              - generic [ref=e73]: "9"
+              - generic [ref=e74]: "0"
+              - generic [ref=e75]: "1"
+              - generic [ref=e76]: "2"
+              - generic [ref=e77]: "3"
+              - generic [ref=e78]: "4"
+              - generic [ref=e79]: "5"
+            - generic [ref=e81]:
+              - generic [ref=e82]: "0"
+              - generic [ref=e83]: "1"
+              - generic [ref=e84]: "2"
+              - generic [ref=e85]: "3"
+              - generic [ref=e86]: "4"
+              - generic [ref=e87]: "5"
+              - generic [ref=e88]: "6"
+              - generic [ref=e89]: "7"
+              - generic [ref=e90]: "8"
+              - generic [ref=e91]: "9"
+              - generic [ref=e92]: "0"
+              - generic [ref=e93]: "1"
+              - generic [ref=e94]: "2"
+              - generic [ref=e95]: "3"
+              - generic [ref=e96]: "4"
+              - generic [ref=e97]: "5"
+              - generic [ref=e98]: "6"
+              - generic [ref=e99]: "7"
+              - generic [ref=e100]: "8"
+              - generic [ref=e101]: "9"
+              - generic [ref=e102]: "0"
+            - generic [ref=e104]:
+              - generic [ref=e105]: "0"
+              - generic [ref=e106]: "1"
+              - generic [ref=e107]: "2"
+              - generic [ref=e108]: "3"
+              - generic [ref=e109]: "4"
+              - generic [ref=e110]: "5"
+              - generic [ref=e111]: "6"
+              - generic [ref=e112]: "7"
+              - generic [ref=e113]: "8"
+              - generic [ref=e114]: "9"
+              - generic [ref=e115]: "0"
+              - generic [ref=e116]: "1"
+              - generic [ref=e117]: "2"
+              - generic [ref=e118]: "3"
+              - generic [ref=e119]: "4"
+              - generic [ref=e120]: "5"
+              - generic [ref=e121]: "6"
+              - generic [ref=e122]: "7"
+              - generic [ref=e123]: "8"
+              - generic [ref=e124]: "9"
+              - generic [ref=e125]: "0"
+            - generic [ref=e126]: +
+          - generic [ref=e127]: УСПЕШНЫХ СДЕЛОК
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - generic [ref=e131]:
+              - generic [ref=e132]: "0"
+              - generic [ref=e133]: "1"
+              - generic [ref=e134]: "2"
+              - generic [ref=e135]: "3"
+              - generic [ref=e136]: "4"
+              - generic [ref=e137]: "5"
+              - generic [ref=e138]: "6"
+              - generic [ref=e139]: "7"
+              - generic [ref=e140]: "8"
+              - generic [ref=e141]: "9"
+              - generic [ref=e142]: "0"
+              - generic [ref=e143]: "1"
+              - generic [ref=e144]: "2"
+              - generic [ref=e145]: "3"
+              - generic [ref=e146]: "4"
+              - generic [ref=e147]: "5"
+              - generic [ref=e148]: "6"
+              - generic [ref=e149]: "7"
+              - generic [ref=e150]: "8"
+              - generic [ref=e151]: "9"
+              - generic [ref=e152]: "0"
+              - generic [ref=e153]: "1"
+              - generic [ref=e154]: "2"
+              - generic [ref=e155]: "3"
+              - generic [ref=e156]: "4"
+              - generic [ref=e157]: "5"
+              - generic [ref=e158]: "6"
+              - generic [ref=e159]: "7"
+              - generic [ref=e160]: "8"
+            - generic [ref=e161]: ЛЕТ
+          - generic [ref=e162]: НА РЫНКЕ
+        - generic [ref=e163]:
+          - generic [ref=e164]:
+            - generic [ref=e166]:
+              - generic [ref=e167]: "0"
+              - generic [ref=e168]: "1"
+              - generic [ref=e169]: "2"
+              - generic [ref=e170]: "3"
+              - generic [ref=e171]: "4"
+              - generic [ref=e172]: "5"
+              - generic [ref=e173]: "6"
+              - generic [ref=e174]: "7"
+              - generic [ref=e175]: "8"
+              - generic [ref=e176]: "9"
+              - generic [ref=e177]: "0"
+              - generic [ref=e178]: "1"
+              - generic [ref=e179]: "2"
+              - generic [ref=e180]: "3"
+              - generic [ref=e181]: "4"
+              - generic [ref=e182]: "5"
+              - generic [ref=e183]: "6"
+              - generic [ref=e184]: "7"
+              - generic [ref=e185]: "8"
+              - generic [ref=e186]: "9"
+              - generic [ref=e187]: "0"
+            - generic [ref=e188]: ₽
+          - generic [ref=e189]: СТОИМОСТЬ УСЛУГ
+    - generic [ref=e190]:
+      - generic [ref=e191]:
+        - paragraph [ref=e192]: ПОЧЕМУ ВЫБИРАЮТ НАС
+        - heading "С заботой о каждом клиенте" [level=2] [ref=e193]:
+          - generic "С заботой" [ref=e194]:
+            - generic [ref=e195]: С
+            - generic [ref=e197]: з
+            - generic [ref=e198]: а
+            - generic [ref=e199]: б
+            - generic [ref=e200]: о
+            - generic [ref=e201]: т
+            - generic [ref=e202]: о
+            - generic [ref=e203]: й
+          - generic "о каждом клиенте" [ref=e204]:
+            - generic [ref=e205]: о
+            - generic [ref=e207]: к
+            - generic [ref=e208]: а
+            - generic [ref=e209]: ж
+            - generic [ref=e210]: д
+            - generic [ref=e211]: о
+            - generic [ref=e212]: м
+            - generic [ref=e214]: к
+            - generic [ref=e215]: л
+            - generic [ref=e216]: и
+            - generic [ref=e217]: е
+            - generic [ref=e218]: н
+            - generic [ref=e219]: т
+            - generic [ref=e220]: е
+      - generic [ref=e221]:
+        - img [ref=e223]
+        - generic [ref=e228]:
+          - generic [ref=e229]:
+            - generic [ref=e230]: "01"
+            - heading "РАБОТАЕМ БЕСПЛАТНО" [level=3] [ref=e231]
+            - paragraph [ref=e232]: Наши услуги оплачивает застройщик. Для вас подбор, показы и сопровождение сделки — 0 ₽.
+          - generic [ref=e233]:
+            - generic [ref=e234]: "02"
+            - heading "ПРОВЕРЕННЫЕ ЗАСТРОЙЩИКИ" [level=3] [ref=e235]
+            - paragraph [ref=e236]: Работаем только с надёжными партнёрами. Проверяем все документы и разрешения на строительство.
+          - generic [ref=e237]:
+            - generic [ref=e238]: "03"
+            - heading "СКИДКИ ДО 1 000 000 ₽" [level=3] [ref=e239]
+            - paragraph [ref=e240]: Благодаря партнёрству с застройщиками наши клиенты получают эксклюзивные условия.
+          - generic [ref=e241]:
+            - generic [ref=e242]: "04"
+            - heading "ЛИЧНЫЙ ЭКСПЕРТ" [level=3] [ref=e243]
+            - paragraph [ref=e244]: Персональный специалист ведёт вас от первой консультации до получения ключей.
+    - generic [ref=e245]:
+      - generic [ref=e246]:
+        - paragraph [ref=e247]: ЧТО МЫ ДЕЛАЕМ
+        - heading "Полный цикл работы" [level=2] [ref=e248]:
+          - generic "Полный цикл" [ref=e249]:
+            - generic [ref=e250]: П
+            - generic [ref=e251]: о
+            - generic [ref=e252]: л
+            - generic [ref=e253]: н
+            - generic [ref=e254]: ы
+            - generic [ref=e255]: й
+            - generic [ref=e257]: ц
+            - generic [ref=e258]: и
+            - generic [ref=e259]: к
+            - generic [ref=e260]: л
+          - generic "работы" [ref=e261]:
+            - generic [ref=e262]: р
+            - generic [ref=e263]: а
+            - generic [ref=e264]: б
+            - generic [ref=e265]: о
+            - generic [ref=e266]: т
+            - generic [ref=e267]: ы
+      - generic [ref=e268]:
+        - generic [ref=e269]:
+          - heading "ПОКУПКА НОВОСТРОЙКИ" [level=3] [ref=e270]
+          - paragraph [ref=e271]: Подбираем квартиру в новостройке под ваши критерии и бюджет. Сравниваем объекты, организуем показы.
+          - list [ref=e272]:
+            - listitem [ref=e273]: ПОДБОР ПО ПАРАМЕТРАМ
+            - listitem [ref=e275]: СРАВНЕНИЕ ОБЪЕКТОВ
+            - listitem [ref=e277]: ЮРИДИЧЕСКОЕ СОПРОВОЖДЕНИЕ
+        - generic [ref=e279]:
+          - heading "ИПОТЕКА И РАССРОЧКА" [level=3] [ref=e280]
+          - paragraph [ref=e281]: Подбираем выгодные ипотечные программы и рассрочки. Дистанционно подаём заявки.
+          - list [ref=e282]:
+            - listitem [ref=e283]: СТАВКИ ОТ 0,1%
+            - listitem [ref=e285]: БЕЗ ЛИШНИХ ДОКУМЕНТОВ
+            - listitem [ref=e287]: ДИСТАНЦИОННОЕ ОФОРМЛЕНИЕ
+        - generic [ref=e289]:
+          - heading "ПРОДАЖА ВТОРИЧКИ" [level=3] [ref=e290]
+          - paragraph [ref=e291]: Оцениваем вашу квартиру, находим покупателей и проводим сделку с юридической проверкой.
+          - list [ref=e292]:
+            - listitem [ref=e293]: ОЦЕНКА ЗА 1 ДЕНЬ
+            - listitem [ref=e295]: РЕКЛАМА НА 50+ ПЛОЩАДКАХ
+            - listitem [ref=e297]: ЮРИСТ НА СДЕЛКЕ
+        - generic [ref=e299]:
+          - heading "TRADE-IN" [level=3] [ref=e300]
+          - paragraph [ref=e301]: Обмениваем вашу старую квартиру на новую. Сначала подбираем вариант, затем продаём текущую.
+          - list [ref=e302]:
+            - listitem [ref=e303]: ФИКСАЦИЯ ЦЕНЫ НОВОЙ
+            - listitem [ref=e305]: ПРОДАЖА В СРОК
+            - listitem [ref=e307]: БЕЗ ДВОЙНЫХ ПЕРЕЕЗДОВ
+    - generic [ref=e309]:
+      - generic [ref=e310]:
+        - paragraph [ref=e311]: НАША КОМАНДА
+        - heading "Эксперты с опытом" [level=2] [ref=e312]:
+          - generic "Эксперты" [ref=e313]:
+            - generic [ref=e314]: Э
+            - generic [ref=e315]: к
+            - generic [ref=e316]: с
+            - generic [ref=e317]: п
+            - generic [ref=e318]: е
+            - generic [ref=e319]: р
+            - generic [ref=e320]: т
+            - generic [ref=e321]: ы
+          - generic "с опытом" [ref=e322]:
+            - generic [ref=e323]: с
+            - generic [ref=e325]: о
+            - generic [ref=e326]: п
+            - generic [ref=e327]: ы
+            - generic [ref=e328]: т
+            - generic [ref=e329]: о
+            - generic [ref=e330]: м
+      - generic [ref=e331]:
+        - generic [ref=e334]:
+          - heading "Александр Иванов" [level=3] [ref=e336]
+          - paragraph [ref=e337]: Генеральный директор
+          - generic [ref=e338]:
+            - generic [ref=e339]:
+              - generic [ref=e340]: Опыт
+              - generic [ref=e341]: 15 лет
+            - generic [ref=e343]:
+              - generic [ref=e344]: Сделок
+              - generic [ref=e345]: 200+
+        - generic [ref=e348]:
+          - heading "Мария Соколова" [level=3] [ref=e350]
+          - paragraph [ref=e351]: Старший эксперт
+          - generic [ref=e352]:
+            - generic [ref=e353]:
+              - generic [ref=e354]: Опыт
+              - generic [ref=e355]: 12 лет
+            - generic [ref=e357]:
+              - generic [ref=e358]: Сделок
+              - generic [ref=e359]: 150+
+        - generic [ref=e362]:
+          - heading "Дмитрий Петров" [level=3] [ref=e364]
+          - paragraph [ref=e365]: Эксперт по ипотеке
+          - generic [ref=e366]:
+            - generic [ref=e367]:
+              - generic [ref=e368]: Опыт
+              - generic [ref=e369]: 10 лет
+            - generic [ref=e371]:
+              - generic [ref=e372]: Одобрений
+              - generic [ref=e373]: 300+
+        - generic [ref=e376]:
+          - heading "Елена Новикова" [level=3] [ref=e378]
+          - paragraph [ref=e379]: Эксперт по вторичке
+          - generic [ref=e380]:
+            - generic [ref=e381]:
+              - generic [ref=e382]: Опыт
+              - generic [ref=e383]: 8 лет
+            - generic [ref=e385]:
+              - generic [ref=e386]: Сделок
+              - generic [ref=e387]: 120+
+    - generic [ref=e388]:
+      - generic [ref=e389]:
+        - generic [ref=e390]:
+          - paragraph [ref=e391]: ОТЗЫВЫ
+          - heading "Что говорят клиенты" [level=2] [ref=e392]:
+            - text: Что говорят
+            - text: клиенты
+        - generic [ref=e393]:
+          - generic [ref=e394]: 500+
+          - generic [ref=e395]: БЛАГОДАРНЫХ ОТЗЫВОВ
+      - generic [ref=e396]:
+        - generic [ref=e397]:
+          - paragraph [ref=e404]: “Обратились за помощью в подборе квартиры и остались очень довольны. Всё объяснили, показали несколько вариантов, помогли с ипотекой. Никакого давления — только реальная помощь.”
+          - generic [ref=e405]:
+            - generic [ref=e406]:
+              - generic [ref=e407]: АННА КОЗЛОВА
+              - generic [ref=e408]: КЛИЕНТ АГЕНТСТВА
+            - generic [ref=e409]: ФЕВРАЛЬ 2026
+        - generic [ref=e410]:
+          - paragraph [ref=e417]: “Продавал квартиру через агентство. Нашли покупателя за 3 недели, оценили правильно и провели сделку чисто. Сэкономил кучу нервов и времени.”
+          - generic [ref=e418]:
+            - generic [ref=e419]:
+              - generic [ref=e420]: ИГОРЬ МАКАРОВ
+              - generic [ref=e421]: КЛИЕНТ АГЕНТСТВА
+            - generic [ref=e422]: ЯНВАРЬ 2026
+        - generic [ref=e423]:
+          - paragraph [ref=e430]: “Первая квартира — это всегда страшно. Мне всё рассказали, провели по всем этапам, подобрали ипотеку с хорошей ставкой. Буду рекомендовать друзьям.”
+          - generic [ref=e431]:
+            - generic [ref=e432]:
+              - generic [ref=e433]: СВЕТЛАНА БОРИСОВА
+              - generic [ref=e434]: КЛИЕНТ АГЕНТСТВА
+            - generic [ref=e435]: ДЕКАБРЬ 2025
+    - generic [ref=e437]:
+      - generic [ref=e438]:
+        - paragraph [ref=e439]: СВЯЗАТЬСЯ С НАМИ
+        - heading "Подберём квартиру для вас" [level=2] [ref=e440]:
+          - text: Подберём
+          - text: квартиру
+          - text: для вас
+        - generic [ref=e441]:
+          - link "ТЕЛЕФОН +7 (000) 000-00-00" [ref=e442] [cursor=pointer]:
+            - /url: tel:+70000000000
+            - img [ref=e444]
+            - generic [ref=e446]:
+              - generic [ref=e447]: ТЕЛЕФОН
+              - generic [ref=e448]: +7 (000) 000-00-00
+          - link "EMAIL info@profit-premium.ru" [ref=e449] [cursor=pointer]:
+            - /url: mailto:info@profit-premium.ru
+            - img [ref=e451]
+            - generic [ref=e453]:
+              - generic [ref=e454]: EMAIL
+              - generic [ref=e455]: info@profit-premium.ru
+          - generic [ref=e456]:
+            - img [ref=e458]
+            - generic [ref=e460]:
+              - generic [ref=e461]: РЕЖИМ РАБОТЫ
+              - generic [ref=e462]: "ПН–ПТ: 9:00 – 20:00"
+      - generic [ref=e463]:
+        - heading "Оставьте заявку" [level=3] [ref=e464]
+        - paragraph [ref=e465]: СВЯЖЕМСЯ В ТЕЧЕНИЕ 10 МИНУТ
+        - generic [ref=e466]:
+          - generic [ref=e467]:
+            - generic [ref=e468]: ВАШЕ ИМЯ
+            - textbox "Иван Иванов" [ref=e469]
+          - generic [ref=e470]:
+            - generic [ref=e471]: ТЕЛЕФОН
+            - textbox "+7 (000) 000-00-00" [ref=e472]
+          - button "ПОДОБРАТЬ КВАРТИРУ" [ref=e473] [cursor=pointer]
+          - paragraph [ref=e474]:
+            - text: НАЖИМАЯ КНОПКУ, ВЫ СОГЛАШАЕТЕСЬ С
+            - link "ПОЛИТИКОЙ КОНФИДЕНЦИАЛЬНОСТИ" [ref=e475] [cursor=pointer]:
+              - /url: "#"
+    - generic [ref=e476]:
+      - generic [ref=e477]:
+        - generic [ref=e478]:
+          - generic [ref=e479]: PROFIT PREMIUM
+          - paragraph [ref=e480]: Агентство недвижимости полного цикла. Подбираем, покупаем и продаём с заботой о вас.
+        - generic [ref=e481]:
+          - heading "РАЗДЕЛЫ" [level=4] [ref=e482]
+          - list [ref=e483]:
+            - listitem [ref=e484]:
+              - link "О НАС" [ref=e485] [cursor=pointer]:
+                - /url: "#about"
+            - listitem [ref=e486]:
+              - link "УСЛУГИ" [ref=e487] [cursor=pointer]:
+                - /url: "#services"
+            - listitem [ref=e488]:
+              - link "КОМАНДА" [ref=e489] [cursor=pointer]:
+                - /url: "#team"
+            - listitem [ref=e490]:
+              - link "ОТЗЫВЫ" [ref=e491] [cursor=pointer]:
+                - /url: "#reviews"
+            - listitem [ref=e492]:
+              - link "КОНТАКТЫ" [ref=e493] [cursor=pointer]:
+                - /url: "#contacts"
+        - generic [ref=e494]:
+          - heading "СОЦСЕТИ" [level=4] [ref=e495]
+          - generic [ref=e496]:
+            - link "TG" [ref=e497] [cursor=pointer]:
+              - /url: "#"
+            - link "WA" [ref=e498] [cursor=pointer]:
+              - /url: "#"
+            - link "ВК" [ref=e499] [cursor=pointer]:
+              - /url: "#"
+      - generic [ref=e500]:
+        - paragraph [ref=e501]: © 2026 ООО “ПРОФИТ ПРЕМИУМ”. ВСЕ ПРАВА ЗАЩИЩЕНЫ.
+        - generic [ref=e502]:
+          - link "КОНФИДЕНЦИАЛЬНОСТЬ" [ref=e503] [cursor=pointer]:
+            - /url: "#"
+          - link "СОГЛАШЕНИЕ" [ref=e504] [cursor=pointer]:
+            - /url: "#"

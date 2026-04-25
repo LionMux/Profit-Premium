@@ -115,17 +115,10 @@ export function QuickActionCard({
         className={cn(
           'h-12 w-12 flex items-center justify-center mb-6',
           'transition-transform duration-300 group-hover:scale-110',
-          isPrimary
-            ? 'bg-burgundy-dark/10'
-            : 'bg-burgundy-light/50'
+          isPrimary ? 'bg-burgundy-dark/10' : 'bg-burgundy-light/50'
         )}
       >
-        <Icon
-          className={cn(
-            'h-6 w-6',
-            isPrimary ? 'text-burgundy-dark' : 'text-white'
-          )}
-        />
+        <Icon className={cn('h-6 w-6', isPrimary ? 'text-burgundy-dark' : 'text-white')} />
       </div>
 
       {/* Content */}
@@ -154,20 +147,11 @@ export function QuickActionCard({
           'flex items-center justify-center',
           'transition-all duration-300',
           'opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0',
-          isPrimary
-            ? 'bg-burgundy-dark/10'
-            : 'bg-white/10'
+          isPrimary ? 'bg-burgundy-dark/10' : 'bg-white/10'
         )}
       >
-        <ArrowUpRight
-          className={cn(
-            'h-4 w-4',
-            isPrimary ? 'text-burgundy-dark' : 'text-cream'
-          )}
-        />
+        <ArrowUpRight className={cn('h-4 w-4', isPrimary ? 'text-burgundy-dark' : 'text-cream')} />
       </div>
-
-
     </Link>
   );
 }

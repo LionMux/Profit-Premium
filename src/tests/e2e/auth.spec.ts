@@ -4,7 +4,7 @@ test.describe('Authentication', () => {
   test('should display login page', async ({ page }) => {
     await page.goto('/login');
     await expect(page.locator('text=Profit Premium')).toBeVisible();
-    await expect(page.locator('text=Вход в личный кабинет партнера')).toBeVisible();
+    await expect(page.locator('text=Вход в личный кабинет')).toBeVisible();
   });
 
   test('should login with email', async ({ page }) => {
@@ -12,7 +12,7 @@ test.describe('Authentication', () => {
     await page.fill('[name="email"]', 'partner@example.com');
     await page.fill('[name="password"]', 'partner123');
     await page.click('button[type="submit"]');
-    await expect(page).toHaveURL('/');
+    await expect(page).toHaveURL('/dashboard');
     await expect(page.locator('text=Добро пожаловать')).toBeVisible();
   });
 
@@ -26,8 +26,8 @@ test.describe('Authentication', () => {
 
   test('should switch between email and SMS login', async ({ page }) => {
     await page.goto('/login');
-    await expect(page.locator('button:has-text("Email")')).toBeVisible();
-    await page.click('button:has-text("SMS")');
+    await expect(page.locator('button:has-text("E-mail")')).toBeVisible();
+    await page.click('button:has-text("По СМС")');
     await expect(page.locator('label:has-text("Телефон")')).toBeVisible();
   });
 });

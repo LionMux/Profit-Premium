@@ -138,9 +138,7 @@ export function StatCard({
       </div>
 
       {/* Label */}
-      <p className="text-xs text-cream/50 uppercase tracking-wider mb-2">
-        {label}
-      </p>
+      <p className="text-xs text-cream/50 uppercase tracking-wider mb-2">{label}</p>
 
       {/* Value */}
       <div className="flex items-end gap-3">

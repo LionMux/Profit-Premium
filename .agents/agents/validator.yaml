@@ -1,0 +1,18 @@
+version: 1
+agent:
+  name: profit-premium-validator
+  description: |
+    Валидатор качества кода для Profit-Premium. Запускает линтеры,
+    TypeScript type-checker, E2E тесты Playwright. Проверяет что
+    код соответствует стандартам проекта и не ломает существующую
+    функциональность.
+  extend: ./main.yaml
+  system_prompt_path: ./prompts/validator.md
+  tools:
+    - "kimi_cli.tools.file:ReadFile"
+    - "kimi_cli.tools.file:Glob"
+    - "kimi_cli.tools.file:Grep"
+    - "kimi_cli.tools.shell:Shell"
+    - "kimi_cli.tools.background:TaskList"
+    - "kimi_cli.tools.background:TaskOutput"
+    - "kimi_cli.tools.think:Think"

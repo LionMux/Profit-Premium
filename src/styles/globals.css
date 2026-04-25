@@ -133,7 +133,8 @@
   }
 
   @keyframes pulse-soft {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 1;
     }
     50% {
@@ -190,15 +191,27 @@
   }
 
   /* Stagger animation delays */
-  .stagger-1 { animation-delay: 0.1s; }
-  .stagger-2 { animation-delay: 0.2s; }
-  .stagger-3 { animation-delay: 0.3s; }
-  .stagger-4 { animation-delay: 0.4s; }
-  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+  .stagger-5 {
+    animation-delay: 0.5s;
+  }
 
   /* Hover lift effect */
   .hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
   }
   .hover-lift:hover {
     transform: translateY(-4px);
@@ -214,9 +227,21 @@
 
   /* Text gradient */
   .text-gradient {
-    background: linear-gradient(135deg, #F0EAE0 0%, #E0D5C5 100%);
+    background: linear-gradient(135deg, #f0eae0 0%, #e0d5c5 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

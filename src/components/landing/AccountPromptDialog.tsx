@@ -54,9 +54,7 @@ export function AccountPromptDialog({ open, onOpenChange, user }: AccountPromptD
             </div>
             <div className="text-center">
               <p className="font-medium text-burgundy">{user?.name || 'Партнёр'}</p>
-              {user?.email && (
-                <p className="text-sm text-burgundy/70">{user.email}</p>
-              )}
+              {user?.email && <p className="text-sm text-burgundy/70">{user.email}</p>}
             </div>
           </div>
 

@@ -1,0 +1,45 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: PROFIT
+      - generic [ref=e7]: PREMIUM
+    - generic [ref=e8]:
+      - heading "Вход в личный кабинет" [level=1] [ref=e9]
+      - generic [ref=e10]:
+        - button "E-mail" [ref=e11]: E-mail
+        - button "По СМС" [ref=e12]
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - text: Email
+          - textbox "Email" [ref=e15]:
+            - /placeholder: partner@example.com
+            - text: admin@profit-premium.ru
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - text: Пароль
+            - button "показать пароль" [ref=e18]:
+              - img [ref=e19]
+              - text: показать пароль
+          - textbox "Пароль" [ref=e22]:
+            - /placeholder: ••••••••
+            - text: admin123
+        - button "Войти" [ref=e23]
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - checkbox "Запомнить меня" [checked] [active] [ref=e26]
+            - img [ref=e28]
+          - text: Запомнить меня
+      - link "Забыли пароль?" [ref=e31] [cursor=pointer]:
+        - /url: "#"
+    - paragraph [ref=e33]: Эксперты в недвижимости profitpremium.ru
+  - generic [ref=e34]:
+    - img [ref=e36]
+    - generic [ref=e56]:
+      - img [ref=e58]
+      - heading "Profit Premium" [level=2] [ref=e68]
+      - paragraph [ref=e69]: Закрытый клуб для партнеров по недвижимости
+      - generic [ref=e70]:
+        - paragraph [ref=e71]: Эксклюзивные объекты
+        - paragraph [ref=e72]: Персональный менеджер
+        - paragraph [ref=e73]: Быстрое оформление сделок
+    - img [ref=e75]

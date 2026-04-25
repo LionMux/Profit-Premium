@@ -2,7 +2,7 @@ import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
 import { ProfileInfo } from '@/components/profile/ProfileInfo';
-import { TransferClientDialog } from '@/components/profile/TransferClientDialog';
+import { TransferClientForm } from '@/components/profile/TransferClientForm';
 import { FileText, Send, Settings, User, Shield, Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { AbstractSkyline, GeometricCity } from '@/components/illustrations/BuildingIllustrations';
@@ -52,7 +52,9 @@ export default async function ProfilePage() {
         <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-8">
           <div>
             <p className="font-serif text-2xl text-cream">{clientLeadsCount}</p>
-            <p className="text-[10px] text-cream/50 tracking-[0.2em] uppercase">Передано клиентов</p>
+            <p className="text-[10px] text-cream/50 tracking-[0.2em] uppercase">
+              Передано клиентов
+            </p>
           </div>
           <div>
             <p className="font-serif text-2xl text-cream">{roleLabels[userRole]}</p>
@@ -76,15 +78,15 @@ export default async function ProfilePage() {
           <div className="relative z-10 flex flex-col lg:flex-row lg:items-center gap-6">
             {/* Avatar */}
             <div className="h-20 w-20 bg-burgundy flex items-center justify-center flex-shrink-0">
-              <span className="text-cream font-serif text-2xl font-bold">{userName.charAt(0).toUpperCase()}</span>
+              <span className="text-cream font-serif text-2xl font-bold">
+                {userName.charAt(0).toUpperCase()}
+              </span>
             </div>
 
             {/* Info */}
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
-                <h2 className="font-serif text-2xl text-cream font-semibold">
-                  {userName}
-                </h2>
+                <h2 className="font-serif text-2xl text-cream font-semibold">{userName}</h2>
                 <span className="px-3 py-1 bg-burgundy-light text-[10px] text-cream uppercase tracking-[0.2em]">
                   {roleLabels[userRole]}
                 </span>
@@ -124,14 +126,16 @@ export default async function ProfilePage() {
               <Send className="h-6 w-6 text-white" />
             </div>
 
-            <h3 className="text-sm font-bold tracking-[0.2em] text-cream mb-2">
-              ПЕРЕДАТЬ КЛИЕНТА
-            </h3>
+            <h3 className="text-sm font-bold tracking-[0.2em] text-cream mb-2">ПЕРЕДАТЬ КЛИЕНТА</h3>
             <p className="text-sm text-cream/60 mb-5 leading-relaxed">
               Быстрая передача лида в CRM систему
             </p>
 
-            <TransferClientDialog />
+            <TransferClientForm
+              showAsModal
+              buttonVariant="default"
+              buttonClassName="w-full flex items-center justify-center gap-2 px-4 py-3 bg-cream text-burgundy-dark hover:bg-cream/90 font-medium transition-all duration-300 hover:shadow-lg hover:shadow-cream/20 h-auto"
+            />
           </div>
 
           {/* Materials Card */}
@@ -147,9 +151,7 @@ export default async function ProfilePage() {
               <FileText className="h-6 w-6 text-white" />
             </div>
 
-            <h3 className="text-sm font-bold tracking-[0.2em] text-cream mb-2">
-              МАТЕРИАЛЫ
-            </h3>
+            <h3 className="text-sm font-bold tracking-[0.2em] text-cream mb-2">МАТЕРИАЛЫ</h3>
             <p className="text-sm text-cream/60 mb-5 leading-relaxed">
               Доступ к презентациям и документам
             </p>
@@ -158,7 +160,6 @@ export default async function ProfilePage() {
               Перейти
               <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </span>
-
           </Link>
 
           {/* Admin Card (only for admins) */}
@@ -180,9 +181,10 @@ export default async function ProfilePage() {
 
               <span className="inline-flex items-center gap-2 text-sm text-cream/60 group-hover:text-cream transition-colors">
                 Открыть панель
-                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
               </span>
-
             </Link>
           )}
         </div>

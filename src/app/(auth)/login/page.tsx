@@ -281,6 +281,7 @@ export default function LoginPage() {
                 </label>
                 <input
                   id="email"
+                  name="email"
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
@@ -317,6 +318,7 @@ export default function LoginPage() {
                 </div>
                 <input
                   id="password"
+                  name="password"
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={e => setPassword(e.target.value)}
@@ -351,7 +353,12 @@ export default function LoginPage() {
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={3}
+                        d="M5 13l4 4L19 7"
+                      />
                     </svg>
                   </div>
                 </div>

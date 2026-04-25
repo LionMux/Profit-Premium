@@ -30,15 +30,11 @@ export function WelcomeSection({ userName, className }: WelcomeSectionProps) {
         className
       )}
     >
-      <p className="text-cream/60 text-xs tracking-[0.3em] mb-3 uppercase">
-        {getGreeting()}
-      </p>
-      <h1 className="font-serif text-cream text-4xl lg:text-5xl font-semibold mb-4">
-        {userName}
-      </h1>
+      <p className="text-cream/60 text-xs tracking-[0.3em] mb-3 uppercase">{getGreeting()}</p>
+      <h1 className="font-serif text-cream text-4xl lg:text-5xl font-semibold mb-4">{userName}</h1>
       <p className="text-cream/60 text-sm max-w-md leading-relaxed">
-        Добро пожаловать в личный кабинет партнёра PROFIT PREMIUM.
-        Здесь вы найдёте все материалы и инструменты для работы.
+        Добро пожаловать в личный кабинет партнёра PROFIT PREMIUM. Здесь вы найдёте все материалы и
+        инструменты для работы.
       </p>
     </section>
   );

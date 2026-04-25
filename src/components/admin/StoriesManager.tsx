@@ -17,15 +17,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import {
-  Pencil,
-  Trash2,
-  Plus,
-  GripVertical,
-  ExternalLink,
-  ImageIcon,
-  X,
-} from 'lucide-react';
+import { Pencil, Trash2, Plus, GripVertical, ExternalLink, ImageIcon, X } from 'lucide-react';
 
 interface Story {
   id: string;
@@ -138,19 +130,16 @@ export function StoriesManager({ stories, className }: StoriesManagerProps) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="font-serif text-xl text-cream font-semibold">
-            Управление сторис
-          </h3>
+          <h3 className="font-serif text-xl text-cream font-semibold">Управление сторис</h3>
           <p className="text-sm text-cream/60 mt-1">
-            {stories.length} {stories.length === 1 ? 'стори' : stories.length < 5 ? 'стори' : 'сторис'}
+            {stories.length}{' '}
+            {stories.length === 1 ? 'стори' : stories.length < 5 ? 'стори' : 'сторис'}
           </p>
         </div>
 
         <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
           <DialogTrigger asChild>
-            <Button
-              className="bg-cream text-burgundy-dark hover:bg-cream/90"
-            >
+            <Button className="bg-cream text-burgundy-dark hover:bg-cream/90">
               <Plus className="h-4 w-4 mr-2" />
               Добавить
             </Button>
@@ -206,10 +195,7 @@ export function StoriesManager({ stories, className }: StoriesManagerProps) {
                     Отмена
                   </Button>
                 </DialogClose>
-                <Button
-                  type="submit"
-                  className="bg-burgundy hover:bg-burgundy-dark text-white"
-                >
+                <Button type="submit" className="bg-burgundy hover:bg-burgundy-dark text-white">
                   Создать
                 </Button>
               </DialogFooter>
@@ -220,7 +206,7 @@ export function StoriesManager({ stories, className }: StoriesManagerProps) {
 
       {/* Stories List */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {stories.map((story) => (
+        {stories.map(story => (
           <div
             key={story.id}
             className={cn(
@@ -240,18 +226,14 @@ export function StoriesManager({ stories, className }: StoriesManagerProps) {
               />
               {!story.isActive && (
                 <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                  <span className="text-white text-xs uppercase tracking-wider">
-                    Неактивно
-                  </span>
+                  <span className="text-white text-xs uppercase tracking-wider">Неактивно</span>
                 </div>
               )}
             </div>
 
             {/* Content */}
             <div className="p-4">
-              <p className="text-cream text-sm line-clamp-2 mb-3">
-                {story.title}
-              </p>
+              <p className="text-cream text-sm line-clamp-2 mb-3">{story.title}</p>
 
               {/* Actions */}
               <div className="flex items-center justify-between">

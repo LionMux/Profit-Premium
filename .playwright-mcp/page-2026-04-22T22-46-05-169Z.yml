@@ -1,0 +1,242 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - link "PROFIT PREMIUM" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e6]:
+        - generic [ref=e7]: PROFIT
+        - generic [ref=e8]: PREMIUM
+    - navigation [ref=e9]:
+      - link "ЛИЧНЫЙ КАБИНЕТ" [ref=e10] [cursor=pointer]:
+        - /url: /login
+      - link "О НАС" [ref=e11] [cursor=pointer]:
+        - /url: "#about"
+      - link "УСЛУГИ" [ref=e12] [cursor=pointer]:
+        - /url: "#services"
+      - link "КОМАНДА" [ref=e13] [cursor=pointer]:
+        - /url: "#team"
+      - link "ОТЗЫВЫ" [ref=e14] [cursor=pointer]:
+        - /url: "#reviews"
+      - link "КОНТАКТЫ" [ref=e15] [cursor=pointer]:
+        - /url: "#contacts"
+    - link "ОСТАВИТЬ ЗАЯВКУ" [ref=e17] [cursor=pointer]:
+      - /url: "#contacts"
+  - main [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - paragraph [ref=e21]: АГЕНТСТВО НЕДВИЖИМОСТИ
+        - heading "Найдём вашу квартиру" [level=1] [ref=e22]:
+          - text: Найдём
+          - text: вашу
+          - text: квартиру
+        - paragraph [ref=e23]: Подбираем, покупаем и продаём недвижимость. Наши услуги для вас бесплатны.
+        - generic [ref=e24]:
+          - link "ПОДОБРАТЬ КВАРТИРУ" [ref=e25] [cursor=pointer]:
+            - /url: "#contacts"
+          - link "УЗНАТЬ БОЛЬШЕ" [ref=e26] [cursor=pointer]:
+            - /url: "#about"
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - generic [ref=e29]: 500+
+          - generic [ref=e30]: УСПЕШНЫХ СДЕЛОК
+        - generic [ref=e31]:
+          - generic [ref=e32]: 8 ЛЕТ
+          - generic [ref=e33]: НА РЫНКЕ
+        - generic [ref=e34]:
+          - generic [ref=e35]: 0 ₽
+          - generic [ref=e36]: СТОИМОСТЬ УСЛУГ
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - paragraph [ref=e39]: ПОЧЕМУ ВЫБИРАЮТ НАС
+        - heading "С заботой о каждом клиенте" [level=2] [ref=e40]:
+          - text: С заботой
+          - text: о каждом клиенте
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: "01"
+          - heading "РАБОТАЕМ БЕСПЛАТНО" [level=3] [ref=e44]
+          - paragraph [ref=e45]: Наши услуги оплачивает застройщик. Для вас подбор, показы и сопровождение сделки — 0 ₽.
+        - generic [ref=e46]:
+          - generic [ref=e47]: "02"
+          - heading "ПРОВЕРЕННЫЕ ЗАСТРОЙЩИКИ" [level=3] [ref=e48]
+          - paragraph [ref=e49]: Работаем только с надёжными партнёрами. Проверяем все документы и разрешения на строительство.
+        - generic [ref=e50]:
+          - generic [ref=e51]: "03"
+          - heading "СКИДКИ ДО 1 000 000 ₽" [level=3] [ref=e52]
+          - paragraph [ref=e53]: Благодаря партнёрству с застройщиками наши клиенты получают эксклюзивные условия.
+        - generic [ref=e54]:
+          - generic [ref=e55]: "04"
+          - heading "ЛИЧНЫЙ ЭКСПЕРТ" [level=3] [ref=e56]
+          - paragraph [ref=e57]: Персональный специалист ведёт вас от первой консультации до получения ключей.
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - paragraph [ref=e60]: ЧТО МЫ ДЕЛАЕМ
+        - heading "Полный цикл работы" [level=2] [ref=e61]:
+          - text: Полный цикл
+          - text: работы
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - heading "ПОКУПКА НОВОСТРОЙКИ" [level=3] [ref=e64]
+          - paragraph [ref=e65]: Подбираем квартиру в новостройке под ваши критерии и бюджет. Сравниваем объекты, организуем показы.
+          - list [ref=e66]:
+            - listitem [ref=e67]: ПОДБОР ПО ПАРАМЕТРАМ
+            - listitem [ref=e69]: СРАВНЕНИЕ ОБЪЕКТОВ
+            - listitem [ref=e71]: ЮРИДИЧЕСКОЕ СОПРОВОЖДЕНИЕ
+        - generic [ref=e73]:
+          - heading "ИПОТЕКА И РАССРОЧКА" [level=3] [ref=e74]
+          - paragraph [ref=e75]: Подбираем выгодные ипотечные программы и рассрочки. Дистанционно подаём заявки.
+          - list [ref=e76]:
+            - listitem [ref=e77]: СТАВКИ ОТ 0,1%
+            - listitem [ref=e79]: БЕЗ ЛИШНИХ ДОКУМЕНТОВ
+            - listitem [ref=e81]: ДИСТАНЦИОННОЕ ОФОРМЛЕНИЕ
+        - generic [ref=e83]:
+          - heading "ПРОДАЖА ВТОРИЧКИ" [level=3] [ref=e84]
+          - paragraph [ref=e85]: Оцениваем вашу квартиру, находим покупателей и проводим сделку с юридической проверкой.
+          - list [ref=e86]:
+            - listitem [ref=e87]: ОЦЕНКА ЗА 1 ДЕНЬ
+            - listitem [ref=e89]: РЕКЛАМА НА 50+ ПЛОЩАДКАХ
+            - listitem [ref=e91]: ЮРИСТ НА СДЕЛКЕ
+        - generic [ref=e93]:
+          - heading "TRADE-IN" [level=3] [ref=e94]
+          - paragraph [ref=e95]: Обмениваем вашу старую квартиру на новую. Сначала подбираем вариант, затем продаём текущую.
+          - list [ref=e96]:
+            - listitem [ref=e97]: ФИКСАЦИЯ ЦЕНЫ НОВОЙ
+            - listitem [ref=e99]: ПРОДАЖА В СРОК
+            - listitem [ref=e101]: БЕЗ ДВОЙНЫХ ПЕРЕЕЗДОВ
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - paragraph [ref=e105]: НАША КОМАНДА
+        - heading "Эксперты с опытом" [level=2] [ref=e106]:
+          - text: Эксперты
+          - text: с опытом
+      - generic [ref=e107]:
+        - generic [ref=e108]:
+          - generic [ref=e110]: АИ
+          - heading "АЛЕКСАНДР ИВАНОВ" [level=3] [ref=e111]
+          - paragraph [ref=e112]: ГЕНЕРАЛЬНЫЙ ДИРЕКТОР
+          - generic [ref=e113]: 200+ СДЕЛОК
+        - generic [ref=e114]:
+          - generic [ref=e116]: МС
+          - heading "МАРИЯ СОКОЛОВА" [level=3] [ref=e117]
+          - paragraph [ref=e118]: СТАРШИЙ ЭКСПЕРТ
+          - generic [ref=e119]: 150+ СДЕЛОК
+        - generic [ref=e120]:
+          - generic [ref=e122]: ДП
+          - heading "ДМИТРИЙ ПЕТРОВ" [level=3] [ref=e123]
+          - paragraph [ref=e124]: ЭКСПЕРТ ПО ИПОТЕКЕ
+          - generic [ref=e125]: 300+ ОДОБРЕНИЙ
+        - generic [ref=e126]:
+          - generic [ref=e128]: ЕН
+          - heading "ЕЛЕНА НОВИКОВА" [level=3] [ref=e129]
+          - paragraph [ref=e130]: ЭКСПЕРТ ПО ВТОРИЧКЕ
+          - generic [ref=e131]: 120+ СДЕЛОК
+    - generic [ref=e132]:
+      - generic [ref=e133]:
+        - generic [ref=e134]:
+          - paragraph [ref=e135]: ОТЗЫВЫ
+          - heading "Что говорят клиенты" [level=2] [ref=e136]:
+            - text: Что говорят
+            - text: клиенты
+        - generic [ref=e137]:
+          - generic [ref=e138]: 500+
+          - generic [ref=e139]: БЛАГОДАРНЫХ ОТЗЫВОВ
+      - generic [ref=e140]:
+        - generic [ref=e141]:
+          - paragraph [ref=e148]: “Обратились за помощью в подборе квартиры и остались очень довольны. Всё объяснили, показали несколько вариантов, помогли с ипотекой. Никакого давления — только реальная помощь.”
+          - generic [ref=e149]:
+            - generic [ref=e150]:
+              - generic [ref=e151]: АННА КОЗЛОВА
+              - generic [ref=e152]: КЛИЕНТ АГЕНТСТВА
+            - generic [ref=e153]: ФЕВРАЛЬ 2026
+        - generic [ref=e154]:
+          - paragraph [ref=e161]: “Продавал квартиру через агентство. Нашли покупателя за 3 недели, оценили правильно и провели сделку чисто. Сэкономил кучу нервов и времени.”
+          - generic [ref=e162]:
+            - generic [ref=e163]:
+              - generic [ref=e164]: ИГОРЬ МАКАРОВ
+              - generic [ref=e165]: КЛИЕНТ АГЕНТСТВА
+            - generic [ref=e166]: ЯНВАРЬ 2026
+        - generic [ref=e167]:
+          - paragraph [ref=e174]: “Первая квартира — это всегда страшно. Мне всё рассказали, провели по всем этапам, подобрали ипотеку с хорошей ставкой. Буду рекомендовать друзьям.”
+          - generic [ref=e175]:
+            - generic [ref=e176]:
+              - generic [ref=e177]: СВЕТЛАНА БОРИСОВА
+              - generic [ref=e178]: КЛИЕНТ АГЕНТСТВА
+            - generic [ref=e179]: ДЕКАБРЬ 2025
+    - generic [ref=e181]:
+      - generic [ref=e182]:
+        - paragraph [ref=e183]: СВЯЗАТЬСЯ С НАМИ
+        - heading "Подберём квартиру для вас" [level=2] [ref=e184]:
+          - text: Подберём
+          - text: квартиру
+          - text: для вас
+        - generic [ref=e185]:
+          - link "ТЕЛЕФОН +7 (000) 000-00-00" [ref=e186] [cursor=pointer]:
+            - /url: tel:+70000000000
+            - img [ref=e188]
+            - generic [ref=e190]:
+              - generic [ref=e191]: ТЕЛЕФОН
+              - generic [ref=e192]: +7 (000) 000-00-00
+          - link "EMAIL info@profit-premium.ru" [ref=e193] [cursor=pointer]:
+            - /url: mailto:info@profit-premium.ru
+            - img [ref=e195]
+            - generic [ref=e197]:
+              - generic [ref=e198]: EMAIL
+              - generic [ref=e199]: info@profit-premium.ru
+          - generic [ref=e200]:
+            - img [ref=e202]
+            - generic [ref=e204]:
+              - generic [ref=e205]: РЕЖИМ РАБОТЫ
+              - generic [ref=e206]: "ПН–ПТ: 9:00 – 20:00"
+      - generic [ref=e207]:
+        - heading "Оставьте заявку" [level=3] [ref=e208]
+        - paragraph [ref=e209]: СВЯЖЕМСЯ В ТЕЧЕНИЕ 10 МИНУТ
+        - generic [ref=e210]:
+          - generic [ref=e211]:
+            - generic [ref=e212]: ВАШЕ ИМЯ
+            - textbox "Иван Иванов" [ref=e213]
+          - generic [ref=e214]:
+            - generic [ref=e215]: ТЕЛЕФОН
+            - textbox "+7 (000) 000-00-00" [ref=e216]
+          - button "ПОДОБРАТЬ КВАРТИРУ" [ref=e217] [cursor=pointer]
+          - paragraph [ref=e218]:
+            - text: НАЖИМАЯ КНОПКУ, ВЫ СОГЛАШАЕТЕСЬ С
+            - link "ПОЛИТИКОЙ КОНФИДЕНЦИАЛЬНОСТИ" [ref=e219] [cursor=pointer]:
+              - /url: "#"
+    - generic [ref=e220]:
+      - generic [ref=e221]:
+        - generic [ref=e222]:
+          - generic [ref=e223]: PROFIT PREMIUM
+          - paragraph [ref=e224]: Агентство недвижимости полного цикла. Подбираем, покупаем и продаём с заботой о вас.
+        - generic [ref=e225]:
+          - heading "РАЗДЕЛЫ" [level=4] [ref=e226]
+          - list [ref=e227]:
+            - listitem [ref=e228]:
+              - link "О НАС" [ref=e229] [cursor=pointer]:
+                - /url: "#about"
+            - listitem [ref=e230]:
+              - link "УСЛУГИ" [ref=e231] [cursor=pointer]:
+                - /url: "#services"
+            - listitem [ref=e232]:
+              - link "КОМАНДА" [ref=e233] [cursor=pointer]:
+                - /url: "#team"
+            - listitem [ref=e234]:
+              - link "ОТЗЫВЫ" [ref=e235] [cursor=pointer]:
+                - /url: "#reviews"
+            - listitem [ref=e236]:
+              - link "КОНТАКТЫ" [ref=e237] [cursor=pointer]:
+                - /url: "#contacts"
+        - generic [ref=e238]:
+          - heading "СОЦСЕТИ" [level=4] [ref=e239]
+          - generic [ref=e240]:
+            - link "TG" [ref=e241] [cursor=pointer]:
+              - /url: "#"
+            - link "WA" [ref=e242] [cursor=pointer]:
+              - /url: "#"
+            - link "ВК" [ref=e243] [cursor=pointer]:
+              - /url: "#"
+      - generic [ref=e244]:
+        - paragraph [ref=e245]: © 2026 ООО “ПРОФИТ ПРЕМИУМ”. ВСЕ ПРАВА ЗАЩИЩЕНЫ.
+        - generic [ref=e246]:
+          - link "КОНФИДЕНЦИАЛЬНОСТЬ" [ref=e247] [cursor=pointer]:
+            - /url: "#"
+          - link "СОГЛАШЕНИЕ" [ref=e248] [cursor=pointer]:
+            - /url: "#"
