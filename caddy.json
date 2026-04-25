@@ -1,0 +1,61 @@
+{
+	"apps": {
+		"http": {
+			"servers": {
+				"profit_premium": {
+					"listen": [":80", ":443"],
+					"routes": [
+						{
+							"match": [{"host": ["*"]}],
+							"handle": [
+								{
+									"handler": "reverse_proxy",
+									"upstreams": [
+										{
+											"dial": "localhost:3000"
+										}
+									],
+									"headers": {
+										"request": {
+											"set": {
+												"Host": ["{http.request.host}"],
+												"X-Real-Ip": ["{http.request.remote}"],
+												"X-Forwarded-For": ["{http.request.remote}"],
+												"X-Forwarded-Proto": ["{http.request.scheme}"],
+												"X-Forwarded-Host": ["{http.request.host}"]
+											}
+										}
+									},
+									"health_checks": {
+										"active": {
+											"uri": "/",
+											"interval": "30s",
+											"timeout": "5s"
+										}
+									}
+								}
+							]
+						}
+					],
+					"logs": {
+						"default_logger_name": "log0"
+					}
+				}
+			}
+		},
+		"tls": {
+			"automation": {
+				"policies": [
+					{
+						"subjects": ["*"],
+						"issuers": [
+							{
+								"module": "internal"
+							}
+						]
+					}
+				]
+			}
+		}
+	}
+}

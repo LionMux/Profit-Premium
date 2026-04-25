@@ -1,0 +1,257 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - main [ref=e5]:
+        - generic [ref=e6]:
+          - generic:
+            - img
+          - generic [ref=e7]:
+            - generic [ref=e8]:
+              - generic [ref=e9]:
+                - paragraph [ref=e10]: Кабинет партнёра
+                - heading "Добро пожаловать, Администратор" [level=1] [ref=e11]:
+                  - text: Добро пожаловать,
+                  - text: Администратор
+                - paragraph [ref=e12]: Актуальные предложения, материалы для клиентов и передача лидов — всё в одном рабочем пространстве для партнёрской продажи недвижимости.
+              - generic [ref=e13]:
+                - link "РЕДАКТОР ПОЛЬЗОВАТЕЛЯ" [ref=e14] [cursor=pointer]:
+                  - /url: /profile
+                  - img [ref=e15]
+                  - text: РЕДАКТОР ПОЛЬЗОВАТЕЛЯ
+                - link "МАТЕРИАЛЫ" [ref=e18] [cursor=pointer]:
+                  - /url: /materials
+                  - img [ref=e19]
+                  - text: МАТЕРИАЛЫ
+            - generic [ref=e22]:
+              - generic [ref=e23]:
+                - generic [ref=e24]:
+                  - generic [ref=e25]:
+                    - paragraph [ref=e26]: Актуальные предложения
+                    - heading "Подборка, которая встречает пользователя" [level=2] [ref=e27]
+                  - img [ref=e29]
+                - generic [ref=e31]:
+                  - button "Прокрутить влево" [ref=e32] [cursor=pointer]:
+                    - img [ref=e33]
+                  - button "Прокрутить вправо" [ref=e35] [cursor=pointer]:
+                    - img [ref=e36]
+                  - generic [ref=e38]:
+                    - link "Элитные апартаменты в центре Москвы Элитные апартаменты в центре Москвы" [ref=e39] [cursor=pointer]:
+                      - /url: /materials?city=Москва
+                      - generic [ref=e40]:
+                        - img "Элитные апартаменты в центре Москвы" [ref=e41]
+                        - heading "Элитные апартаменты в центре Москвы" [level=3] [ref=e44]
+                    - link "Премиальные виллы у моря Премиальные виллы у моря" [ref=e46] [cursor=pointer]:
+                      - /url: /materials
+                      - generic [ref=e47]:
+                        - img "Премиальные виллы у моря" [ref=e48]
+                        - heading "Премиальные виллы у моря" [level=3] [ref=e51]
+                    - link "Инвестиции в недвижимость 2024 Инвестиции в недвижимость 2024" [ref=e54] [cursor=pointer]:
+                      - /url: /materials
+                      - generic [ref=e55]:
+                        - img "Инвестиции в недвижимость 2024" [ref=e56]
+                        - heading "Инвестиции в недвижимость 2024" [level=3] [ref=e59]
+                    - link "Новый жилой комплекс бизнес-класса Новый жилой комплекс бизнес-класса" [ref=e61] [cursor=pointer]:
+                      - /url: /materials
+                      - generic [ref=e62]:
+                        - img "Новый жилой комплекс бизнес-класса" [ref=e63]
+                        - heading "Новый жилой комплекс бизнес-класса" [level=3] [ref=e66]
+                    - link "Коттеджные поселки под ключ Коттеджные поселки под ключ" [ref=e68] [cursor=pointer]:
+                      - /url: /materials
+                      - generic [ref=e69]:
+                        - img "Коттеджные поселки под ключ" [ref=e70]
+                        - heading "Коттеджные поселки под ключ" [level=3] [ref=e73]
+                    - link "Коммерческая недвижимость Коммерческая недвижимость" [ref=e75] [cursor=pointer]:
+                      - /url: /materials
+                      - generic [ref=e76]:
+                        - img "Коммерческая недвижимость" [ref=e77]
+                        - heading "Коммерческая недвижимость" [level=3] [ref=e80]
+                  - generic [ref=e82]:
+                    - button "Перейти к слайду 1" [ref=e83] [cursor=pointer]
+                    - button "Перейти к слайду 2" [ref=e84] [cursor=pointer]
+                    - button "Перейти к слайду 3" [ref=e85] [cursor=pointer]
+                    - button "Перейти к слайду 4" [ref=e86] [cursor=pointer]
+                    - button "Перейти к слайду 5" [ref=e87] [cursor=pointer]
+                    - button "Перейти к слайду 6" [ref=e88] [cursor=pointer]
+              - generic [ref=e89]:
+                - paragraph [ref=e90]: Рабочий статус
+                - heading "Личный кабинет" [level=3] [ref=e91]
+                - generic [ref=e92]:
+                  - generic [ref=e93]:
+                    - paragraph [ref=e94]: Материалов доступно
+                    - paragraph [ref=e95]: "4"
+                  - generic [ref=e96]:
+                    - paragraph [ref=e97]: Передано клиентов
+                    - paragraph [ref=e98]: "0"
+                - generic [ref=e99]:
+                  - paragraph [ref=e100]: "Рабочая зона собрана без лишних блоков: сначала предложения, затем материалы и основные бизнес-сценарии."
+                  - link "Открыть профиль" [ref=e101] [cursor=pointer]:
+                    - /url: /profile
+                    - text: Открыть профиль
+                    - img [ref=e102]
+          - generic [ref=e105]:
+            - generic [ref=e106]:
+              - generic [ref=e107]:
+                - generic [ref=e108]:
+                  - paragraph [ref=e109]: Новые материалы
+                  - heading "Свежие презентации для работы" [level=3] [ref=e110]
+                - img [ref=e112]
+              - generic [ref=e115]:
+                - generic [ref=e116]:
+                  - generic [ref=e117]:
+                    - paragraph [ref=e118]: ЖК Солнечный - Презентация
+                    - paragraph [ref=e119]: Москва • Квартира
+                  - generic [ref=e120]: 23 апреля
+                - generic [ref=e121]:
+                  - generic [ref=e122]:
+                    - paragraph [ref=e123]: Коттеджный поселок Ромашки
+                    - paragraph [ref=e124]: Санкт-Петербург • Дом
+                  - generic [ref=e125]: 23 апреля
+                - generic [ref=e126]:
+                  - generic [ref=e127]:
+                    - paragraph [ref=e128]: ЖК Солнечный - Презентация
+                    - paragraph [ref=e129]: Москва • Квартира
+                  - generic [ref=e130]: 8 апреля
+                - generic [ref=e131]:
+                  - generic [ref=e132]:
+                    - paragraph [ref=e133]: Коттеджный поселок Ромашки
+                    - paragraph [ref=e134]: Санкт-Петербург • Дом
+                  - generic [ref=e135]: 8 апреля
+              - link "Перейти ко всем материалам" [ref=e137] [cursor=pointer]:
+                - /url: /materials
+                - text: Перейти ко всем материалам
+                - img [ref=e138]
+            - generic [ref=e140]:
+              - paragraph [ref=e141]: CRM интеграция
+              - heading "Передать клиента" [level=3] [ref=e142]
+              - paragraph [ref=e143]: Откройте редактор пользователя или сразу перейдите к передаче клиента в CRM — маршрут остаётся простым и понятным для партнёрской работы.
+              - generic [ref=e144]:
+                - link "Редактор пользователя" [ref=e145] [cursor=pointer]:
+                  - /url: /profile
+                  - generic [ref=e146]:
+                    - img [ref=e147]
+                    - text: Редактор пользователя
+                  - img [ref=e150]
+                - link "Передать клиента" [ref=e152] [cursor=pointer]:
+                  - /url: /profile
+                  - generic [ref=e153]:
+                    - img [ref=e154]
+                    - text: Передать клиента
+                  - img [ref=e158]
+              - generic [ref=e162]:
+                - paragraph [ref=e163]: Дополнительно
+                - link "Юридическая информация" [ref=e164] [cursor=pointer]:
+                  - /url: /contacts
+                  - text: Юридическая информация
+                  - img [ref=e165]
+          - generic [ref=e169]:
+            - link "Каталог материалов PROFIT PREMIUM Каталог материалов Презентации, PDF и документы по объектам для моментальной отправки клиенту. Открыть раздел" [ref=e170] [cursor=pointer]:
+              - /url: /materials
+              - img "Каталог материалов" [ref=e171]
+              - generic [ref=e173]:
+                - paragraph [ref=e174]: PROFIT PREMIUM
+                - heading "Каталог материалов" [level=3] [ref=e175]
+                - paragraph [ref=e176]: Презентации, PDF и документы по объектам для моментальной отправки клиенту.
+                - generic [ref=e177]:
+                  - text: Открыть раздел
+                  - img [ref=e178]
+            - link "Передача клиента в CRM PROFIT PREMIUM Передача клиента в CRM Быстрый сценарий передачи лида с понятным маршрутом внутри кабинета. Открыть раздел" [ref=e180] [cursor=pointer]:
+              - /url: /profile
+              - img "Передача клиента в CRM" [ref=e181]
+              - generic [ref=e183]:
+                - paragraph [ref=e184]: PROFIT PREMIUM
+                - heading "Передача клиента в CRM" [level=3] [ref=e185]
+                - paragraph [ref=e186]: Быстрый сценарий передачи лида с понятным маршрутом внутри кабинета.
+                - generic [ref=e187]:
+                  - text: Открыть раздел
+                  - img [ref=e188]
+            - link "Юридическая информация PROFIT PREMIUM Юридическая информация Реквизиты, контакты и доверительный контур компании всегда под рукой. Открыть раздел" [ref=e190] [cursor=pointer]:
+              - /url: /contacts
+              - img "Юридическая информация" [ref=e191]
+              - generic [ref=e193]:
+                - paragraph [ref=e194]: PROFIT PREMIUM
+                - heading "Юридическая информация" [level=3] [ref=e195]
+                - paragraph [ref=e196]: Реквизиты, контакты и доверительный контур компании всегда под рукой.
+                - generic [ref=e197]:
+                  - text: Открыть раздел
+                  - img [ref=e198]
+      - contentinfo [ref=e200]:
+        - generic [ref=e201]:
+          - generic [ref=e202]:
+            - generic [ref=e203]:
+              - generic [ref=e204]: PROFIT PREMIUM
+              - paragraph [ref=e205]: Закрытый клуб для партнеров по недвижимости. Эксклюзивные объекты, персональный менеджер, быстрое оформление сделок.
+            - generic [ref=e206]:
+              - heading "РАЗДЕЛЫ" [level=4] [ref=e207]
+              - list [ref=e208]:
+                - listitem [ref=e209]:
+                  - link "ГЛАВНАЯ" [ref=e210] [cursor=pointer]:
+                    - /url: /dashboard
+                - listitem [ref=e211]:
+                  - link "МАТЕРИАЛЫ" [ref=e212] [cursor=pointer]:
+                    - /url: /materials
+                - listitem [ref=e213]:
+                  - link "ПРОФИЛЬ" [ref=e214] [cursor=pointer]:
+                    - /url: /profile
+                - listitem [ref=e215]:
+                  - link "КОНТАКТЫ" [ref=e216] [cursor=pointer]:
+                    - /url: /contacts
+            - generic [ref=e217]:
+              - heading "СОЦСЕТИ" [level=4] [ref=e218]
+              - generic [ref=e219]:
+                - link "TG" [ref=e220] [cursor=pointer]:
+                  - /url: https://t.me/profitpremium
+                - link "WA" [ref=e221] [cursor=pointer]:
+                  - /url: https://wa.me/79991234567
+                - link "ВК" [ref=e222] [cursor=pointer]:
+                  - /url: https://vk.com/profitpremium
+          - generic [ref=e223]:
+            - paragraph [ref=e224]: © 2026 ООО "ПРОФИТ ПРЕМИУМ". ВСЕ ПРАВА ЗАЩИЩЕНЫ.
+            - generic [ref=e225]:
+              - link "КОНФИДЕНЦИАЛЬНОСТЬ" [ref=e226] [cursor=pointer]:
+                - /url: "#"
+              - link "СОГЛАШЕНИЕ" [ref=e227] [cursor=pointer]:
+                - /url: "#"
+    - complementary [ref=e228]:
+      - link "PROFIT PREMIUM" [ref=e230] [cursor=pointer]:
+        - /url: /dashboard
+        - generic [ref=e231]:
+          - generic [ref=e232]: PROFIT
+          - generic [ref=e233]: PREMIUM
+      - navigation [ref=e234]:
+        - link "ГЛАВНАЯ" [ref=e235] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e236]
+          - generic [ref=e239]: ГЛАВНАЯ
+        - link "МАТЕРИАЛЫ" [ref=e240] [cursor=pointer]:
+          - /url: /materials
+          - img [ref=e241]
+          - generic [ref=e244]: МАТЕРИАЛЫ
+        - link "ЛИЧНЫЙ КАБИНЕТ" [ref=e245] [cursor=pointer]:
+          - /url: /profile
+          - img [ref=e246]
+          - generic [ref=e249]: ЛИЧНЫЙ КАБИНЕТ
+        - link "КОНТАКТЫ" [ref=e250] [cursor=pointer]:
+          - /url: /contacts
+          - img [ref=e251]
+          - generic [ref=e253]: КОНТАКТЫ
+        - button "ПЕРЕДАТЬ КЛИЕНТА" [ref=e255] [cursor=pointer]:
+          - img [ref=e256]
+          - generic [ref=e259]: ПЕРЕДАТЬ КЛИЕНТА
+        - link "АДМИНКА" [ref=e261] [cursor=pointer]:
+          - /url: /admin
+          - img [ref=e262]
+          - generic [ref=e267]: АДМИНКА
+        - link "НА САЙТ" [ref=e269] [cursor=pointer]:
+          - /url: /
+          - img [ref=e270]
+          - generic [ref=e274]: НА САЙТ
+      - generic [ref=e275]:
+        - generic [ref=e276]:
+          - generic [ref=e277]: А
+          - generic [ref=e278]:
+            - paragraph [ref=e279]: Администратор
+            - paragraph [ref=e280]: admin@profit-premium.ru
+        - button "Выйти" [ref=e281] [cursor=pointer]:
+          - img [ref=e282]
+          - text: Выйти

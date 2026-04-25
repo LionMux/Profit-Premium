@@ -1,0 +1,64 @@
+# Profit Premium — Caddy reverse proxy
+# Запуск: caddy run (foreground) или caddy start (background)
+# Перезагрузка конфига: caddy reload
+
+{
+	# Автоматические HTTPS сертификаты (Let's Encrypt)
+	# Если нужен только HTTP — закомментируй эту секцию
+	# email admin@profit-premium.ru
+}
+
+# HTTP на порту 80 (внутренний) → перенаправляет на HTTPS
+:80 {
+	redir https://{host}{uri} permanent
+}
+
+# HTTPS на порту 443 (внутренний) → проксирует на Next.js
+:443 {
+	# Логи доступа
+	log {
+		output file caddy-access.log
+		format json
+	}
+
+	# Сжатие
+	encode gzip zstd
+
+	# Заголовки безопасности
+	header {
+		# Отключаем стандартные Server заголовки
+		-Server
+		# Базовые security headers
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "SAMEORIGIN"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+
+	# Прокси на Next.js (порт 3000)
+	reverse_proxy localhost:3000 {
+		# Заголовки для Next.js
+		header_up Host {host}
+		header_up X-Real-IP {remote}
+		header_up X-Forwarded-For {remote}
+		header_up X-Forwarded-Proto {scheme}
+		header_up X-Forwarded-Host {host}
+
+		# Health check
+		health_uri /api/health
+		health_interval 30s
+		health_timeout 5s
+
+		# Таймауты
+		transport http {
+			read_timeout 30s
+			write_timeout 30s
+		}
+	}
+
+	# Статические файлы — кэширование
+	@static {
+		path *.js *.css *.png *.jpg *.jpeg *.gif *.webp *.svg *.ico *.woff *.woff2 *.ttf
+	}
+	header @static Cache-Control "public, max-age=31536000, immutable"
+}

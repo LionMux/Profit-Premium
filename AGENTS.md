@@ -17,13 +17,117 @@
 
 ### Core User Flows
 
-1. **Авторизация**: email + пароль ИЛИ SMS-код → редирект на `/dashboard`
-2. **Лендинг** (`/`): публичная страница с разделами Hero, Преимущества, Услуги, Команда, Отзывы, Контакты
-3. **Главная** (`/dashboard`): блок "сторис" (карусель карточек) + навигация
-4. **Материалы** (`/materials`): фильтрация презентаций по городу и типу недвижимости (кнопки)
-5. **Личный кабинет** (`/profile`): профиль + кнопка "Передать клиента" → форма → сохранение в БД (Bitrix24 — TODO)
+1. **Авторизация** (`/login`): email + пароль ИЛИ SMS-код → редирект на `/dashboard`
+2. **Лендинг** (`/`): публичная страница с разделами Hero (Canvas mesh gradient + анимации), Преимущества, Услуги, Команда, Отзывы, Контакты. Фиксированный правый Sidebar на десктопе.
+3. **Главная** (`/dashboard`): блок "сторис" (карусель карточек с auto-play и drag-to-scroll) + список свежих материалов + статистика
+4. **Материалы** (`/materials`): фильтрация презентаций по городу и типу недвижимости (кнопки), server-side через searchParams
+5. **Личный кабинет** (`/profile`): профиль + карточки быстрых действий + кнопка "Передать клиента" → форма → сохранение в БД (Bitrix24 — TODO)
 6. **Контакты** (`/contacts`): юридическая информация о компании (ИНН, ОГРН, адрес, реквизиты)
-7. **Админка** (`/admin`): загрузка новых презентаций, статистика, управление сторис (для ADMIN/MANAGER)
+7. **Админка** (`/admin`): полноценный дашборд со статистикой (материалы, пользователи, лиды, сторис), воронкой лидов, загрузкой файлов, управлением сторис (для ADMIN/MANAGER)
+
+---
+
+## Maximum Execution Methodology
+
+> **Никогда не ищи "легких решений". Ищи максимально возможное исполнение задачи.**
+
+Все AI-агенты, работающие над проектом, обязаны следовать методологии максимального исполнения (`.agents/skills/maximum-execution/SKILL.md`). Это универсальная методология из 7 этапов:
+
+1. **Декомпозиция** — разбить задачу на атомарные этапы с чёткими входами/выходами
+2. **Изолированное уточнение** — для каждого этапа определить идеальный результат, данные, критерии, риски
+3. **Поиск реализаций** — минимум 3 альтернативных подхода с анализом источников
+4. **Анализ отзывов** — реальный опыт внедрения, post-mortem, issue-трекеры
+5. **Оценка надёжности/эффективности** — баллы 1-5 по каждому критерию
+6. **Поиск компромиссов** — явное осознание жертв и их последствий
+7. **Синтез** — финальное решение с планом B/C, метриками, мониторингом
+
+**Поведенческие запреты:**
+- Нельзя предлагать решение, которое "обычно работает"
+- Нельзя игнорировать проблемы из отзывов и issue-трекеров
+- Нельзя использовать аргумент авторитета вместо аргумента сути
+- Нельзя останавливаться на "достаточно хорошо"
+- Нельзя избегать сложных/"мутных" вопросов
+
+**Интеграция с workflow:**
+- Planner применяет этапы 1-6 при составлении плана
+- Executor применяет этап 7 и проверяет edge cases при написании кода
+- Validator проверяет соответствие стандартам Maximum Execution
+- Orchestrator следит за соблюдением методологии на каждом этапе
+
+---
+
+## Research-First Rule
+
+> **Перед реализацией любой нетривиальной фичи — всегда сначала ищи готовые топовые реализации.**
+
+Это правило встроено в workflow проекта. Skill: `.agents/skills/research-first/SKILL.md`.
+
+### Когда применять
+
+- Создание UI-компонентов с эффектами (анимации, 3D, Canvas, SVG)
+- Написание хуков/утилит общего назначения
+- Интеграция с внешними API
+- Любая задача, где ты не уверен в лучшем подходе на 100%
+
+### Алгоритм
+
+1. **Проверка** — является ли задача распространённой? (slider, modal, parallax, tilt, etc.)
+2. **Поиск** (3-7 мин) — GitHub Code Search + Context7 Docs + Web Search
+3. **Анализ** (2-3 мин) — извлечь magic numbers, edge cases, performance tricks
+4. **Реализация** — адаптировать найденный подход под проект, а не изобретать
+
+### Почему это важно
+
+- **Magic numbers** (angle: 10°, perspective: 1000px, duration: 300ms) отточены сотнями проектов
+- Edge cases (resize, reduced-motion, touch, SSR) уже учтены в топовых реализациях
+- 10 минут research экономят 30 минут дебага и переделок
+
+### Пример из этого проекта
+
+Задача: 3D Tilt Card. До research: самописные углы 8° → 1.5° → 3° (методом проб и ошибок). После research: Wix/interact рекомендует 15°/800px, use-tilt.ts использует 10°/1000px + scale 1.02. Итоговая реализация: 7°/1000px + scale 1.02 + динамическая тень — проверено и работает.
+
+---
+
+## MCP Tools & Memory
+
+### sequentialthinking (MCP)
+
+**Использовать ОБЯЗАТЕЛЬНО**, когда:
+- Задача имеет >3 шагов или неочевидное решение
+- Нужно принять архитектурное решение (выбор между 2+ подходами)
+- Дебаг сложной проблемы (ошибка в нескольких файлах, race condition)
+- Реализация новой фичи с неизвестным scope
+
+**Как использовать**:
+1. Запустить `sequentialthinking` с `totalThoughts: 5-10`
+2. Пройти через анализ → гипотезы → проверку → решение
+3. Только после завершения цепочки мыслей — переходить к действиям
+
+### memory (Obsidian MCP)
+
+**Сохранять в память**, когда:
+- Завершён research — сохранить key findings и magic numbers
+- Принято архитектурное решение — сохранить обоснование
+- Найдено решение сложного бага — сохранить root cause и fix
+- Создан новый reusable pattern — сохранить как entity
+
+**Как использовать**:
+- `create_entities` — для новых архитектурных компонентов, паттернов, решений
+- `create_relations` — для связей между компонентами
+- `add_observations` — для дополнения существующих знаний
+- `search_nodes` — для поиска ранее сохранённых решений
+
+**Пример сохранения research**:
+```
+Entity: "TiltCard-3D-Animation"
+Type: "UI-Animation-Pattern"
+Observations:
+  - "MAX_TILT: 7-10° (Wix 15°, use-tilt 10°)"
+  - "PERSPECTIVE: 1000px (balanced)"
+  - "SCALE: 1.02 on hover"
+  - "Dynamic shadow moves opposite to cursor"
+  - "Transition: remove on enter, add on leave, clear after animation"
+```
 
 ---
 
@@ -68,11 +172,11 @@ profit-premium/
 │   │   ├── (auth)/          # Route group: authentication pages
 │   │   │   ├── layout.tsx
 │   │   │   └── login/
-│   │   │       └── page.tsx           # Login page (email + SMS)
+│   │   │       └── page.tsx           # Login page (email + SMS tabs)
 │   │   ├── (dashboard)/     # Route group: authenticated pages
 │   │   │   ├── layout.tsx               # Dashboard layout with right sidebar
 │   │   │   ├── dashboard/
-│   │   │   │   └── page.tsx             # Homepage with stories carousel
+│   │   │   │   └── page.tsx             # Homepage with stories carousel + materials
 │   │   │   ├── materials/
 │   │   │   │   └── page.tsx             # Materials with city/type filters
 │   │   │   ├── profile/
@@ -80,7 +184,7 @@ profit-premium/
 │   │   │   └── contacts/
 │   │   │       └── page.tsx             # Legal company info
 │   │   ├── admin/
-│   │   │   └── page.tsx                 # Admin panel (stats, upload, stories)
+│   │   │   └── page.tsx                 # Admin panel (stats, upload, stories, leads)
 │   │   ├── api/                         # API Routes
 │   │   │   ├── auth/[...nextauth]/
 │   │   │   │   └── route.ts             # NextAuth endpoint
@@ -115,7 +219,7 @@ profit-premium/
 │   │   │   └── use-toast.tsx
 │   │   ├── layout/                      # Layout components
 │   │   │   ├── Header.tsx
-│   │   │   ├── Sidebar.tsx              # Right sidebar navigation
+│   │   │   ├── Sidebar.tsx              # Right sidebar navigation (dashboard)
 │   │   │   ├── Footer.tsx
 │   │   │   └── ProfitPremiumLogo.tsx
 │   │   ├── auth/                        # Auth components
@@ -129,25 +233,31 @@ profit-premium/
 │   │   │   └── FilterDrawer.tsx         # Mobile filter drawer
 │   │   ├── profile/                     # Profile components
 │   │   │   ├── ProfileInfo.tsx
-│   │   │   └── TransferClientForm.tsx
+│   │   │   └── TransferClientForm.tsx   # react-hook-form + Zod
 │   │   ├── stories/                     # Stories components
-│   │   │   └── StoriesCarousel.tsx
+│   │   │   └── StoriesCarousel.tsx      # Drag-to-scroll + auto-play
 │   │   ├── admin/                       # Admin components
 │   │   │   ├── ActionCard.tsx
 │   │   │   ├── StatCard.tsx
-│   │   │   ├── StoriesManager.tsx
+│   │   │   ├── StoriesManager.tsx       # CRUD for stories
 │   │   │   ├── UploadCard.tsx
-│   │   │   └── UploadMaterialCard.tsx
+│   │   │   └── UploadMaterialCard.tsx   # File upload + metadata form
+│   │   ├── effects/                     # Animation & effect components
+│   │   │   ├── MeshGradient.tsx         # Canvas animated background
+│   │   │   ├── ScrollLine.tsx           # Scroll-triggered line animation
+│   │   │   ├── SlotCounter.tsx          # Animated number counter
+│   │   │   ├── SplitText.tsx            # Per-character text reveal
+│   │   │   └── TiltCard.tsx             # 3D tilt on hover (7°/1000px)
 │   │   ├── illustrations/               # SVG illustrations
 │   │   │   └── BuildingIllustrations.tsx
 │   │   ├── landing/                     # Landing page sections
-│   │   │   ├── HeroSection.tsx
+│   │   │   ├── HeroSection.tsx          # MeshGradient + SlotCounter + SplitText
 │   │   │   ├── AdvantagesSection.tsx
 │   │   │   ├── ServicesSection.tsx
 │   │   │   ├── TeamSection.tsx
 │   │   │   ├── ReviewsSection.tsx
 │   │   │   ├── ContactSection.tsx
-│   │   │   ├── Sidebar.tsx
+│   │   │   ├── Sidebar.tsx              # Landing right sidebar
 │   │   │   └── AccountPromptDialog.tsx
 │   │   └── providers/                   # Context providers
 │   │       └── SessionProvider.tsx      # NextAuth session provider
@@ -155,12 +265,13 @@ profit-premium/
 │   │   ├── auth.ts                      # NextAuth configuration + helpers
 │   │   ├── prisma.ts                    # Prisma client singleton
 │   │   ├── sms.ts                       # SMS.ru API client
+│   │   ├── animations.ts                # useIntersectionObserver, usePrefersReducedMotion
 │   │   └── utils.ts                     # cn(), formatPhoneNumber(), generateSMSCode()
 │   ├── types/                           # TypeScript types
 │   │   ├── index.ts                     # Global application types
 │   │   └── next-auth.d.ts               # NextAuth type extensions
 │   ├── styles/
-│   │   └── globals.css                  # Tailwind imports + CSS variables
+│   │   └── globals.css                  # Tailwind imports + CSS variables + animations
 │   ├── tests/e2e/                       # Playwright E2E tests
 │   │   ├── auth.spec.ts
 │   │   ├── materials.spec.ts
@@ -169,7 +280,7 @@ profit-premium/
 ├── .github/workflows/ci.yml             # GitHub Actions CI
 ├── docker-compose.yml                   # Production Docker setup
 ├── Dockerfile                           # Multi-stage Docker build
-├── next.config.js                       # Next.js config (CORS, images)
+├── next.config.js                       # Next.js config (CORS, images unoptimized)
 ├── tailwind.config.ts                   # Tailwind + custom colors/fonts
 ├── playwright.config.ts                 # Playwright config (Edge browser)
 ├── package.json
@@ -424,8 +535,9 @@ npm run dev
 - Использовать `cn()` из `lib/utils.ts` для условных классов Tailwind
 - Server Components по умолчанию, `'use client'` только при необходимости
 - API responses в формате: `{ success: boolean, data?: any, error?: string }`
-- Формы: `react-hook-form` + `@hookform/resolvers/zod` + Zod схемы
+- Формы: `react-hook-form` + `@hookform/resolvers/zod` + Zod схемы (пример: `TransferClientForm.tsx`)
 - Компоненты группируются по **домену/фиче**, а не по типу
+- Все анимации должны учитывать `prefers-reduced-motion` (примеры: `TiltCard.tsx`, `SlotCounter.tsx`, `SplitText.tsx`)
 
 ### Custom Colors (Tailwind)
 
@@ -608,6 +720,7 @@ GitHub Actions (`.github/workflows/ci.yml`):
 - Публичные роуты: `/`, `/login`, `/api/auth/*`
 - Защищенные роуты (требуют авторизации): `/dashboard`, `/materials`, `/profile`, `/contacts`, `/admin`
 - Авторизованных пользователей с `/login` редиректит на `/dashboard`
+- Неавторизованных с защищенных роутов редиректит на `/login`
 
 ### Phone Number Format
 
@@ -618,37 +731,73 @@ GitHub Actions (`.github/workflows/ci.yml`):
 ### Materials Filtering
 
 - Query параметры: `?city=Москва&propertyType=Квартира`
-- Server-side filtering через Prisma
+- Server-side filtering через Prisma на странице `materials/page.tsx`
 - UI: кнопки фильтров с активным состоянием (`FilterBar` для десктопа, `FilterDrawer` для мобильных)
+- Группировка материалов по городу для отображения
 
 ### Client Lead Transfer
 
 - Форма: ФИО, телефон, город, комментарий
-- Валидация: Zod schema
+- Валидация: Zod schema (`transferSchema` в `TransferClientForm.tsx`)
+- Используется `react-hook-form` с `zodResolver`
+- Маска телефона: `+7 (XXX) XXX-XX-XX`
 - Сохранение в БД с привязкой к пользователю
 - TODO: интеграция с Bitrix24
 
 ### Stories Management
 
 - Модель `Story` с полями: imageUrl, title, link, order, isActive
-- API: полный CRUD через `/api/stories` и `/api/stories/[id]`
-- Компонент `StoriesCarousel` — drag-to-scroll карусель с авто-воспроизведением
+- API: полный CRUD через `/api/stories` (GET/POST) и `/api/stories/[id]` (PATCH/DELETE)
+- Компонент `StoriesCarousel` — drag-to-scroll карусель с авто-воспроизведением (интервал 4500-5000ms)
+- Fallback stories отображаются, если в БД нет активных сторис
 - Управление сторис доступно в админ-панели через `StoriesManager`
 
 ### Landing Page
 
 - Корневой `/` — публичная страница (не требует авторизации)
 - Секции: Hero, Advantages, Services, Team, Reviews, Contact
-- Фиксированный правый Sidebar на десктопе
-- Анимации: fadeIn, fadeInUp, slideIn, scaleIn, shimmer, pulse-soft (определены в `globals.css`)
+- Фиксированный правый Sidebar на десктопе (`lg:mr-56` offset для основного контента)
+- **HeroSection**: `MeshGradient` (Canvas blob animation), `SplitText` (per-character reveal), `SlotCounter` (animated stats)
+- **Анимации**: fadeIn, fadeInUp, slideInLeft, slideInRight, scaleIn, shimmer, pulse-soft (определены в `globals.css`)
+- **Utilities**: `stagger-1`..`stagger-5` для задержек, `hover-lift`, `glass`, `text-gradient`
+- Все анимации учитывают `prefers-reduced-motion`
+
+### Dashboard Layout
+
+- `/(dashboard)/layout.tsx` — sticky right sidebar (кремовый `w-56`)
+- Основная зона: `bg-burgundy-dark` с декоративными элементами (blur circles, skyline SVG)
+- Sidebar содержит: навигацию, кнопку "Передать клиента" (Dialog с формой), ссылку на админку (для ADMIN/MANAGER), инфо пользователя, выход
+- Мобильная версия: top header + dropdown menu
+
+### Admin Panel
+
+- Доступ только для ADMIN и MANAGER (проверка роли на уровне страницы)
+- Статистика: материалы, пользователи, лиды, сторис (с `prisma.count()`)
+- Воронка лидов: NEW → SENT_TO_BITRIX → PROCESSED
+- CRM-конверсия: процент обработанных лидов
+- Последние материалы, лиды, пользователи
+- `UploadMaterialCard` — загрузка файла + создание записи Material
+- `StoriesManager` — полный CRUD сторис через Dialog
+
+### Animation Components
+
+| Component      | Location                        | Description                                                              |
+| -------------- | ------------------------------- | ------------------------------------------------------------------------ |
+| MeshGradient   | `components/effects/MeshGradient.tsx` | Canvas 2D blob animation с 4 floating blobs (burgundy/cream), RAF loop, reduced-motion support |
+| SplitText      | `components/effects/SplitText.tsx`    | Per-character reveal с IntersectionObserver, stagger 0.03s, yOffset 40px |
+| SlotCounter    | `components/effects/SlotCounter.tsx`  | Animated digit slot machine, duration 800ms (mobile) / 1200ms (desktop)  |
+| TiltCard       | `components/effects/TiltCard.tsx`     | 3D hover tilt: MAX_TILT 7°, PERSPECTIVE 1000px, SCALE 1.02, dynamic shadow |
+| ScrollLine     | `components/effects/ScrollLine.tsx`   | Scroll-triggered SVG line draw animation                                 |
 
 ### Design System Notes
 
 - **Aesthetic**: бордовый (`#5C1E2D`) + кремовый (`#F0EAE0`) палитра
-- **Corners**: преимущественно острые углы (`rounded-none` или без скругления)
+- **Corners**: преимущественно острые углы (`rounded-none` или без скругления). Исключения: сторис карточки (`rounded-2xl`), кнопки пагинации (`rounded-full`)
 - **Glassmorphism**: `bg-white/5 backdrop-blur-sm border border-white/10`
 - **Labels**: uppercase с широким трекингом (`tracking-[0.3em] uppercase text-[10px]`)
-- **Illustrations**: декоративные SVG с очень низкой непрозрачностью (`opacity-[0.04]`)
+- **Illustrations**: декоративные SVG с очень низкой непрозрачностью (`opacity-[0.04]` — `opacity-[0.06]`)
+- **Hover effects**: `hover-lift` (translateY -4px + shadow), `group-hover` для scale и color transitions
+- **Reduced motion**: все анимации отключаются через `@media (prefers-reduced-motion: reduce)`
 
 ---
 
@@ -671,7 +820,7 @@ GitHub Actions (`.github/workflows/ci.yml`):
 | 2026-04-07 | Agent  | Project initialized                                                                              |
 | 2026-04-08 | Agent  | Updated AGENTS.md with actual project structure                                                  |
 | 2026-04-17 | Agent  | Full audit and update based on actual codebase                                                   |
-| 2026-04-23 | Agent  | Comprehensive update: added missing components, API routes, testing notes, design system details |
+| 2026-04-23 | Agent  | Comprehensive update: added effects components, landing architecture, admin details, known issues, animation specs |
 
 ---
 

@@ -1,5 +1,5 @@
 export type Role = 'ADMIN' | 'MANAGER' | 'PARTNER';
-export type LeadStatus = 'NEW' | 'IN_PROGRESS' | 'COMPLETED' | 'CANCELLED';
+export type LeadStatus = 'NEW' | 'SENT_TO_BITRIX' | 'ERROR' | 'PROCESSED';
 
 export interface User {
   id: string;

@@ -1,0 +1,18 @@
+version: 1
+agent:
+  name: profit-premium-executor
+  description: |
+    Исполнитель кода для Profit-Premium. Пишет TypeScript/React
+    компоненты, API routes, Prisma запросы. Работает строго по
+    одобренному чанку плана — не improvises, не добавляет лишнего.
+  extend: ./main.yaml
+  system_prompt_path: ./prompts/executor.md
+  tools:
+    - "kimi_cli.tools.file:ReadFile"
+    - "kimi_cli.tools.file:Glob"
+    - "kimi_cli.tools.file:Grep"
+    - "kimi_cli.tools.file:WriteFile"
+    - "kimi_cli.tools.file:StrReplaceFile"
+    - "kimi_cli.tools.shell:Shell"
+    - "kimi_cli.tools.web:SearchWeb"
+    - "kimi_cli.tools.think:Think"

@@ -1,0 +1,45 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e5]:
+        - generic [ref=e6]: PROFIT
+        - generic [ref=e7]: PREMIUM
+      - generic [ref=e8]:
+        - heading "Вход в личный кабинет" [level=1] [ref=e9]
+        - generic [ref=e10]:
+          - button "E-mail" [ref=e11] [cursor=pointer]: E-mail
+          - button "По СМС" [ref=e13] [cursor=pointer]
+        - generic [ref=e14]:
+          - generic [ref=e15]:
+            - generic [ref=e16]: Email
+            - textbox "Email" [ref=e17]:
+              - /placeholder: partner@example.com
+          - generic [ref=e18]:
+            - generic [ref=e19]:
+              - generic [ref=e20]: Пароль
+              - button "показать пароль" [ref=e21] [cursor=pointer]:
+                - img [ref=e22]
+                - text: показать пароль
+            - textbox "Пароль" [ref=e25]:
+              - /placeholder: ••••••••
+          - button "Войти" [ref=e26] [cursor=pointer]
+          - generic [ref=e27] [cursor=pointer]:
+            - generic [ref=e28]:
+              - checkbox "Запомнить меня" [ref=e29]
+              - img [ref=e31]
+            - text: Запомнить меня
+        - link "Забыли пароль?" [ref=e34] [cursor=pointer]:
+          - /url: "#"
+      - paragraph [ref=e36]: Эксперты в недвижимости profitpremium.ru
+    - generic [ref=e37]:
+      - img [ref=e40]
+      - generic [ref=e60]:
+        - img [ref=e62]
+        - heading "Profit Premium" [level=2] [ref=e72]
+        - paragraph [ref=e73]: Закрытый клуб для партнеров по недвижимости
+        - generic [ref=e75]:
+          - paragraph [ref=e76]: Эксклюзивные объекты
+          - paragraph [ref=e77]: Персональный менеджер
+          - paragraph [ref=e78]: Быстрое оформление сделок
+      - img [ref=e80]
+  - alert [ref=e100]

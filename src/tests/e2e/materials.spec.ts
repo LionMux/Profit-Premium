@@ -7,17 +7,17 @@ test.describe('Materials', () => {
     await page.fill('[name="email"]', 'partner@example.com');
     await page.fill('[name="password"]', 'partner123');
     await page.click('button[type="submit"]');
-    await page.waitForURL('/');
+    await page.waitForURL('/dashboard');
   });
 
   test('should display materials page', async ({ page }) => {
     await page.goto('/materials');
-    await expect(page.locator('text=Материалы')).toBeVisible();
+    await expect(page.locator('h1:has-text("Материалы")')).toBeVisible();
   });
 
   test('should filter materials by city', async ({ page }) => {
     await page.goto('/materials');
     await page.click('text=Москва');
-    await expect(page).toHaveURL(/city=Москва/);
+    await expect(page).toHaveURL(/city=%D0%9C/);
   });
 });

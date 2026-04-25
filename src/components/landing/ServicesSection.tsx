@@ -24,15 +24,17 @@ const services = [
   },
 ];
 
+import SplitText from '@/components/effects/SplitText';
+
 export default function ServicesSection() {
   return (
     <section id="services" className="bg-burgundy py-24 px-10 lg:px-16">
       <div className="mb-16">
         <p className="text-cream-dark text-[10px] tracking-[0.3em] mb-4">ЧТО МЫ ДЕЛАЕМ</p>
         <h2 className="font-serif text-cream text-4xl lg:text-5xl font-semibold uppercase leading-tight">
-          Полный цикл
+          <SplitText text="Полный цикл" as="span" className="font-serif text-cream text-4xl lg:text-5xl font-semibold uppercase leading-tight" />
           <br />
-          работы
+          <SplitText text="работы" as="span" className="font-serif text-cream text-4xl lg:text-5xl font-semibold uppercase leading-tight" />
         </h2>
       </div>
 
